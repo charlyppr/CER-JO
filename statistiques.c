@@ -13,7 +13,7 @@ void afficherDiffTempsEpreuve() {
     Date dateEntrainement1, dateEntrainement2;
     char epreuve[MAX];
     // Ouvrir le fichier de tous les athlètes
-    FILE *nomAthletes = fopen("/Users/charly/Documents/École/Info/projet/Athlètes/nomAthlètes.txt", "r");
+    FILE *nomAthletes = fopen("/Athlètes/nomAthlètes.txt", "r");
     if(nomAthletes == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlètes.\n");
         exit(1);
@@ -42,7 +42,7 @@ void afficherDiffTempsEpreuve() {
     }
 
 
-    FILE *nomEpreuve = fopen("/Users/charly/Documents/École/Info/projet/Athlètes/nomEpreuve.txt", "r");
+    FILE *nomEpreuve = fopen("/Athlètes/nomEpreuve.txt", "r");
     if(nomEpreuve == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
         exit(1);
@@ -203,7 +203,7 @@ void resumerEntrainement() {
     int choixAthlete, lignes, choixEpreuve, numEpreuve;
     char epreuve[MAX];
     // Ouvrir le fichier de tous les athlètes
-    FILE *nomAthletes = fopen("/Users/charly/Documents/École/Info/projet/Athlètes/nomAthlètes.txt", "r");
+    FILE *nomAthletes = fopen("/Athlètes/nomAthlètes.txt", "r");
     if(nomAthletes == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlètes.\n");
         exit(1);
@@ -232,7 +232,7 @@ void resumerEntrainement() {
     }
 
 
-    FILE *nomEpreuve = fopen("/Users/charly/Documents/École/Info/projet/Athlètes/nomEpreuve.txt", "r");
+    FILE *nomEpreuve = fopen("/Athlètes/nomEpreuve.txt", "r");
     if(nomEpreuve == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
         exit(1);
