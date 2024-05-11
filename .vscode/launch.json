@@ -1,6 +1,7 @@
 {
   "version": "0.2.0",
   "configurations": [
+    
     {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
@@ -9,7 +10,7 @@
       "stopAtEntry": false,
       "externalConsole": false,
       "cwd": "/workspaces/CER-JO",
-      "program": "/workspaces/CER-JO/build/Release/outRelease",
+      "program": "/workspaces/CER-JO/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
