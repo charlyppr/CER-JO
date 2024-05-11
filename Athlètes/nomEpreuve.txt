@@ -1,0 +1,5 @@
+1 100m
+2 400m
+3 5000m
+4 Marathon
+5 Relais
