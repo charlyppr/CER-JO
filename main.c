@@ -5,7 +5,6 @@
 #include "historique.c"
 #include "statistiques.c"
 
-
 void debutProgramme(Entrainement entrainement, FILE *file) {
     int choix;
     printf("1. Entrer et sauvegarder les informations/résultats d'un nouvel entrainement\n");
