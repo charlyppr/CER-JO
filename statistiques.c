@@ -1,19 +1,15 @@
 #ifndef STATISTIQUES_C
 #define STATISTIQUES_C
-
-#define INT_MAX 1000000000
-#define INT_MIN 1
-#define MAX 100
+#include "constants.h"
 
 Entrainement entrainement;
-
 
 void afficherDiffTempsEpreuve() {
     int choixAthlete, lignes, choixEpreuve, numEpreuve;
     Date dateEntrainement1, dateEntrainement2;
     char epreuve[MAX];
     // Ouvrir le fichier de tous les athlètes
-    FILE *nomAthletes = fopen("/workspaces/CER-JO/Athletes/nomAthletes.txt", "r");
+    FILE *nomAthletes = fopen(CHEMIN"/Athletes/nomAthletes.txt", "r");
     if(nomAthletes == NULL){
         printf("Impossible d'ouvrir le fichier nomAthletes.\n");
         exit(1);
@@ -42,7 +38,7 @@ void afficherDiffTempsEpreuve() {
     }
 
 
-    FILE *nomEpreuve = fopen("/workspaces/CER-JO/Athletes/nomEpreuve.txt", "r");
+    FILE *nomEpreuve = fopen(CHEMIN"/Athletes/nomEpreuve.txt", "r");
     if(nomEpreuve == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
         exit(1);
@@ -203,7 +199,7 @@ void resumerEntrainement() {
     int choixAthlete, lignes, choixEpreuve, numEpreuve;
     char epreuve[MAX];
     // Ouvrir le fichier de tous les athlètes
-    FILE *nomAthletes = fopen("/workspaces/CER-JO/Athletes/nomAthletes.txt", "r");
+    FILE *nomAthletes = fopen(CHEMIN"/Athletes/nomAthletes.txt", "r");
     if(nomAthletes == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlètes.\n");
         exit(1);
@@ -232,7 +228,7 @@ void resumerEntrainement() {
     }
 
 
-    FILE *nomEpreuve = fopen("/workspaces/CER-JO/Athletes/nomEpreuve.txt", "r");
+    FILE *nomEpreuve = fopen(CHEMIN"/Athletes/nomEpreuve.txt", "r");
     if(nomEpreuve == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
         exit(1);

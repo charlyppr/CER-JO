@@ -1,9 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "constants.h"
 #include "struct.c"
 #include "historique.c"
 #include "statistiques.c"
+
 
 void debutProgramme(Entrainement entrainement, FILE *file) {
     int choix;

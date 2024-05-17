@@ -1,11 +1,12 @@
 #ifndef HISTORIQUE_C
 #define HISTORIQUE_C
-#define MAX 100
-#define CHEMIN "/Users/charly/Documents/École/Info/CER-JO"
+#include "constants.h"
 
 int compterLignes(FILE *file) {
     int c;
     int lignes = 0;
+
+    // Compter le nombre de lignes
     while ((c = fgetc(file)) != EOF) {
         if (c == '\n') {
             lignes++;
@@ -16,6 +17,7 @@ int compterLignes(FILE *file) {
 
 void afficherNomAthlete(FILE *file) {
     char nomAthlete[MAX];
+    // Sauter le numéro de l'athlète
     fseek(file, 2, SEEK_CUR);
     // Lecture du nom de l'athlète
     fgets(nomAthlete, sizeof(nomAthlete), file);
@@ -29,6 +31,8 @@ void afficherListeAthlete(FILE *nomAthlete) {
 
     printf("Quelle athlètes parmis ces %d\n", lignes);
     rewind(nomAthlete);
+
+    // Affichage de la liste des athlètes
     for (int i = 0; i < lignes; i++) {
         printf("%d. ", i + 1);
         afficherNomAthlete(nomAthlete);
@@ -37,6 +41,7 @@ void afficherListeAthlete(FILE *nomAthlete) {
 
 void afficherNomEpreuve(FILE *nomEpreuve) {
     char epreuve[MAX];
+    // Sauter le numéro de l'épreuve
     fseek(nomEpreuve, 2, SEEK_CUR);
     // Lecture du nom de l'épreuve
     fgets(epreuve, sizeof(epreuve), nomEpreuve);
@@ -50,6 +55,8 @@ void afficherListeEpreuve(FILE *nomEpreuve) {
 
     printf("Quelle épreuves parmis ces %d\n", lignes);
     rewind(nomEpreuve);
+
+    // Affichage de la liste des épreuves
     for (int i = 0; i < lignes; i++) {
         printf("%d. ", i + 1);
         afficherNomEpreuve(nomEpreuve);
@@ -61,12 +68,14 @@ FILE *ouvrirFichierAthlete(int choixAthlete) {
     char fileName[MAX];
     char nomAthlete[MAX];
 
+    // Ouvrir le fichier nomAthletes
     FILE *nomAthletes = fopen(CHEMIN"/Athletes/nomAthletes.txt", "r");
     if(nomAthletes == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlete 2.\n");
         exit(1);
     }
 
+    // Lire chaque ligne du fichier
     while (fgets(nomAthlete, sizeof(nomAthlete), nomAthletes)) {
         sscanf(nomAthlete, "%d", &numAthlete);
         nomAthlete[strcspn(nomAthlete, "\n")] = 0;
@@ -78,6 +87,7 @@ FILE *ouvrirFichierAthlete(int choixAthlete) {
     }
 
     sprintf(fileName, CHEMIN"/Athletes/%s.txt", nomAthlete + 2);
+    // Ouvrir le fichier de l'athlète
     FILE *file = fopen(fileName, "r");
     if(file == NULL){
         printf("Impossible d'ouvrir le fichier %s.txt.\n", nomAthlete + 2);
