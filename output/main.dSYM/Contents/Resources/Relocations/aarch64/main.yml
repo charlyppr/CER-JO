@@ -22,7 +22,7 @@ relocations:
   - { offsetInCU: 0x636, offset: 0x636, size: 0x8, addend: 0x0, symName: _ajouterEntrainement, symObjAddr: 0x13F0, symBinAddr: 0x100001B7C, symSize: 0x728 }
   - { offsetInCU: 0x70F, offset: 0x70F, size: 0x8, addend: 0x0, symName: _supprimerEntrainement, symObjAddr: 0x1B18, symBinAddr: 0x1000022A4, symSize: 0x678 }
   - { offsetInCU: 0x806, offset: 0x806, size: 0x8, addend: 0x0, symName: _modifierEntrainement, symObjAddr: 0x2190, symBinAddr: 0x10000291C, symSize: 0xF94 }
-  - { offsetInCU: 0x9AE, offset: 0x9AE, size: 0x8, addend: 0x0, symName: _nouvelEntrainement, symObjAddr: 0x3124, symBinAddr: 0x1000038B0, symSize: 0x114 }
+  - { offsetInCU: 0x9AE, offset: 0x9AE, size: 0x8, addend: 0x0, symName: _modifEntrainement, symObjAddr: 0x3124, symBinAddr: 0x1000038B0, symSize: 0x114 }
   - { offsetInCU: 0x9D4, offset: 0x9D4, size: 0x8, addend: 0x0, symName: _afficherEntrainementNom, symObjAddr: 0x3248, symBinAddr: 0x1000039D4, symSize: 0x23C }
   - { offsetInCU: 0xA23, offset: 0xA23, size: 0x8, addend: 0x0, symName: _afficherEntrainementTypeEpreuve, symObjAddr: 0x3484, symBinAddr: 0x100003C10, symSize: 0x4E4 }
   - { offsetInCU: 0xB19, offset: 0xB19, size: 0x8, addend: 0x0, symName: _afficherEntrainementDate, symObjAddr: 0x3968, symBinAddr: 0x1000040F4, symSize: 0x4F4 }

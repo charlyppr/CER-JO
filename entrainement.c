@@ -470,7 +470,7 @@ void modifierEntrainement(){
 
 }
 
-void nouvelEntrainement() {
+void modifEntrainement() {
     int choix;
     printf("1. Ajouter un entrainement\n");
     printf("2. Supprimer un entrainement\n");
@@ -498,7 +498,7 @@ void nouvelEntrainement() {
             break;
         default:
             printf("Choix invalide.\n");
-            nouvelEntrainement();
+            modifEntrainement();
     }
 }
 

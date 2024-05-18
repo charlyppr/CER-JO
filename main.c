@@ -26,7 +26,7 @@ void debutProgramme(Entrainement entrainement, FILE *file) {
             break;
         case 2:
             // Code pour entrer et sauvegarder les informations/résultats d'un nouvel entrainement
-            nouvelEntrainement();
+            modifEntrainement();
             break;
         case 3:
             historiqueEntrainement(entrainement, file);
