@@ -20,7 +20,7 @@ int compareDates(const void *a, const void *b) {
 void choisirAthlete(int *choixAthlete){
     int lignes;
     // Ouvrir le fichier de tous les athlètes
-    FILE *nomAthletes = fopen(CHEMIN"/Athletes/nomAthletes.txt", "r");
+    FILE *nomAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if(nomAthletes == NULL){
         printf("Impossible d'ouvrir le fichier nomAthletes.\n");
         exit(1);
@@ -47,7 +47,7 @@ void choisirAthlete(int *choixAthlete){
 
 void choisirEpreuve(int *choixEpreuve, char epreuve[MAX]){
     int numEpreuve;
-    FILE *nomEpreuve = fopen(CHEMIN"/Athletes/nomEpreuve.txt", "r");
+    FILE *nomEpreuve = fopen(CHEMIN"/Liste/nomEpreuve.txt", "r");
     if(nomEpreuve == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
         exit(1);
@@ -213,7 +213,7 @@ void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
     fclose(fichierAthlete);
 }
 
-void moyenneTemps(FILE *athlete, char typeEpreuve[MAX]){
+int moyenneTemps(FILE *athlete, char typeEpreuve[MAX]){
     // Code pour afficher le meilleur temps de l'athlète pour une épreuve donnée
     int moyenneTemps = 0; 
     int compteur = 0;
@@ -239,6 +239,8 @@ void moyenneTemps(FILE *athlete, char typeEpreuve[MAX]){
         printf("Moyenne de l'athlète :   %dmin %dsec %dms\n", moyenneTemps/60000, (moyenneTemps % 60000)/1000, (moyenneTemps % 1000));
         printf("\n");
     }
+
+    return moyenneTemps;
 }
 
 void pireTemps(FILE *athlete, char typeEpreuve[MAX]){
@@ -306,6 +308,13 @@ void meilleurTemps(FILE *athlete, char typeEpreuve[MAX]){
         printf("Meilleur temps pour %s :\n", typeEpreuve);
         printf("Date de l'entraînement : %d/%d/%d\n", meilleurEntrainement.dateEntrainement.jour, meilleurEntrainement.dateEntrainement.mois, meilleurEntrainement.dateEntrainement.annee);
         printf("Temps de l'athlète :     %dmin %dsec %dms\n", meilleurEntrainement.tempsAthlete.minute, meilleurEntrainement.tempsAthlete.seconde, meilleurEntrainement.tempsAthlete.milliseconde);
+        if(meilleurEntrainement.position != 0){
+            if(meilleurEntrainement.position == 1){
+                printf("Position au relais :     %der coureur\n", meilleurEntrainement.position);
+            } else {
+                printf("Position au relais :     %dème coureur\n", meilleurEntrainement.position);
+            }
+        }
         printf("\n");
     }
 }
@@ -314,7 +323,7 @@ void resumerEntrainement() {
     int choixAthlete, lignes, choixEpreuve, numEpreuve;
     char epreuve[MAX];
     // Ouvrir le fichier de tous les athlètes
-    FILE *nomAthletes = fopen(CHEMIN"/Athletes/nomAthletes.txt", "r");
+    FILE *nomAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if(nomAthletes == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlètes.\n");
         exit(1);
@@ -343,7 +352,7 @@ void resumerEntrainement() {
     }
 
 
-    FILE *nomEpreuve = fopen(CHEMIN"/Athletes/nomEpreuve.txt", "r");
+    FILE *nomEpreuve = fopen(CHEMIN"/Liste/nomEpreuve.txt", "r");
     if(nomEpreuve == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
         exit(1);
@@ -382,6 +391,7 @@ void resumerEntrainement() {
     fclose(nomAthletes);
     fclose(nomEpreuve);
 }
+
 
 void statistiqueAthlete(Entrainement entrainement1, FILE *file) {
     // Code pour consulter des statistiques de performances de chaque athlète

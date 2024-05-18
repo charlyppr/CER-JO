@@ -69,7 +69,7 @@ FILE *ouvrirFichierAthlete(int choixAthlete) {
     char nomAthlete[MAX];
 
     // Ouvrir le fichier nomAthletes
-    FILE *nomAthletes = fopen(CHEMIN"/Athletes/nomAthletes.txt", "r");
+    FILE *nomAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if(nomAthletes == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlete 2.\n");
         exit(1);
@@ -138,7 +138,7 @@ void afficherEntrainementTypeEpreuve(Entrainement entrainement1, int choixEpreuv
     char epreuve[MAX];
     int numEpreuve, position;
 
-    FILE *nomEpreuve = fopen(CHEMIN"/Athletes/nomEpreuve.txt", "r");
+    FILE *nomEpreuve = fopen(CHEMIN"/Liste/nomEpreuve.txt", "r");
     if(nomEpreuve == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
         exit(1);
@@ -158,7 +158,7 @@ void afficherEntrainementTypeEpreuve(Entrainement entrainement1, int choixEpreuv
     fclose(nomEpreuve);
 
     // Ouvrir le fichier de tous les athlètes
-    FILE *nomAthletes = fopen(CHEMIN"/Athletes/nomAthletes.txt", "r");
+    FILE *nomAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if(nomAthletes == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlètes 2.\n");
         exit(1);
@@ -233,7 +233,7 @@ void afficherEntrainementDate(Entrainement entrainement1) {
         printf("\n");
     }
 
-    FILE *nomAthletes = fopen(CHEMIN"/Athletes/nomAthletes.txt", "r");
+    FILE *nomAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if(nomAthletes == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlètes 1.\n");
         exit(1);
@@ -290,13 +290,13 @@ void afficherEntrainementDate(Entrainement entrainement1) {
 void historiqueEntrainement(Entrainement entrainement1, FILE *file) {
     int choix, choixAthlete, choixEpreuve, lignes;
 
-    FILE *nomAthlete = fopen(CHEMIN"/Athletes/nomAthletes.txt", "r");
+    FILE *nomAthlete = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if(nomAthlete == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlète.\n");
         exit(1);
     }
 
-    FILE *nomEpreuve = fopen(CHEMIN"/Athletes/nomEpreuve.txt", "r");
+    FILE *nomEpreuve = fopen(CHEMIN"/Liste/nomEpreuve.txt", "r");
     if(nomEpreuve == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
         exit(1);
