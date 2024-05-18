@@ -131,11 +131,13 @@ void afficherEntrainementDate(Entrainement entrainement1) {
 
     printf("Entrez la date de l'entrainement (JJ/MM/AAAA) : ");
     scanf("%d %d %d", &date.jour, &date.mois, &date.annee);
+    printf("\n");
     while(!dateValide(date)){
+        printf("Date invalide. Veuillez entrer une date valide.\n");
         printf("Entrez la date de l'entrainement (JJ/MM/AAAA) : ");
         scanf("%d %d %d", &date.jour, &date.mois, &date.annee);
+        printf("\n");
     }
-    printf("\n");
 
     FILE *nomAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if(nomAthletes == NULL){
@@ -257,7 +259,6 @@ void historiqueEntrainement(Entrainement entrainement1, FILE *file) {
             break;
         default:
             printf("Choix invalide.\n");
-            printf("\n");
             historiqueEntrainement(entrainement1, file);
     }
     

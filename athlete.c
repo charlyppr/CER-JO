@@ -69,11 +69,20 @@ void supprimerAthlete(){
         printf("Impossible d'ouvrir le fichier nomAthletes\n");
         return;
     }
+    int lignes = compterLignes(fichierAthletes);
 
+    rewind(fichierAthletes);
     afficherListeAthlete(fichierAthletes);
     printf("Choix : ");
     scanf("%d", &numeroAthlete);
     printf("\n");
+    while(numeroAthlete < 1 || numeroAthlete > lignes){
+        printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", lignes);
+        printf("Choix : ");
+        scanf("%d", &numeroAthlete);
+        printf("\n");
+    }
+
 
     rewind(fichierAthletes);
     while (fscanf(fichierAthletes, "%d %s %s", &numero, prenom, nom) != EOF) {

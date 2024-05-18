@@ -13,10 +13,20 @@ void ajouterEntrainement() {
         printf("Impossible d'ouvrir le fichier nomAthletes\n");
         return;
     }
+    int lignes = compterLignes(fichierAthletes);
+
+    rewind(fichierAthletes);
     afficherListeAthlete(fichierAthletes);
     printf("Choix : ");
     scanf("%d", &choixAthlete);
     printf("\n");
+    while(choixAthlete < 1 || choixAthlete > lignes){
+        printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", lignes);
+        printf("Choix : ");
+        scanf("%d", &choixAthlete);
+        printf("\n");
+    }
+    
 
     FILE *fichierEpreuves = fopen(CHEMIN"/Liste/nomEpreuve.txt", "r");
     if (fichierEpreuves == NULL) {
@@ -28,12 +38,22 @@ void ajouterEntrainement() {
     printf("Choix : ");
     scanf("%d", &choixEpreuve);
     printf("\n");
+    while(choixEpreuve < 1 || choixEpreuve > 5){
+        printf("Choix invalide. Veuillez choisir un numéro d'épreuve entre 1 et 5.\n");
+        printf("Choix : ");
+        scanf("%d", &choixEpreuve);
+        printf("\n");
+    }
+
     if(choixEpreuve == 5){
         printf("Position lors du relais : ");
         scanf("%d", &positionRelais);
+        printf("\n");
         while (positionRelais < 1 || positionRelais > 4){
+            printf("Choix invalide. Veuillez choisir une position entre 1 et 4.\n");
             printf("Position lors du relais : ");
             scanf("%d", &positionRelais);
+            printf("\n");
         }
     } else {
         positionRelais = 0;
@@ -55,31 +75,34 @@ void ajouterEntrainement() {
 
     printf("Entrez la date de l'entrainement (JJ/MM/AAAA) : ");
     scanf("%d %d %d", &date.jour, &date.mois, &date.annee);
+    printf("\n");
     while(!dateValide(date)){
-        printf("Date invalide. Veuillez entrer une date valide.\n\n");
+        printf("Date invalide. Veuillez entrer une date valide.\n");
         printf("Entrez la date de l'entrainement (JJ/MM/AAAA) : ");
         scanf("%d %d %d", &date.jour, &date.mois, &date.annee);
+        printf("\n");
     }
-    printf("\n");
 
     printf("En combien de temps l'athlète a-t-il réalisé l'épreuve ?\n");
     printf("Minutes : ");
     scanf("%d", &minutes);
     while(minutes < 0 || minutes > 59){
-        printf("Minutes : ");
+        printf("Minutes (entre 0 et 59) : ");
         scanf("%d", &minutes);
     }
     printf("Secondes : ");
     scanf("%d", &secondes);
     while(secondes < 0 || secondes > 59){
+        printf("Secondes (entre 0 et 59) : ");
         scanf("%d", &secondes);
     }
     printf("Millisecondes : ");
     scanf("%d", &ms);
     while(ms < 0 || ms > 999){
-        printf("Millisecondes : ");
+        printf("Millisecondes (entre 0 et 59) : ");
         scanf("%d", &ms);
     }
+    printf("\n");
 
     FILE *Athlete = modifierFichierAthlete(choixAthlete);
     if (Athlete == NULL) {
@@ -91,9 +114,10 @@ void ajouterEntrainement() {
 
     // Ajouter une ligne dans le fichier de l'athlète
     fprintf(Athlete, "%d %d %d %s %d %d %d %d\n", date.jour, date.mois, date.annee, epreuve + 2, minutes, secondes, ms, positionRelais);
-    printf("Entrainement ajouté avec succès.\n");
 
     fclose(Athlete);
+
+    printf("Entrainement ajouté avec succès.\n");
 
 }
 
@@ -111,10 +135,19 @@ void supprimerEntrainement() {
         printf("Impossible d'ouvrir le fichier nomAthletes\n");
         return;
     }
+    int lignes = compterLignes(fichierAthletes);
+
+    rewind(fichierAthletes);
     afficherListeAthlete(fichierAthletes);
     printf("Choix : ");
     scanf("%d", &choixAthlete);
     printf("\n");
+    while(choixAthlete < 1 || choixAthlete > lignes){
+        printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", lignes);
+        printf("Choix : ");
+        scanf("%d", &choixAthlete);
+        printf("\n");
+    }
 
     rewind(fichierAthletes);
     while (fscanf(fichierAthletes, "%d %s %s", &numero, prenom, nom) != EOF) {
@@ -152,6 +185,12 @@ void supprimerEntrainement() {
     printf("Choix : ");
     scanf("%d", &choixEntrainement);
     printf("\n");
+    while(choixEntrainement < 1 || choixEntrainement > compteur - 1){
+        printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", compteur - 1);
+        printf("Choix : ");
+        scanf("%d", &choixEntrainement);
+        printf("\n");
+    }
 
     // Suppression de l'entrainement
     FILE *tempFile = fopen(CHEMIN"/Athletes/temp.txt", "w");
@@ -199,10 +238,19 @@ void modifierEntrainement(){
         printf("Impossible d'ouvrir le fichier nomAthletes\n");
         return;
     }
+    int lignes = compterLignes(fichierAthletes);
+
+    rewind(fichierAthletes);
     afficherListeAthlete(fichierAthletes);
     printf("Choix : ");
     scanf("%d", &choixAthlete);
     printf("\n");
+    while(choixAthlete < 1 || choixAthlete > lignes){
+        printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", lignes);
+        printf("Choix : ");
+        scanf("%d", &choixAthlete);
+        printf("\n");
+    }
 
     rewind(fichierAthletes);
     while (fscanf(fichierAthletes, "%d %s %s", &numero, prenom, nom) != EOF) {
@@ -217,12 +265,12 @@ void modifierEntrainement(){
     int position, compteur = 1, choixEntrainement;
     FILE *file = modifierFichierAthlete(choixAthlete);
     if (file == NULL) {
-        printf("Impossible d'ouvrir le fichier choixAthlete\n");
+        printf("Impossible d'ouvrir le fichier choixAthlete\n\n");
         return;
     }
     int ligne = compterLignes(file);
     if (ligne == 1) {
-        printf("Aucun entrainement à modifier\n");
+        printf("Aucun entrainement à modifier\n\n");
         return;
     }
 
@@ -239,6 +287,12 @@ void modifierEntrainement(){
     printf("Choix : ");
     scanf("%d", &choixEntrainement);
     printf("\n");
+    while(choixEntrainement < 1 || choixEntrainement > compteur - 1){
+        printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", compteur - 1);
+        printf("Choix : ");
+        scanf("%d", &choixEntrainement);
+        printf("\n");
+    }
 
     int newMinutes, newSecondes, newMs, choixModif, newTypeEpreuve;
 
@@ -256,18 +310,18 @@ void modifierEntrainement(){
         printf("Choix : ");
         scanf("%d", &choixModif);
         printf("\n");
-    }
-    
+    }    
 
     if(choixModif == 1){
         printf("Entrez la nouvelle date de l'entrainement (JJ/MM/AAAA) : ");
         scanf("%d %d %d", &newEntrainement.dateEntrainement.jour, &newEntrainement.dateEntrainement.mois, &newEntrainement.dateEntrainement.annee);
+        printf("\n");
         while(!dateValide(newEntrainement.dateEntrainement)){
-            printf("Date invalide. Veuillez entrer une date valide.\n\n");
+            printf("Date invalide. Veuillez entrer une date valide.\n");
             printf("Entrez la date de l'entrainement (JJ/MM/AAAA) : ");
             scanf("%d %d %d", &newEntrainement.dateEntrainement.jour, &newEntrainement.dateEntrainement.mois, &newEntrainement.dateEntrainement.annee);
+            printf("\n");
         }
-        printf("\n");
     } else {
         newEntrainement.dateEntrainement.jour = entrainement1.dateEntrainement.jour;
         newEntrainement.dateEntrainement.mois = entrainement1.dateEntrainement.mois;
@@ -296,15 +350,13 @@ void modifierEntrainement(){
             printf("Impossible d'ouvrir le fichier nomEpreuve\n");
             return;
         }
+        int lignes = compterLignes(fichierEpreuves);
 
+        rewind(fichierEpreuves);
         afficherListeEpreuve(fichierEpreuves);
         printf("Choix : ");
         scanf("%d", &newTypeEpreuve);
         printf("\n");
-
-        rewind(fichierEpreuves);
-        int lignes = compterLignes(fichierEpreuves);
-
         while (newTypeEpreuve < 1 || newTypeEpreuve > lignes) {
             printf("Choix invalide. Veuillez choisir un numéro d'épreuve entre 1 et %d.\n", lignes);
             printf("Choix : ");
@@ -315,8 +367,9 @@ void modifierEntrainement(){
         if(newTypeEpreuve == 5){
             printf("Position lors du relais : ");
             scanf("%d", &newEntrainement.position);
+            printf("\n");
             while (newEntrainement.position < 1 || newEntrainement.position > 4){
-                printf("Choix invalide. Veuillez choisir une position entre 1 et 4.\n\n");
+                printf("Choix invalide. Veuillez choisir une position entre 1 et 4.\n");
                 printf("Position lors du relais : ");
                 scanf("%d", &newEntrainement.position);
                 printf("\n");

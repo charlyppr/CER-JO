@@ -13,7 +13,7 @@ void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
         exit(1);
     }
 
-    printf("Date où il a effectué le %s\n\n", epreuve + 2);
+    printf("Date où il a effectué le %s\n", epreuve + 2);
 
     int dateCount = 0, choixDate1, choixDate2, compteurEpreuve = 0;
     Date dates[MAX];
