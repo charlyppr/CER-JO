@@ -54,7 +54,7 @@ void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
     printf("Choix de la première date (entre 1 et %d) : ", dateCount-1);
     scanf("%d", &choixDate1);
     while(choixDate1 < 1 || choixDate1 > dateCount-1){
-        printf("Choix invalide. Veuillez choisir un numéro de date entre 1 et %d.\n\n", dateCount-1);
+        printf("\nChoix invalide. Veuillez choisir un numéro de date entre 1 et %d.\n", dateCount-1);
         printf("Choix de la première date (entre 1 et %d) : ", dateCount-1);
         scanf("%d", &choixDate1);
     }
@@ -62,10 +62,11 @@ void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
     printf("Choix de la deuxième date (entre %d et %d) : ", choixDate1+1, dateCount);
     scanf("%d", &choixDate2);
     while(choixDate2 < choixDate1+1 || choixDate2 > dateCount){
-        printf("Choix invalide. Veuillez choisir un numéro de date entre %d et %d.\n\n", choixDate1+1, dateCount);
+        printf("\nChoix invalide. Veuillez choisir un numéro de date entre %d et %d.\n", choixDate1+1, dateCount);
         printf("Choix de la deuxième date (entre %d et %d) : ", choixDate1+1, dateCount);
         scanf("%d", &choixDate2);
     }
+    printf("\n");
 
     //appliquer entrainement1 avec choixDate1 et entrainement2 avec choixDate2
     rewind(fichierAthlete);
@@ -89,24 +90,26 @@ void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
         exit(1);
     }
 
-    printf("\nEntraînement du %02d/%02d/%04d\n", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee);
-    printf("Temps de l'athlète : %02dmin %02dsec %03dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
+    printf("%02d/%02d/%04d | %02dmin %02dsec %03dms ", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee, entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
     if(entrainement1.position != 0){
         if(entrainement1.position == 1){
-           printf("Position au relais : %der coureur\n", entrainement1.position);
+           printf("| %der coureur\n", entrainement1.position);
         } else {
-            printf("Position au relais : %dème coureur\n", entrainement1.position);
+            printf("| %dème coureur\n", entrainement1.position);
         }
+    } else {
+        printf("\n");
     }
 
-    printf("\nEntraînement du %02d/%02d/%04d\n", entrainement2.dateEntrainement.jour, entrainement2.dateEntrainement.mois, entrainement2.dateEntrainement.annee);
-    printf("Temps de l'athlète : %02dmin %02dsec %03dms\n", entrainement2.tempsAthlete.minute, entrainement2.tempsAthlete.seconde, entrainement2.tempsAthlete.milliseconde);
+    printf("%02d/%02d/%04d | %02dmin %02dsec %03dms ", entrainement2.dateEntrainement.jour, entrainement2.dateEntrainement.mois, entrainement2.dateEntrainement.annee, entrainement2.tempsAthlete.minute, entrainement2.tempsAthlete.seconde, entrainement2.tempsAthlete.milliseconde);
     if(entrainement2.position != 0){
         if(entrainement2.position == 1){
-            printf("Position au relais : %der coureur\n", entrainement2.position);
+            printf("| %der coureur\n", entrainement2.position);
         } else {
-            printf("Position au relais : %dème coureur\n", entrainement2.position);
+            printf("| %dème coureur\n", entrainement2.position);
         }
+    } else {
+        printf("\n");
     }
     printf("\n");
 
