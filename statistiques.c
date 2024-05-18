@@ -1,21 +1,6 @@
 #ifndef STATISTIQUES_C
 #define STATISTIQUES_C
-#include "constants.h"
-
-Entrainement entrainement;
-
-
-int compareDates(const void *a, const void *b) {
-    Date *dateA = (Date *)a;
-    Date *dateB = (Date *)b;
-
-    if (dateA->annee != dateB->annee)
-        return dateA->annee - dateB->annee;
-    else if (dateA->mois != dateB->mois)
-        return dateA->mois - dateB->mois;
-    else
-        return dateA->jour - dateB->jour;
-}
+#include "def.c"
 
 void choisirAthlete(int *choixAthlete){
     int lignes;
@@ -401,6 +386,7 @@ void statistiqueAthlete(Entrainement entrainement1, FILE *file) {
     printf("1. Consulter un résumer des statistiques de performances d'un athlète\n");
     printf("2. Qui envoyer au Jeux Olympiques\n");
     printf("3. Progression de l'athlète\n");
+    printf("4. Quitter\n");
     printf("Choix : ");
     scanf("%d", &choix);
     printf("\n");
@@ -418,6 +404,10 @@ void statistiqueAthlete(Entrainement entrainement1, FILE *file) {
             choisirAthlete(&choixAthlete);
             choisirEpreuve(&choixEpreuve, epreuve);
             afficherDiffTemps(&choixAthlete, &choixEpreuve, epreuve);
+            break;
+        case 4:
+            // Code pour retourner au début du programme
+            
             break;
         default:
             printf("Choix invalide.\n");
