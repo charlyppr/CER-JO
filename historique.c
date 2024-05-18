@@ -87,7 +87,7 @@ FILE *ouvrirFichierAthlete(int choixAthlete) {
     }
 
     sprintf(fileName, CHEMIN"/Athletes/%s.txt", nomAthlete + 2);
-    // Ouvrir le fichier de l'athlète
+    
     FILE *file = fopen(fileName, "r");
     if(file == NULL){
         printf("Impossible d'ouvrir le fichier %s.txt.\n", nomAthlete + 2);
@@ -97,29 +97,7 @@ FILE *ouvrirFichierAthlete(int choixAthlete) {
 }
 
 
-void epreuveRelais(Entrainement entrainement1, FILE *file, int position) {
-    rewind(file);
 
-    // Sauter une ligne dans le fichier
-    while (fgetc(file) != '\n');
-
-    while (fscanf(file, "%d %d %d %s %d %d %d %d", &entrainement1.dateEntrainement.jour, &entrainement1.dateEntrainement.mois, &entrainement1.dateEntrainement.annee, entrainement1.typeEpreuve, &entrainement1.tempsAthlete.minute, &entrainement1.tempsAthlete.seconde, &entrainement1.tempsAthlete.milliseconde, &position) != EOF) {
-        if(position == 0){
-            continue;
-        }else{
-            if(position == 1) {
-                printf("Position au relais :     %der coureur\n", position);
-            } else if(position > 1) {
-                printf("Position au relais :     %dème coureur\n", position);
-            }
-        }
-        
-    }
-
-    
-
-    fclose(file);
-}
 
 void afficherEntrainementNom(Entrainement entrainement1, int choixAthlete) {
     int position;
@@ -138,7 +116,15 @@ void afficherEntrainementNom(Entrainement entrainement1, int choixAthlete) {
         printf("Date de l'entraînement : %d/%d/%d\n", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee);
         printf("Type d'épreuve :         %s\n", entrainement1.typeEpreuve);
         if(strcmp(entrainement1.typeEpreuve, "Relais") == 0){
-            epreuveRelais(entrainement1, file, position);
+            if(position == 0){
+                continue;
+            } else {
+                if(position == 1) {
+                    printf("Position au relais :     %der coureur\n", position);
+                } else if(position > 1) {
+                    printf("Position au relais :     %dème coureur\n", position);
+                }
+            }
         }
         printf("Temps de l'athlète :     %dmin %dsec %dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
         printf("\n");
@@ -205,8 +191,16 @@ void afficherEntrainementTypeEpreuve(Entrainement entrainement1, int choixEpreuv
             if (strcmp(entrainement1.typeEpreuve, epreuve + 2) == 0) {
                 // Affichage des valeurs
                 printf("Athlète :                %s\n", nomAthlete + 2);
-                if(strcmp(entrainement1.typeEpreuve, "Relais") == 0) {
-                    epreuveRelais(entrainement1, file, position);
+                if(strcmp(entrainement1.typeEpreuve, "Relais") == 0){
+                    if(position == 0){
+                        continue;
+                    } else {
+                        if(position == 1) {
+                            printf("Position au relais :     %der coureur\n", position);
+                        } else if(position > 1) {
+                            printf("Position au relais :     %dème coureur\n", position);
+                        }
+                    }
                 }
                 printf("Date de l'entraînement : %d/%d/%d\n", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee);
                 printf("Temps de l'athlète :     %dmin %dsec %dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
@@ -266,8 +260,16 @@ void afficherEntrainementDate(Entrainement entrainement1) {
             if (entrainement1.dateEntrainement.jour == jour && entrainement1.dateEntrainement.mois == mois && entrainement1.dateEntrainement.annee == annee) {
                 printf("Athlète :                %s\n", nomAthlete + 2);
                 printf("Type d'épreuve :         %s\n", entrainement1.typeEpreuve);
-                if(strcmp(entrainement1.typeEpreuve, "Relais") == 0) {
-                    epreuveRelais(entrainement1, file, i + 1);
+                if(strcmp(entrainement1.typeEpreuve, "Relais") == 0){
+                    if(position == 0){
+                        continue;
+                    } else {
+                        if(position == 1) {
+                            printf("Position au relais :     %der coureur\n", position);
+                        } else if(position > 1) {
+                            printf("Position au relais :     %dème coureur\n", position);
+                        }
+                    }
                 }
                 printf("Temps de l'athlète :     %dmin %dsec %dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
                 printf("\n");
