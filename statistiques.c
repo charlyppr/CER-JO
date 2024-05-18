@@ -166,6 +166,10 @@ void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
         }
     }
 
+    if (compteur < 2) {
+        exit(1);
+    }
+
     printf("\nEntraînement du %d/%d/%d\n", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee);
     printf("Temps de l'athlète : %dmin %dsec %dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
     if(entrainement1.position != 0){

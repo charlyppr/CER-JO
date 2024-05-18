@@ -2,27 +2,27 @@
 triple:          'arm64-apple-darwin'
 binary-path:     "/Users/charly/Documents/École/Info/CER-JO/output/main"
 relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _compterLignes, symObjAddr: 0x0, symBinAddr: 0x1000041B4, symSize: 0x6C }
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _compterLignes, symObjAddr: 0x0, symBinAddr: 0x100004198, symSize: 0x6C }
   - { offsetInCU: 0x4D, offset: 0x4D, size: 0x8, addend: 0x0, symName: _entrainement, symBinAddr: 0x10000C000, symSize: 0x0 }
-  - { offsetInCU: 0x127, offset: 0x127, size: 0x8, addend: 0x0, symName: _compterLignes, symObjAddr: 0x0, symBinAddr: 0x1000041B4, symSize: 0x6C }
-  - { offsetInCU: 0x16B, offset: 0x16B, size: 0x8, addend: 0x0, symName: _afficherNomAthlete, symObjAddr: 0x6C, symBinAddr: 0x100004220, symSize: 0xA8 }
-  - { offsetInCU: 0x19D, offset: 0x19D, size: 0x8, addend: 0x0, symName: _afficherListeAthlete, symObjAddr: 0x114, symBinAddr: 0x1000042C8, symSize: 0xA8 }
-  - { offsetInCU: 0x1EB, offset: 0x1EB, size: 0x8, addend: 0x0, symName: _afficherNomEpreuve, symObjAddr: 0x1BC, symBinAddr: 0x100004370, symSize: 0xA8 }
-  - { offsetInCU: 0x21D, offset: 0x21D, size: 0x8, addend: 0x0, symName: _afficherListeEpreuve, symObjAddr: 0x264, symBinAddr: 0x100004418, symSize: 0xA8 }
-  - { offsetInCU: 0x26B, offset: 0x26B, size: 0x8, addend: 0x0, symName: _ouvrirFichierAthlete, symObjAddr: 0x30C, symBinAddr: 0x1000044C0, symSize: 0x1B8 }
-  - { offsetInCU: 0x2DB, offset: 0x2DB, size: 0x8, addend: 0x0, symName: _afficherEntrainementNom, symObjAddr: 0x4C4, symBinAddr: 0x100004678, symSize: 0x23C }
-  - { offsetInCU: 0x32A, offset: 0x32A, size: 0x8, addend: 0x0, symName: _afficherEntrainementTypeEpreuve, symObjAddr: 0x700, symBinAddr: 0x1000048B4, symSize: 0x4E4 }
-  - { offsetInCU: 0x420, offset: 0x420, size: 0x8, addend: 0x0, symName: _afficherEntrainementDate, symObjAddr: 0xBE4, symBinAddr: 0x100004D98, symSize: 0x568 }
-  - { offsetInCU: 0x507, offset: 0x507, size: 0x8, addend: 0x0, symName: _historiqueEntrainement, symObjAddr: 0x114C, symBinAddr: 0x100005300, symSize: 0x3F0 }
-  - { offsetInCU: 0x59F, offset: 0x59F, size: 0x8, addend: 0x0, symName: _compareDates, symObjAddr: 0x153C, symBinAddr: 0x1000056F0, symSize: 0xBC }
-  - { offsetInCU: 0x5F1, offset: 0x5F1, size: 0x8, addend: 0x0, symName: _choisirAthlete, symObjAddr: 0x15F8, symBinAddr: 0x1000057AC, symSize: 0x14C }
-  - { offsetInCU: 0x631, offset: 0x631, size: 0x8, addend: 0x0, symName: _choisirEpreuve, symObjAddr: 0x1744, symBinAddr: 0x1000058F8, symSize: 0x1E0 }
-  - { offsetInCU: 0x68D, offset: 0x68D, size: 0x8, addend: 0x0, symName: _afficherDiffTemps, symObjAddr: 0x1924, symBinAddr: 0x100005AD8, symSize: 0xA88 }
-  - { offsetInCU: 0x7C7, offset: 0x7C7, size: 0x8, addend: 0x0, symName: _moyenneTemps, symObjAddr: 0x23AC, symBinAddr: 0x100006560, symSize: 0x22C }
-  - { offsetInCU: 0x831, offset: 0x831, size: 0x8, addend: 0x0, symName: _pireTemps, symObjAddr: 0x25D8, symBinAddr: 0x10000678C, symSize: 0x2EC }
-  - { offsetInCU: 0x8A0, offset: 0x8A0, size: 0x8, addend: 0x0, symName: _meilleurTemps, symObjAddr: 0x28C4, symBinAddr: 0x100006A78, symSize: 0x28C }
-  - { offsetInCU: 0x915, offset: 0x915, size: 0x8, addend: 0x0, symName: _resumerEntrainement, symObjAddr: 0x2B50, symBinAddr: 0x100006D04, symSize: 0x38C }
-  - { offsetInCU: 0x9A9, offset: 0x9A9, size: 0x8, addend: 0x0, symName: _statistiqueAthlete, symObjAddr: 0x2EDC, symBinAddr: 0x100007090, symSize: 0x16C }
-  - { offsetInCU: 0xA21, offset: 0xA21, size: 0x8, addend: 0x0, symName: _debutProgramme, symObjAddr: 0x3048, symBinAddr: 0x1000071FC, symSize: 0x188 }
-  - { offsetInCU: 0xA65, offset: 0xA65, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x31D0, symBinAddr: 0x100007384, symSize: 0x8C }
+  - { offsetInCU: 0x127, offset: 0x127, size: 0x8, addend: 0x0, symName: _compterLignes, symObjAddr: 0x0, symBinAddr: 0x100004198, symSize: 0x6C }
+  - { offsetInCU: 0x16B, offset: 0x16B, size: 0x8, addend: 0x0, symName: _afficherNomAthlete, symObjAddr: 0x6C, symBinAddr: 0x100004204, symSize: 0xA8 }
+  - { offsetInCU: 0x19D, offset: 0x19D, size: 0x8, addend: 0x0, symName: _afficherListeAthlete, symObjAddr: 0x114, symBinAddr: 0x1000042AC, symSize: 0xA8 }
+  - { offsetInCU: 0x1EB, offset: 0x1EB, size: 0x8, addend: 0x0, symName: _afficherNomEpreuve, symObjAddr: 0x1BC, symBinAddr: 0x100004354, symSize: 0xA8 }
+  - { offsetInCU: 0x21D, offset: 0x21D, size: 0x8, addend: 0x0, symName: _afficherListeEpreuve, symObjAddr: 0x264, symBinAddr: 0x1000043FC, symSize: 0xA8 }
+  - { offsetInCU: 0x26B, offset: 0x26B, size: 0x8, addend: 0x0, symName: _ouvrirFichierAthlete, symObjAddr: 0x30C, symBinAddr: 0x1000044A4, symSize: 0x1B8 }
+  - { offsetInCU: 0x2DB, offset: 0x2DB, size: 0x8, addend: 0x0, symName: _afficherEntrainementNom, symObjAddr: 0x4C4, symBinAddr: 0x10000465C, symSize: 0x23C }
+  - { offsetInCU: 0x32A, offset: 0x32A, size: 0x8, addend: 0x0, symName: _afficherEntrainementTypeEpreuve, symObjAddr: 0x700, symBinAddr: 0x100004898, symSize: 0x4E4 }
+  - { offsetInCU: 0x420, offset: 0x420, size: 0x8, addend: 0x0, symName: _afficherEntrainementDate, symObjAddr: 0xBE4, symBinAddr: 0x100004D7C, symSize: 0x568 }
+  - { offsetInCU: 0x507, offset: 0x507, size: 0x8, addend: 0x0, symName: _historiqueEntrainement, symObjAddr: 0x114C, symBinAddr: 0x1000052E4, symSize: 0x3F0 }
+  - { offsetInCU: 0x59F, offset: 0x59F, size: 0x8, addend: 0x0, symName: _compareDates, symObjAddr: 0x153C, symBinAddr: 0x1000056D4, symSize: 0xBC }
+  - { offsetInCU: 0x5F1, offset: 0x5F1, size: 0x8, addend: 0x0, symName: _choisirAthlete, symObjAddr: 0x15F8, symBinAddr: 0x100005790, symSize: 0x14C }
+  - { offsetInCU: 0x631, offset: 0x631, size: 0x8, addend: 0x0, symName: _choisirEpreuve, symObjAddr: 0x1744, symBinAddr: 0x1000058DC, symSize: 0x1E0 }
+  - { offsetInCU: 0x68D, offset: 0x68D, size: 0x8, addend: 0x0, symName: _afficherDiffTemps, symObjAddr: 0x1924, symBinAddr: 0x100005ABC, symSize: 0xAA4 }
+  - { offsetInCU: 0x7C7, offset: 0x7C7, size: 0x8, addend: 0x0, symName: _moyenneTemps, symObjAddr: 0x23C8, symBinAddr: 0x100006560, symSize: 0x22C }
+  - { offsetInCU: 0x831, offset: 0x831, size: 0x8, addend: 0x0, symName: _pireTemps, symObjAddr: 0x25F4, symBinAddr: 0x10000678C, symSize: 0x2EC }
+  - { offsetInCU: 0x8A0, offset: 0x8A0, size: 0x8, addend: 0x0, symName: _meilleurTemps, symObjAddr: 0x28E0, symBinAddr: 0x100006A78, symSize: 0x28C }
+  - { offsetInCU: 0x915, offset: 0x915, size: 0x8, addend: 0x0, symName: _resumerEntrainement, symObjAddr: 0x2B6C, symBinAddr: 0x100006D04, symSize: 0x38C }
+  - { offsetInCU: 0x9A9, offset: 0x9A9, size: 0x8, addend: 0x0, symName: _statistiqueAthlete, symObjAddr: 0x2EF8, symBinAddr: 0x100007090, symSize: 0x16C }
+  - { offsetInCU: 0xA21, offset: 0xA21, size: 0x8, addend: 0x0, symName: _debutProgramme, symObjAddr: 0x3064, symBinAddr: 0x1000071FC, symSize: 0x188 }
+  - { offsetInCU: 0xA65, offset: 0xA65, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x31EC, symBinAddr: 0x100007384, symSize: 0x8C }
 ...
