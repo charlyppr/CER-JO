@@ -22,7 +22,7 @@ void debutProgramme(Entrainement entrainement, FILE *file) {
     switch (choix) {
         case 1:
             // Code pour ajouter/supprimer un athlète
-            new();
+            modifAthlete();
             break;
         case 2:
             // Code pour entrer et sauvegarder les informations/résultats d'un nouvel entrainement

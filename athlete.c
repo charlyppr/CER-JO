@@ -17,7 +17,7 @@ void ajouterAthlete(){
         fclose(fichierAthletes);
     }
 
-    printf("Entrez le prénom de l'athlète: ");
+    printf("Entrez le prénom de l'athlète : ");
     scanf("%s", prenom);
 
     // Mettre la première lettre du prénom en majuscule
@@ -25,7 +25,7 @@ void ajouterAthlete(){
         prenom[0] = prenom[0] - 32;
     }
 
-    printf("Entrez le nom de l'athlète: ");
+    printf("Entrez le nom de l'athlète : ");
     scanf("%s", nom);
 
     // Mettre la première lettre du nom en majuscule
@@ -51,8 +51,6 @@ void ajouterAthlete(){
     }
 
     printf("\nL'athlète %s %s a été créé avec succès.\n", prenom, nom);
-
-
 }
 
 void supprimerAthlete(){
@@ -118,7 +116,7 @@ void supprimerAthlete(){
     printf("L'athlète %s %s a été supprimé avec succès.\n", prenom, nom);
 }
 
-void new() {
+void modifAthlete() {
     int choix;
     printf("1. Créer un nouvel athlète\n");
     printf("2. Supprimer un athlète\n");
@@ -140,7 +138,7 @@ void new() {
             break;
         default:
             printf("Choix invalide.\n");
-            new();
+            modifAthlete();
     }
     
 }

@@ -18,7 +18,7 @@ relocations:
   - { offsetInCU: 0x490, offset: 0x490, size: 0x8, addend: 0x0, symName: _choisirEpreuve, symObjAddr: 0xAD0, symBinAddr: 0x10000125C, symSize: 0x1E0 }
   - { offsetInCU: 0x4EC, offset: 0x4EC, size: 0x8, addend: 0x0, symName: _ajouterAthlete, symObjAddr: 0xCB0, symBinAddr: 0x10000143C, symSize: 0x2C8 }
   - { offsetInCU: 0x567, offset: 0x567, size: 0x8, addend: 0x0, symName: _supprimerAthlete, symObjAddr: 0xF78, symBinAddr: 0x100001704, symSize: 0x36C }
-  - { offsetInCU: 0x612, offset: 0x612, size: 0x8, addend: 0x0, symName: _new, symObjAddr: 0x12E4, symBinAddr: 0x100001A70, symSize: 0x10C }
+  - { offsetInCU: 0x612, offset: 0x612, size: 0x8, addend: 0x0, symName: _modifAthlete, symObjAddr: 0x12E4, symBinAddr: 0x100001A70, symSize: 0x10C }
   - { offsetInCU: 0x636, offset: 0x636, size: 0x8, addend: 0x0, symName: _ajouterEntrainement, symObjAddr: 0x13F0, symBinAddr: 0x100001B7C, symSize: 0x728 }
   - { offsetInCU: 0x70F, offset: 0x70F, size: 0x8, addend: 0x0, symName: _supprimerEntrainement, symObjAddr: 0x1B18, symBinAddr: 0x1000022A4, symSize: 0x678 }
   - { offsetInCU: 0x806, offset: 0x806, size: 0x8, addend: 0x0, symName: _modifierEntrainement, symObjAddr: 0x2190, symBinAddr: 0x10000291C, symSize: 0xF94 }
