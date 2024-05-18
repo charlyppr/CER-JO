@@ -3,11 +3,11 @@
 #include "def.c"
 
 void ajouterAthlete(){
-    char prenom[50];
-    char nom[50];
+    char prenom[MAX/2];
+    char nom[MAX/2];
     int dernierNumero = 0;
-    char ligne[100];
-    char cheminComplet[100];
+    char ligne[MAX];
+    char cheminComplet[MAX];
 
     FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if (fichierAthletes != NULL) {
@@ -57,12 +57,12 @@ void ajouterAthlete(){
 
 void supprimerAthlete(){
     int numeroAthlete;
-    char ligne[100];
+    char ligne[MAX];
     int numero;
-    char prenom[50];
-    char nom[50];
-    char nomFichier[100];
-    char cheminComplet[100];
+    char prenom[MAX/2];
+    char nom[MAX/2];
+    char nomFichier[MAX];
+    char cheminComplet[MAX];
 
     FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if (fichierAthletes == NULL) {

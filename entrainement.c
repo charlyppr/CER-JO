@@ -5,7 +5,7 @@
 void ajouterEntrainement() {
     int choixAthlete, choixEpreuve, numEpreuve, positionRelais;
     int minutes, secondes, ms;
-    char epreuve[100];
+    char epreuve[MAX];
     Date date;
 
     FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
@@ -101,10 +101,10 @@ void supprimerEntrainement() {
     int choixAthlete;
     Entrainement entrainement1;
     int numero;
-    char prenom[50];
-    char nom[50];
-    char nomFichier[100];
-    char cheminComplet[100];
+    char prenom[MAX/2];
+    char nom[MAX/2];
+    char nomFichier[MAX];
+    char cheminComplet[MAX];
 
     FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if (fichierAthletes == NULL) {
@@ -188,11 +188,11 @@ void modifierEntrainement(){
     int choixAthlete;
     Entrainement entrainement1, newEntrainement;
     int numero, numEpreuve;
-    char epreuve[100];
-    char prenom[50];
-    char nom[50];
-    char nomFichier[100];
-    char cheminComplet[100];
+    char epreuve[MAX];
+    char prenom[MAX/2];
+    char nom[MAX/2];
+    char nomFichier[MAX];
+    char cheminComplet[MAX];
 
     FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if (fichierAthletes == NULL) {
