@@ -113,7 +113,7 @@ void new() {
     int choix;
     printf("1. Créer un nouvel athlète\n");
     printf("2. Supprimer un athlète\n");
-    printf("3. Quitter\n");
+    couleur("31"); printf("3. Quitter\n"); couleur("0");
     printf("Choix : ");
     scanf("%d", &choix);
     printf("\n");

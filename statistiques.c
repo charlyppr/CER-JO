@@ -2,72 +2,6 @@
 #define STATISTIQUES_C
 #include "def.c"
 
-void choisirAthlete(int *choixAthlete){
-    int lignes;
-    // Ouvrir le fichier de tous les athlètes
-    FILE *nomAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
-    if(nomAthletes == NULL){
-        printf("Impossible d'ouvrir le fichier nomAthletes.\n");
-        exit(1);
-    }
-
-    afficherListeAthlete(nomAthletes);
-    printf("Choix : ");
-    scanf("%d", choixAthlete);
-    printf("\n");
-
-    rewind(nomAthletes);
-    lignes = compterLignes(nomAthletes);
-
-    while (*choixAthlete < 1 || *choixAthlete > lignes) {
-        printf("Choix invalide. Veuillez choisir un numéro d'athlète entre 1 et %d.\n", lignes);
-        printf("Choix : ");
-        scanf("%d", choixAthlete);
-        printf("\n");
-    }
-
-    // Fermeture du fichier nomAthletes
-    fclose(nomAthletes);
-}
-
-void choisirEpreuve(int *choixEpreuve, char epreuve[MAX]){
-    int numEpreuve;
-    FILE *nomEpreuve = fopen(CHEMIN"/Liste/nomEpreuve.txt", "r");
-    if(nomEpreuve == NULL){
-        printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
-        exit(1);
-    }
-
-    afficherListeEpreuve(nomEpreuve);
-    printf("Choix : ");
-    scanf("%d", choixEpreuve);
-    printf("\n");
-
-    rewind(nomEpreuve);
-    int lignes = compterLignes(nomEpreuve);
-
-    while (*choixEpreuve < 1 || *choixEpreuve > lignes) {
-        printf("Choix invalide. Veuillez choisir un numéro d'épreuve entre 1 et %d.\n", lignes);
-        printf("Choix : ");
-        scanf("%d", choixEpreuve);
-        printf("\n");
-    }
-
-
-    rewind(nomEpreuve);
-    while (fgets(epreuve, MAX, nomEpreuve)) {
-        sscanf(epreuve, "%d", &numEpreuve);
-        epreuve[strcspn(epreuve, "\n")] = 0;
-
-        if(numEpreuve == *choixEpreuve) {
-            break;
-        }
-    }
-
-    // Fermeture du fichier nomEpreuve
-    fclose(nomEpreuve);
-
-}
 
 void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
     int compteur = 0;
@@ -113,7 +47,7 @@ void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
 
     // Afficher les dates triées
     for (int i = 0; i < dateCount; i++) {
-        printf("%d. %d/%d/%d\n", i + 1, dates[i].jour, dates[i].mois, dates[i].annee);
+        printf("%d. %02d/%02d/%04d\n", i + 1, dates[i].jour, dates[i].mois, dates[i].annee);
     }
     printf("\n");
 
@@ -155,8 +89,8 @@ void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
         exit(1);
     }
 
-    printf("\nEntraînement du %d/%d/%d\n", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee);
-    printf("Temps de l'athlète : %dmin %dsec %dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
+    printf("\nEntraînement du %02d/%02d/%04d\n", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee);
+    printf("Temps de l'athlète : %02dmin %02dsec %03dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
     if(entrainement1.position != 0){
         if(entrainement1.position == 1){
            printf("Position au relais : %der coureur\n", entrainement1.position);
@@ -165,8 +99,8 @@ void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
         }
     }
 
-    printf("\nEntraînement du %d/%d/%d\n", entrainement2.dateEntrainement.jour, entrainement2.dateEntrainement.mois, entrainement2.dateEntrainement.annee);
-    printf("Temps de l'athlète : %dmin %dsec %dms\n", entrainement2.tempsAthlete.minute, entrainement2.tempsAthlete.seconde, entrainement2.tempsAthlete.milliseconde);
+    printf("\nEntraînement du %02d/%02d/%04d\n", entrainement2.dateEntrainement.jour, entrainement2.dateEntrainement.mois, entrainement2.dateEntrainement.annee);
+    printf("Temps de l'athlète : %02dmin %02dsec %03dms\n", entrainement2.tempsAthlete.minute, entrainement2.tempsAthlete.seconde, entrainement2.tempsAthlete.milliseconde);
     if(entrainement2.position != 0){
         if(entrainement2.position == 1){
             printf("Position au relais : %der coureur\n", entrainement2.position);
@@ -185,10 +119,10 @@ void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
     int millisecondes = abs((differenceTemps % 60000) % 1000);
 
     if(differenceTemps < 0){
-        printf("L'athlète a progressé de %dmin %dsec %dms\n", minutes, secondes, millisecondes);
+        printf("L'athlète a progressé de %02dmin %02dsec %03dms\n", minutes, secondes, millisecondes);
         exit(1);
     } else if(differenceTemps > 0){
-        printf("L'athlète a régressé de %dmin %dsec %dms\n", minutes, secondes, millisecondes);
+        printf("L'athlète a régressé de %02dmin %02dsec %03dms\n", minutes, secondes, millisecondes);
         exit(1);
     } else {
         printf("L'athlète a gardé le même temps\n");
@@ -216,14 +150,6 @@ int moyenneTemps(FILE *athlete, char typeEpreuve[MAX]){
     }
 
     moyenneTemps = moyenneTemps/compteur;
-
-    if (moyenneTemps == 0) {
-        printf("Aucun entraînement de ce type n'a été trouvé.\n");
-    } else {
-        printf("Moyenne temps pour %s :\n", typeEpreuve);
-        printf("Moyenne de l'athlète :   %dmin %dsec %dms\n", moyenneTemps/60000, (moyenneTemps % 60000)/1000, (moyenneTemps % 1000));
-        printf("\n");
-    }
 
     return moyenneTemps;
 }
@@ -253,8 +179,8 @@ void pireTemps(FILE *athlete, char typeEpreuve[MAX]){
 
     } else {
         printf("Pire temps pour %s :\n", typeEpreuve);
-        printf("Date de l'entraînement : %d/%d/%d\n", pireEntrainement.dateEntrainement.jour, pireEntrainement.dateEntrainement.mois, pireEntrainement.dateEntrainement.annee);
-        printf("Temps de l'athlète :     %dmin %dsec %dms\n", pireEntrainement.tempsAthlete.minute, pireEntrainement.tempsAthlete.seconde, pireEntrainement.tempsAthlete.milliseconde);
+        printf("Date de l'entraînement : %02d/%02d/%04d\n", pireEntrainement.dateEntrainement.jour, pireEntrainement.dateEntrainement.mois, pireEntrainement.dateEntrainement.annee);
+        printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", pireEntrainement.tempsAthlete.minute, pireEntrainement.tempsAthlete.seconde, pireEntrainement.tempsAthlete.milliseconde);
         if(pireEntrainement.position != 0){
             if(pireEntrainement.position == 1){
                 printf("Position au relais :     %der coureur\n", pireEntrainement.position);
@@ -291,8 +217,8 @@ void meilleurTemps(FILE *athlete, char typeEpreuve[MAX]){
 
     } else {
         printf("Meilleur temps pour %s :\n", typeEpreuve);
-        printf("Date de l'entraînement : %d/%d/%d\n", meilleurEntrainement.dateEntrainement.jour, meilleurEntrainement.dateEntrainement.mois, meilleurEntrainement.dateEntrainement.annee);
-        printf("Temps de l'athlète :     %dmin %dsec %dms\n", meilleurEntrainement.tempsAthlete.minute, meilleurEntrainement.tempsAthlete.seconde, meilleurEntrainement.tempsAthlete.milliseconde);
+        printf("Date de l'entraînement : %02d/%02d/%04d\n", meilleurEntrainement.dateEntrainement.jour, meilleurEntrainement.dateEntrainement.mois, meilleurEntrainement.dateEntrainement.annee);
+        printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", meilleurEntrainement.tempsAthlete.minute, meilleurEntrainement.tempsAthlete.seconde, meilleurEntrainement.tempsAthlete.milliseconde);
         if(meilleurEntrainement.position != 0){
             if(meilleurEntrainement.position == 1){
                 printf("Position au relais :     %der coureur\n", meilleurEntrainement.position);
@@ -371,12 +297,96 @@ void resumerEntrainement() {
 
     meilleurTemps(fichierAthlete, epreuve + 2);
     pireTemps(fichierAthlete, epreuve + 2);
-    moyenneTemps(fichierAthlete, epreuve + 2);
+    int moyenne = moyenneTemps(fichierAthlete, epreuve + 2);
+    if (moyenne == 0) {
+        printf("Aucun entraînement de ce type n'a été trouvé.\n");
+    } else {
+        printf("Moyenne temps pour %s :\n", epreuve + 2);
+        printf("Moyenne de l'athlète :   %02dmin %02dsec %03dms\n", moyenne/60000, (moyenne % 60000)/1000, (moyenne % 1000));
+        printf("\n");
+    }
 
     fclose(nomAthletes);
     fclose(nomEpreuve);
 }
 
+void quiAuJO(){
+    int lignes, choixEpreuve;
+    // Code pour déterminer qui envoyer aux Jeux Olympiques
+    FILE *nomEpreuve = fopen(CHEMIN"/Liste/nomEpreuve.txt", "r");
+    if(nomEpreuve == NULL){
+        printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
+        exit(1);
+    }
+
+    afficherListeEpreuve(nomEpreuve);
+    printf("Choix : ");
+    scanf("%d", &choixEpreuve);
+    printf("\n");
+
+    rewind(nomEpreuve);
+    lignes = compterLignes(nomEpreuve);
+
+    while (choixEpreuve < 1 || choixEpreuve > lignes) {
+        printf("Choix invalide. Veuillez choisir un numéro d'épreuve entre 1 et %d.\n", lignes);
+        printf("Choix : ");
+        scanf("%d", &choixEpreuve);
+        printf("\n");
+    }
+
+    rewind(nomEpreuve);
+    char epreuve[MAX];
+    while (fgets(epreuve, sizeof(epreuve), nomEpreuve)) {
+        int numEpreuve;
+        sscanf(epreuve, "%d", &numEpreuve);
+        epreuve[strcspn(epreuve, "\n")] = 0;
+
+        if(numEpreuve == choixEpreuve) {
+            break;
+        }
+    }
+
+    // Ouvrir le fichier de tous les athlètes
+    FILE *nomAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
+    if(nomAthletes == NULL){
+        printf("Impossible d'ouvrir le fichier nomAthlètes.\n");
+        exit(1);
+    }
+    lignes = compterLignes(nomAthletes);
+
+    rewind(nomAthletes);
+    //mettre le nom des athlètes dans un tableau
+    char athletes[MAX][MAX];
+    for(int i = 0; i < lignes; i++){
+        fseek(nomAthletes, 2, SEEK_CUR); // Sauter le numéro de l'athlète
+        fgets(athletes[i], sizeof(athletes[i]), nomAthletes);
+        athletes[i][strcspn(athletes[i], "\n")] = 0;
+    }
+    
+    //mettre moyenne temps de chaque athlète dans un tableau
+    int moyennes[MAX];
+    for(int i = 0; i < lignes; i++){
+        FILE *fichierAthlete = ouvrirFichierAthlete(i+1);
+        moyennes[i] = moyenneTemps(fichierAthlete, epreuve + 2);
+        fclose(fichierAthlete);
+    }
+
+    // Afficher les 3 meilleurs moyennes
+    MoyenneIndex moyennesIndex[lignes];
+    for(int i = 0; i < lignes; i++){
+        moyennesIndex[i].moyenne = moyennes[i];
+        moyennesIndex[i].index = i;
+    }
+
+    qsort(moyennesIndex, lignes, sizeof(MoyenneIndex), comparer);
+
+    printf("\nLes 3 meilleurs moyennes pour le %s sont :\n", epreuve + 2);
+
+    printf("%s  %s avec une moyenne de %02dmin %02dsec %03dms\n", "🥇", athletes[moyennesIndex[0].index], moyennes[moyennesIndex[0].index]/60000, (moyennes[moyennesIndex[0].index] % 60000)/1000, (moyennes[moyennesIndex[0].index] % 1000));
+    printf("%s  %s avec une moyenne de %02dmin %02dsec %03dms\n", "🥈", athletes[moyennesIndex[1].index], moyennes[moyennesIndex[1].index]/60000, (moyennes[moyennesIndex[1].index] % 60000)/1000, (moyennes[moyennesIndex[1].index] % 1000));
+    printf("%s  %s avec une moyenne de %02dmin %02dsec %03dms\n", "🥉", athletes[moyennesIndex[2].index], moyennes[moyennesIndex[2].index]/60000, (moyennes[moyennesIndex[2].index] % 60000)/1000, (moyennes[moyennesIndex[2].index] % 1000));
+
+}
 
 void statistiqueAthlete(Entrainement entrainement1, FILE *file) {
     // Code pour consulter des statistiques de performances de chaque athlète
@@ -386,7 +396,7 @@ void statistiqueAthlete(Entrainement entrainement1, FILE *file) {
     printf("1. Consulter un résumer des statistiques de performances d'un athlète\n");
     printf("2. Qui envoyer au Jeux Olympiques\n");
     printf("3. Progression de l'athlète\n");
-    printf("4. Quitter\n");
+    couleur("31"); printf("4. Quitter\n"); couleur("0");
     printf("Choix : ");
     scanf("%d", &choix);
     printf("\n");
@@ -398,6 +408,7 @@ void statistiqueAthlete(Entrainement entrainement1, FILE *file) {
             break;
         case 2:
             // Code pour déterminer qui envoyer aux Jeux Olympiques
+            quiAuJO();
             break;
         case 3:
             // Code pour afficher la progression de l'athlète

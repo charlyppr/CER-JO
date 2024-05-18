@@ -422,7 +422,7 @@ void nouvelEntrainement() {
     printf("1. Ajouter un entrainement\n");
     printf("2. Supprimer un entrainement\n");
     printf("3. Modifier un entrainement\n");
-    printf("4. Quitter\n");
+    couleur("31"); printf("4. Quitter\n"); couleur("0");
     printf("Choix : ");
     scanf("%d", &choix);
     printf("\n");

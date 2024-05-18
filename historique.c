@@ -17,7 +17,7 @@ void afficherEntrainementNom(Entrainement entrainement1, int choixAthlete) {
     // Lire chaque ligne du fichier
     while (fscanf(file, "%d %d %d %s %d %d %d %d", &entrainement1.dateEntrainement.jour, &entrainement1.dateEntrainement.mois, &entrainement1.dateEntrainement.annee, entrainement1.typeEpreuve, &entrainement1.tempsAthlete.minute, &entrainement1.tempsAthlete.seconde, &entrainement1.tempsAthlete.milliseconde, &position) != EOF) {
         // Affichage des valeurs
-        printf("Date de l'entraînement : %d/%d/%d\n", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee);
+        printf("Date de l'entraînement : %02d/%02d/%04d\n", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee);
         printf("Type d'épreuve :         %s\n", entrainement1.typeEpreuve);
         if(strcmp(entrainement1.typeEpreuve, "Relais") == 0){
             if(position == 0){
@@ -30,7 +30,7 @@ void afficherEntrainementNom(Entrainement entrainement1, int choixAthlete) {
                 }
             }
         }
-        printf("Temps de l'athlète :     %dmin %dsec %dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
+        printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
         printf("\n");
     }
 
@@ -106,8 +106,8 @@ void afficherEntrainementTypeEpreuve(Entrainement entrainement1, int choixEpreuv
                         }
                     }
                 }
-                printf("Date de l'entraînement : %d/%d/%d\n", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee);
-                printf("Temps de l'athlète :     %dmin %dsec %dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
+                printf("Date de l'entraînement : %02d/%02d/%04d\n", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee);
+                printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
                 printf("\n");
                 entrainementTrouve = 1;
             }
@@ -175,14 +175,14 @@ void afficherEntrainementDate(Entrainement entrainement1) {
                         }
                     }
                 }
-                printf("Temps de l'athlète :     %dmin %dsec %dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
+                printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", entrainement1.tempsAthlete.minute, entrainement1.tempsAthlete.seconde, entrainement1.tempsAthlete.milliseconde);
                 printf("\n");
                 entrainementTrouve = 1;
             }
         }
 
         if (!entrainementTrouve) {
-            printf("Aucun entraînement n'a été trouvé pour l'athlète %s à la date %d/%d/%d.\n\n", nomAthlete + 2, date.jour, date.mois, date.annee);
+            printf("Aucun entraînement n'a été trouvé pour l'athlète %s à la date %02d/%02d/%04d.\n\n", nomAthlete + 2, date.jour, date.mois, date.annee);
         }
 
         fclose(file);
@@ -209,7 +209,7 @@ void historiqueEntrainement(Entrainement entrainement1, FILE *file) {
     printf("1. Voir par nom des Athlètes\n");
     printf("2. Voir par type d'épreuve\n");
     printf("3. Voir par date\n");
-    printf("4. Quitter\n");
+    couleur("31"); printf("4. Quitter\n"); couleur("0");
     printf("Choix : ");
     scanf("%d", &choix);
     printf("\n");

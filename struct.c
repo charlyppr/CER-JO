@@ -25,4 +25,9 @@ typedef struct Entrainement {
     int position;
 } Entrainement;
 
+typedef struct {
+    int moyenne;
+    int index;
+} MoyenneIndex;
+
 #endif // STRUCT_C

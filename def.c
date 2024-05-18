@@ -2,6 +2,9 @@
 #define DEF_C
 #include "constants.h"
 
+#define clrscr() printf("\033[H\033[2J")
+#define couleur(param) printf("\033[%sm",param)
+
 Entrainement entrainement;
 
 int compterLignes(FILE *file) {
@@ -63,14 +66,22 @@ int compareDates(const void *a, const void *b) {
         return dateA->jour - dateB->jour;
 }
 
+int comparer(const void *a, const void *b) {
+    MoyenneIndex *miA = (MoyenneIndex *)a;
+    MoyenneIndex *miB = (MoyenneIndex *)b;
+    if(miA->moyenne == 0) return 1;
+    if(miB->moyenne == 0) return -1;
+    return miA->moyenne - miB->moyenne;
+}
+
 void afficherNomAthlete(FILE *file) {
     char nomAthlete[MAX];
-    // Sauter le numéro de l'athlète
-    fseek(file, 2, SEEK_CUR);
-    // Lecture du nom de l'athlète
-    fgets(nomAthlete, sizeof(nomAthlete), file);
-    // Suppression de la nouvelle ligne
-    nomAthlete[strcspn(nomAthlete, "\n")] = 0;
+    
+    fseek(file, 2, SEEK_CUR); // Sauter le numéro de l'athlète
+    
+    fgets(nomAthlete, sizeof(nomAthlete), file); // Lecture du nom de l'athlète
+    
+    nomAthlete[strcspn(nomAthlete, "\n")] = 0; // Suppression de la nouvelle ligne
     printf("%s\n", nomAthlete);
 }
 
@@ -129,7 +140,7 @@ FILE *ouvrirFichierAthlete(int choixAthlete) {
         nomAthlete[strcspn(nomAthlete, "\n")] = 0;
 
         if(numAthlete == choixAthlete) {
-            printf("%s :\n", nomAthlete + 2);
+            //printf("%s :\n", nomAthlete + 2);
             break;
         }
     }
@@ -174,6 +185,73 @@ FILE *modifierFichierAthlete(int choixAthlete) {
         exit(1);
     }
     return file;
+}
+
+void choisirAthlete(int *choixAthlete){
+    int lignes;
+    // Ouvrir le fichier de tous les athlètes
+    FILE *nomAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
+    if(nomAthletes == NULL){
+        printf("Impossible d'ouvrir le fichier nomAthletes.\n");
+        exit(1);
+    }
+
+    afficherListeAthlete(nomAthletes);
+    printf("Choix : ");
+    scanf("%d", choixAthlete);
+    printf("\n");
+
+    rewind(nomAthletes);
+    lignes = compterLignes(nomAthletes);
+
+    while (*choixAthlete < 1 || *choixAthlete > lignes) {
+        printf("Choix invalide. Veuillez choisir un numéro d'athlète entre 1 et %d.\n", lignes);
+        printf("Choix : ");
+        scanf("%d", choixAthlete);
+        printf("\n");
+    }
+
+    // Fermeture du fichier nomAthletes
+    fclose(nomAthletes);
+}
+
+void choisirEpreuve(int *choixEpreuve, char epreuve[MAX]){
+    int numEpreuve;
+    FILE *nomEpreuve = fopen(CHEMIN"/Liste/nomEpreuve.txt", "r");
+    if(nomEpreuve == NULL){
+        printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
+        exit(1);
+    }
+
+    afficherListeEpreuve(nomEpreuve);
+    printf("Choix : ");
+    scanf("%d", choixEpreuve);
+    printf("\n");
+
+    rewind(nomEpreuve);
+    int lignes = compterLignes(nomEpreuve);
+
+    while (*choixEpreuve < 1 || *choixEpreuve > lignes) {
+        printf("Choix invalide. Veuillez choisir un numéro d'épreuve entre 1 et %d.\n", lignes);
+        printf("Choix : ");
+        scanf("%d", choixEpreuve);
+        printf("\n");
+    }
+
+
+    rewind(nomEpreuve);
+    while (fgets(epreuve, MAX, nomEpreuve)) {
+        sscanf(epreuve, "%d", &numEpreuve);
+        epreuve[strcspn(epreuve, "\n")] = 0;
+
+        if(numEpreuve == *choixEpreuve) {
+            break;
+        }
+    }
+
+    // Fermeture du fichier nomEpreuve
+    fclose(nomEpreuve);
+
 }
 
 

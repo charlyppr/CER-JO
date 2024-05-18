@@ -6,13 +6,15 @@
 #include "statistiques.c"
 
 
-void debutProgramme(Entrainement entrainement, FILE *file) {
+void debutProgramme(Entrainement entrainement, FILE *file) {    
     int choix;
+    printf("\n");
+    couleur("1"); couleur("32"); printf("Bienvenue dans le programme de gestion des entrainements des athlètes.\n\n"); couleur("0");
     printf("1. Ajouter/Supprimer un athlète\n");
     printf("2. Ajouter/supprimer/modifier un entrainement\n");
     printf("3. Voir l'historique des entrainements de l'athlète\n");
     printf("4. Consulter des statistiques de performances de chaque athlète\n");
-    printf("5. Quitter\n");
+    couleur("31"); printf("5. Quitter\n"); couleur("0");
     printf("Choix : ");
     scanf("%d", &choix);
     printf("\n");
@@ -45,6 +47,7 @@ void debutProgramme(Entrainement entrainement, FILE *file) {
 
 
 int main(){
+    clrscr();
     FILE *file = NULL;
 
     debutProgramme(entrainement, file);
