@@ -151,6 +151,9 @@ int moyenneTemps(FILE *athlete, char typeEpreuve[MAX]){
             compteur++;
         }
     }
+    if(compteur == 0){
+        return 0;
+    }
 
     moyenneTemps = moyenneTemps/compteur;
 
