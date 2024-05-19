@@ -1,5 +1,4 @@
-#include "constants.h"
-#include "struct.c"
+#include "def.c"
 #include "athlete.c"
 #include "entrainement.c"
 #include "historique.c"
