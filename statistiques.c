@@ -321,7 +321,7 @@ void quiAuJO(){
     // Code pour déterminer qui envoyer aux Jeux Olympiques
     FILE *nomEpreuve = fopen(CHEMIN"/Liste/nomEpreuve.txt", "r");
     if(nomEpreuve == NULL){
-        printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
+        printf("Impossible d'ouvrir le fichier nomEpreuve.txt.\n");
         exit(1);
     }
 
