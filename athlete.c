@@ -193,7 +193,7 @@ void modifierAthlete(){
     // recopier le nouveau prenom et nom dans le fichier temporaire
     fprintf(AthleteTemp, "%s %s\n", newPrenom, newNom);
 
-    while (fgetc(Athlete) != '\n');;
+    while (fgetc(Athlete) != '\n');
     // recopier le reste du fichier Athlete dans le fichier temporaire
     while (fgets(ligne, sizeof(ligne), Athlete) != NULL) {
         fprintf(AthleteTemp, "%s", ligne);
