@@ -2,12 +2,36 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Déboguer le programme",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/Users/charly/Documents/École/Info/CER-JO/output/cerjo",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "/Users/charly/Documents/École/Info/CER-JO",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "build",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "logging": {
+        "engineLogging": true
+      }
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "lldb",
       "request": "launch",
       "args": [],
       "cwd": "/Users/charly/Documents/École/Info/CER-JO",
-      "program": "/Users/charly/Documents/École/Info/CER-JO/build/Debug/outDebug"
+      "program": "/Users/charly/Documents/École/Info/CER-JO/output/cerjo"
     }
   ]
 }
