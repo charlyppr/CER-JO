@@ -1,4 +1,4 @@
-#include "../historique.h"
+#include "../headers/historique.h"
 
 void afficherEntrainementNom(Entrainement entrainement1, int choixAthlete) {
     int position;

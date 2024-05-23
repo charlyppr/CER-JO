@@ -1,4 +1,4 @@
-#include "../statistiques.h"
+#include "../headers/statistiques.h"
 
 void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
     int compteur = 0;

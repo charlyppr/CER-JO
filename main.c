@@ -1,7 +1,7 @@
-#include "athlete.h"
-#include "entrainement.h"
-#include "historique.h"
-#include "statistiques.h"
+#include "headers/athlete.h"
+#include "headers/entrainement.h"
+#include "headers/historique.h"
+#include "headers/statistiques.h"
 
 
 

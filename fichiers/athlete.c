@@ -1,4 +1,4 @@
-#include "../athlete.h"
+#include "../headers/athlete.h"
 
 void ajouterAthlete(void){
     char prenom[MAX/2], nom[MAX/2];

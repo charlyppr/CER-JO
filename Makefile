@@ -1,7 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align -Wconversion -Wsign-conversion -Wnull-dereference
 OBJDIR = output
-DEPS = def.h constants.h struct.h
 SRC_DIR = fichiers
 SRCS = $(SRC_DIR)/def.c $(SRC_DIR)/athlete.c $(SRC_DIR)/entrainement.c $(SRC_DIR)/historique.c main.c $(SRC_DIR)/statistiques.c
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJDIR)/%.o, $(SRCS))

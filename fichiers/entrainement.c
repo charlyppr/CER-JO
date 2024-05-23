@@ -1,4 +1,4 @@
-#include "../entrainement.h"
+#include "../headers/entrainement.h"
 
 void ajouterEntrainement(void) {
     int choixAthlete, choixEpreuve, numEpreuve, positionRelais;
