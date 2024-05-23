@@ -1,8 +1,6 @@
-#ifndef ENTRAINEMENT_C
-#define ENTRAINEMENT_C
-#include "def.c"
+#include "entrainement.h"
 
-void ajouterEntrainement() {
+void ajouterEntrainement(void) {
     int choixAthlete, choixEpreuve, numEpreuve, positionRelais;
     int minutes, secondes, ms;
     char epreuve[MAX];
@@ -121,7 +119,7 @@ void ajouterEntrainement() {
 
 }
 
-void supprimerEntrainement() {
+void supprimerEntrainement(void) {
     int choixAthlete;
     Entrainement entrainement1;
     int numero;
@@ -223,7 +221,7 @@ void supprimerEntrainement() {
     printf("Entrainement supprimé avec succès.\n");
 }
 
-void modifierEntrainement(){
+void modifierEntrainement(void){
     int choixAthlete;
     Entrainement entrainement1, newEntrainement;
     int numero, numEpreuve;
@@ -350,7 +348,7 @@ void modifierEntrainement(){
             printf("Impossible d'ouvrir le fichier nomEpreuve\n");
             return;
         }
-        int lignes = compterLignes(fichierEpreuves);
+        lignes = compterLignes(fichierEpreuves);
 
         rewind(fichierEpreuves);
         afficherListeEpreuve(fichierEpreuves);
@@ -470,7 +468,7 @@ void modifierEntrainement(){
 
 }
 
-void modifEntrainement() {
+void modifEntrainement(void) {
     int choix;
     printf("1. Ajouter un entrainement\n");
     printf("2. Supprimer un entrainement\n");
@@ -501,5 +499,3 @@ void modifEntrainement() {
             modifEntrainement();
     }
 }
-
-#endif 

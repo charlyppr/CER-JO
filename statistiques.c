@@ -1,7 +1,4 @@
-#ifndef STATISTIQUES_C
-#define STATISTIQUES_C
-#include "def.c"
-
+#include "statistiques.h"
 
 void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
     int compteur = 0;
@@ -43,7 +40,7 @@ void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
     }
 
     // Trier les dates
-    qsort(dates, dateCount, sizeof(Date), compareDates);
+    qsort(dates, (size_t)dateCount, sizeof(Date), compareDates);
 
     // Afficher les dates triées
     for (int i = 0; i < dateCount; i++) {
@@ -236,7 +233,7 @@ void meilleurTemps(FILE *athlete, char typeEpreuve[MAX]){
     }
 }
 
-void resumerEntrainement() {
+void resumerEntrainement(void) {
     int choixAthlete, lignes, choixEpreuve, numEpreuve;
     char epreuve[MAX];
     // Ouvrir le fichier de tous les athlètes
@@ -316,7 +313,7 @@ void resumerEntrainement() {
     fclose(nomEpreuve);
 }
 
-void quiAuJO(){
+void quiAuJO(void){
     int lignes, choixEpreuve;
     // Code pour déterminer qui envoyer aux Jeux Olympiques
     FILE *nomEpreuve = fopen(CHEMIN"/Liste/nomEpreuve.txt", "r");
@@ -384,7 +381,7 @@ void quiAuJO(){
         moyennesIndex[i].index = i;
     }
 
-    qsort(moyennesIndex, lignes, sizeof(MoyenneIndex), comparer);
+    qsort(moyennesIndex, (size_t)lignes, sizeof(MoyenneIndex), comparer);
 
     printf("\nLes 3 meilleurs moyennes pour le %s sont :\n", epreuve + 2);
 
@@ -431,5 +428,3 @@ void statistiqueAthlete(Entrainement entrainement1, FILE *file) {
             statistiqueAthlete(entrainement1, file);
     }
 }
-
-#endif

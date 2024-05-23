@@ -1,11 +1,4 @@
-#ifndef DEF_C
-#define DEF_C
-#include "constants.h"
-
-#define clrscr() printf("\033[H\033[2J")
-#define couleur(param) printf("\033[%sm",param)
-
-Entrainement entrainement;
+#include "def.h"
 
 int compterLignes(FILE *file) {
     int c;
@@ -254,5 +247,3 @@ void choisirEpreuve(int *choixEpreuve, char epreuve[MAX]){
 
 }
 
-
-#endif

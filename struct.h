@@ -1,5 +1,5 @@
-#ifndef STRUCT_C
-#define STRUCT_C
+#ifndef STRUCT_H
+#define STRUCT_H
 
 // Structure pour la date
 typedef struct {
@@ -25,9 +25,11 @@ typedef struct Entrainement {
     int position;
 } Entrainement;
 
+Entrainement entrainement;  // Variable globale pour l'entraînement
+
 typedef struct {
     int moyenne;
     int index;
 } MoyenneIndex;
 
-#endif // STRUCT_C
+#endif

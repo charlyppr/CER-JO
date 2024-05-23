@@ -1,7 +1,4 @@
-#ifndef HISTORIQUE_C
-#define HISTORIQUE_C
-#include "def.c"
-
+#include "historique.h"
 
 void afficherEntrainementNom(Entrainement entrainement1, int choixAthlete) {
     int position;
@@ -263,5 +260,3 @@ void historiqueEntrainement(Entrainement entrainement1, FILE *file) {
     }
     
 }
-
-#endif // Historique_H

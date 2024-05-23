@@ -1,11 +1,11 @@
-#include "def.c"
-#include "athlete.c"
-#include "entrainement.c"
-#include "historique.c"
-#include "statistiques.c"
+#include "athlete.h"
+#include "entrainement.h"
+#include "historique.h"
+#include "statistiques.h"
 
 
-void debutProgramme(Entrainement entrainement, FILE *file) {    
+
+void debutProgramme(Entrainement entrainement1, FILE *file) {    
     int choix;
     printf("\n");
     couleur("1"); couleur("32"); printf("Bienvenue dans le programme de gestion des entrainements des athlètes.\n\n"); couleur("0");
@@ -28,11 +28,11 @@ void debutProgramme(Entrainement entrainement, FILE *file) {
             modifEntrainement();
             break;
         case 3:
-            historiqueEntrainement(entrainement, file);
+            historiqueEntrainement(entrainement1, file);
             break;
         case 4:
             // Code pour consulter des statistiques de performances de chaque athlète
-            statistiqueAthlete(entrainement, file);
+            statistiqueAthlete(entrainement1, file);
             break;
         case 5:
             // Code pour quitter le programme
@@ -40,12 +40,12 @@ void debutProgramme(Entrainement entrainement, FILE *file) {
             break;
         default:
             printf("Choix invalide.\n");
-            debutProgramme(entrainement, file);
+            debutProgramme(entrainement1, file);
     }
 }
 
 
-int main(){
+int main(void){
     clrscr();
     FILE *file = NULL;
 

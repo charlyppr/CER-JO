@@ -1,8 +1,6 @@
-#ifndef ATHLETE_C
-#define ATHLETE_C
-#include "def.c"
+#include "athlete.h"
 
-void ajouterAthlete(){
+void ajouterAthlete(void){
     char prenom[MAX/2], nom[MAX/2];
     int dernierNumero = 0;
     char ligne[MAX];
@@ -52,7 +50,7 @@ void ajouterAthlete(){
     printf("\nL'athlète %s %s a été créé avec succès.\n", prenom, nom);
 }
 
-void supprimerAthlete(){
+void supprimerAthlete(void){
     int numeroAthlete;
     char ligne[MAX];
     int numero;
@@ -115,7 +113,7 @@ void supprimerAthlete(){
     printf("L'athlète %s %s a été supprimé avec succès.\n", prenom, nom);
 }
 
-void modifierAthlete(){
+void modifierAthlete(void){
     int numeroAthlete;
     char ligne[MAX];
     int numero;
@@ -209,7 +207,7 @@ void modifierAthlete(){
 
 }
 
-void modifAthlete() {
+void modifAthlete(void) {
     int choix;
     printf("1. Créer un nouvel athlète\n");
     printf("2. Supprimer un athlète\n");
@@ -242,5 +240,3 @@ void modifAthlete() {
     }
     
 }
-
-#endif
