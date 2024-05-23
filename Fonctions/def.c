@@ -1,4 +1,4 @@
-#include "def.h"
+#include "../def.h"
 
 int compterLignes(FILE *file) {
     int c;
