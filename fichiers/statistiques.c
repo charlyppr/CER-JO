@@ -424,7 +424,7 @@ void statistiqueAthlete(Entrainement entrainement1, FILE *file) {
             
             break;
         default:
-            printf("Choix invalide.\n");
+            printf("Choix invalide.\n\n");
             statistiqueAthlete(entrainement1, file);
     }
 }

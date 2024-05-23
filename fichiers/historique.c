@@ -255,7 +255,7 @@ void historiqueEntrainement(Entrainement entrainement1, FILE *file) {
         case 4:
             break;
         default:
-            printf("Choix invalide.\n");
+            printf("Choix invalide.\n\n");
             historiqueEntrainement(entrainement1, file);
     }
     

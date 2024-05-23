@@ -1,4 +1,5 @@
 #include "../headers/athlete.h"
+#include "../headers/entrainement.h"
 
 void ajouterAthlete(void){
     char prenom[MAX/2], nom[MAX/2];
@@ -205,10 +206,13 @@ void modifierAthlete(void){
     rename(CHEMIN"/Liste/nomAthletesTemp.txt", CHEMIN"/Liste/nomAthletes.txt");
     rename(CHEMIN"/Athletes/AthletesTemp.txt", nomFichier);
 
+    printf("L'athlète %s %s a été modifié avec succès.\n", newPrenom, newNom);
+
 }
 
 void modifAthlete(void) {
     int choix;
+
     printf("1. Créer un nouvel athlète\n");
     printf("2. Supprimer un athlète\n");
     printf("3. Modifier un athlète\n");
@@ -221,6 +225,21 @@ void modifAthlete(void) {
         case 1:
             // Code pour ajouter un athlète
             ajouterAthlete();
+
+            printf("\nVoulez-vous ajouter un entrainement pour cet athlète ?\n");
+            couleur("32"); printf("1. Oui\n"); couleur("0");
+            couleur("31"); printf("2. Non\n"); couleur("0");
+            printf("Choix : ");
+            scanf("%d", &choix);
+            printf("\n");
+
+            if (choix == 1) {
+                ajouterEntrainement();
+            }
+            else {
+                return;
+            }
+
             break;
         case 2:
             // Code pour supprimer un athlète
@@ -232,10 +251,9 @@ void modifAthlete(void) {
             break;
         case 4:
             // Code pour quitter
-            exit(0);
             break;
         default:
-            printf("Choix invalide.\n");
+            printf("Choix invalide.\n\n");
             modifAthlete();
     }
     

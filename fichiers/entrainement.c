@@ -495,7 +495,7 @@ void modifEntrainement(void) {
             // Code pour retourner au début du programme
             break;
         default:
-            printf("Choix invalide.\n");
+            printf("Choix invalide.\n\n");
             modifEntrainement();
     }
 }
