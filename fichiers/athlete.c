@@ -250,7 +250,6 @@ void modifAthlete(void) {
             modifierAthlete();
             break;
         case 4:
-            // Code pour quitter
             break;
         default:
             printf("Choix invalide.\n\n");
