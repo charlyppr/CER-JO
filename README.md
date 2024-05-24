@@ -54,6 +54,7 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
       ```c
       #define PATH "/Users/Prenom/Documents/CER-JO"
       ```
+    - Enregistrez les modifications.
 4. **Compiler le programme** :
     ```bash
     make
@@ -80,9 +81,26 @@ Assurez-vous que le chemin dans `constants.h` est correct avant de compiler et d
 
 Pour utiliser le programme, suivez les instructions ci-dessous :
 
-1. **Ajouter/Supprimer/Modifier un athlète** : Entrez les informations demandées pour ajouter/supprimer/modifier un athlète.
-2. **Ajouter/Supprimer/Modifier un entrainement** : Entrez les informations demandées pour ajouter/supprimer/modifier un entrainement d'un athlète existant.
+1. **Ajouter/Supprimer/Modifier un athlète** :
+    - Ajouter un athlète.
+    - Supprimer un athlète.
+    - Modifier le prénom et le nom d'un athlète.
+
+2. **Ajouter/Supprimer/Modifier un entrainement** : Entrez les informations demandées pour 
+    - Ajouter un entrainement à un athlète parmis :
+        - 100 m
+        - 400 m
+        - 5000 m
+        - Marathon
+        - Relais 4 x 400 m
+    - Supprimer un entrainement d'un athlète.
+    - Modifier un entrainement d'un athlète :
+        - La date.
+        - La discipline.
+        - Le temps
+
 3. **Voir l'historique des entrainements de l'athlète** : Choisissez un athlète, une épreuve ou une date pour afficher les entrainement correspondant.
+
 4. **Consulter les statistiques** :
     - Voir les meilleurs, pires temps et moyennes d'un athlète pour une discipline.
     - Voir les trois meilleurs athlètes pour une discipline et savoir qui envoyer au JO.
