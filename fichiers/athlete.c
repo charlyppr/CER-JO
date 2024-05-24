@@ -159,49 +159,90 @@ void supprimerAthlete(void){
 }
 
 void modifierAthlete(void){
-    int numeroAthlete, numero, compteur = 1;
+    int numeroAthlete, numero, compteur = 1, choix;
     char ligne[MAX];
     char prenom[MAX/2], nom[MAX/2];
     char newPrenom[MAX/2], newNom[MAX/2];
     char nomFichier[MAX];
     char cheminComplet[MAX];
 
+    numeroAthlete = faireChoixAthlete();
+    FILE *nomAthlete = ouvrirFichierAthlete(numeroAthlete);
+    if (nomAthlete == NULL) {
+        printf("Impossible d'ouvrir le fichier Athlete\n");
+        return;
+    }
+
+    fgets(ligne, sizeof(ligne), nomAthlete);
+    sscanf(ligne, "%s %s", prenom, nom);
+
+    fclose(nomAthlete);
+
+    printf("Faut-il modifier le prénom de l'athlète ?\n");
+    couleur("32"); printf("1. Oui\n"); couleur("0");
+    couleur("31"); printf("2. Non\n"); couleur("0");
+    printf("Choix : ");
+    scanf("%d", &choix);
+    printf("\n");
+
+    if (choix == 1) {
+        // Code pour modifier un athlète
+        printf("Quel est le nouveau prénom de l'athlète ? ");
+        scanf("%s", newPrenom);
+        if(newPrenom[0] >= 'a' && newPrenom[0] <= 'z'){
+            newPrenom[0] = newPrenom[0] - 32;
+        }
+        printf("\n");
+    } else if(choix < 1 || choix > 2){
+        printf("Choix invalide.\n");
+        printf("Quel est le nouveau prénom de l'athlète ? ");
+        scanf("%s", newPrenom);
+        if(newPrenom[0] >= 'a' && newPrenom[0] <= 'z'){
+            newPrenom[0] = newPrenom[0] - 32;
+        }
+        printf("\n");
+    } else {
+        strcpy(newPrenom, prenom);
+    }
+
+    printf("Faut-il modifier le nom de l'athlète ?\n");
+    couleur("32"); printf("1. Oui\n"); couleur("0");
+    couleur("31"); printf("2. Non\n"); couleur("0");
+    printf("Choix : ");
+    scanf("%d", &choix);
+    printf("\n");
+
+    if (choix == 1) {
+        // Code pour modifier un athlète
+        printf("Quel est le nouveau nom de l'athlète ? ");
+        scanf("%s", newNom);
+        if(newNom[0] >= 'a' && newNom[0] <= 'z'){
+            newNom[0] = newNom[0] - 32;
+        }
+        printf("\n");
+    } else if(choix < 1 || choix > 2){
+        printf("Choix invalide.\n");
+        printf("Quel est le nouveau nom de l'athlète ? ");
+        scanf("%s", newNom);
+        if(newNom[0] >= 'a' && newNom[0] <= 'z'){
+            newNom[0] = newNom[0] - 32;
+        }
+        printf("\n");
+    } else {
+        strcpy(newNom, nom);
+    }
+
+    sprintf(nomFichier, "%s/Athletes/%s %s.txt", CHEMIN, newPrenom, newNom);
+
     FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if (fichierAthletes == NULL) {
         printf("Impossible d'ouvrir le fichier nomAthletes\n");
         return;
     }
-    int lignes = compterLignes(fichierAthletes);
-
-    rewind(fichierAthletes);
-    afficherListeAthlete(fichierAthletes);
-    printf("Choix : ");
-    scanf("%d", &numeroAthlete);
-    printf("\n");
-    while(numeroAthlete < 1 || numeroAthlete > lignes){
-        printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", lignes);
-        printf("Choix : ");
-        scanf("%d", &numeroAthlete);
-        printf("\n");
-    }
-
-    // Code pour modifier un athlète
-    printf("Quel est le nouveau prénom de l'athlète ? ");
-    scanf("%s", newPrenom);
-    printf("Quel est le nouveau nom de l'athlète ? ");
-    scanf("%s", newNom);
-    if(newPrenom[0] >= 'a' && newPrenom[0] <= 'z'){
-        newPrenom[0] = newPrenom[0] - 32;
-    }
-    if(newNom[0] >= 'a' && newNom[0] <= 'z'){
-        newNom[0] = newNom[0] - 32;
-    }
-    sprintf(nomFichier, "%s/Athletes/%s %s.txt", CHEMIN, newPrenom, newNom);
 
     FILE *nouveauFichier = fopen(CHEMIN"/Liste/nomAthletesTemp.txt", "w");
     if (nouveauFichier == NULL) {
         printf("Impossible de créer le fichier temporaire\n");
-        fclose(fichierAthletes);
         return;
     }
 
@@ -251,7 +292,7 @@ void modifierAthlete(void){
     rename(CHEMIN"/Liste/nomAthletesTemp.txt", CHEMIN"/Liste/nomAthletes.txt");
     rename(CHEMIN"/Athletes/AthletesTemp.txt", nomFichier);
 
-    printf("L'athlète %s %s a été modifié avec succès.\n", newPrenom, newNom);
+    printf("L'athlète %s %s a été modifié avec succès.\n\n", newPrenom, newNom);
 
 }
 
