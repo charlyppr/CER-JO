@@ -4,7 +4,7 @@ OBJDIR = output
 SRC_DIR = fichiers
 SRCS = $(wildcard $(SRC_DIR)/*.c) main.c
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
-TARGET = $(OBJDIR)/cerjo
+TARGET = cerjo
 
 # Cible par défaut
 all: $(TARGET)
