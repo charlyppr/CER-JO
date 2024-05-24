@@ -94,7 +94,7 @@ Pour utiliser le programme, suivez les instructions ci-dessous :
         - Le temps
 
 3. **Voir l'historique des entrainements de l'athlète** : 
-    Choisissez un athlète, une épreuve ou une date pour afficher les entrainement correspondant.
+    - Choisissez un athlète, une épreuve ou une date pour afficher les entrainement correspondant.
 
 4. **Consulter les statistiques** :
     - Voir les meilleurs, pires temps et moyennes d'un athlète pour une discipline.
