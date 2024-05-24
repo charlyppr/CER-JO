@@ -67,7 +67,7 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
     - ```bash
       ./cerjo
       ```
-ou
+    ou
     - ```bash
       make run
       ```
