@@ -44,10 +44,12 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
     ```bash
     git clone https://github.com/charlyppr/CER-JO.git
     ```
+    
 2. **Accédez au répertoire du projet** :
     ```bash
     cd CER-JO
     ```
+
 3. **Modifier le fichier constants.h** :
     - Ouvrez le fichier `headers/constants.h` dans un éditeur de texte.
     - Modifiez la ligne définissant `PATH` pour qu'elle corresponde au chemin absolu du dossier où se trouvent vos fichiers. Par exemple :
@@ -55,14 +57,17 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
       #define PATH "/Users/Prenom/Documents/CER-JO"
       ```
     - Enregistrez les modifications.
+
 4. **Compiler le programme** :
     ```bash
     make
     ```
+
 5. **Nettoyer les fichiers objets** :
     ```bash
     make clean
     ```
+
 6. **Exécuter le programme** :
     - ```bash
       ./cerjo
