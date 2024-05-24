@@ -1,6 +1,6 @@
 #ifndef PATH_H
 #define PATH_H
 
-#define PATH "/Users/charly/Documents/École/Info/CER-JO"
+#define PATH "/Users/Prénom/Documents/CER-JO"
 
 #endif
