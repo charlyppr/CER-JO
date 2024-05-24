@@ -50,12 +50,12 @@ void addTraining(int athleteChoice) {
 
     fclose(raceFile);
 
-    printf("Entrez la date de l'entrainement (JJ/MM/AAAA) : ");
+    printf("Entrez la date de l'entrainement (JJ MM AAAA) : ");
     scanf("%d %d %d", &date.day, &date.month, &date.year);
     printf("\n");
     while(!validDate(date)){
         printf("Date invalide. Veuillez entrer une date valide.\n");
-        printf("Entrez la date de l'entrainement (JJ/MM/AAAA) : ");
+        printf("Entrez la date de l'entrainement (JJ MM AAAA) : ");
         scanf("%d %d %d", &date.day, &date.month, &date.year);
         printf("\n");
     }
@@ -267,12 +267,12 @@ void changeTraining(void){
     }    
 
     if(changeChoice == 1){
-        printf("Entrez la nouvelle date de l'entrainement (JJ/MM/AAAA) : ");
+        printf("Entrez la nouvelle date de l'entrainement (JJ MM AAAA) : ");
         scanf("%d %d %d", &newTraining.trainingDate.day, &newTraining.trainingDate.month, &newTraining.trainingDate.year);
         printf("\n");
         while(!validDate(newTraining.trainingDate)){
             printf("Date invalide. Veuillez entrer une date valide.\n");
-            printf("Entrez la date de l'entrainement (JJ/MM/AAAA) : ");
+            printf("Entrez la date de l'entrainement (JJ MM AAAA) : ");
             scanf("%d %d %d", &newTraining.trainingDate.day, &newTraining.trainingDate.month, &newTraining.trainingDate.year);
             printf("\n");
         }

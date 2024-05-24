@@ -128,12 +128,12 @@ void showTrainingDate(Training training1) {
     int position;
     Date date;
 
-    printf("Entrez la date de l'entrainement (JJ/MM/AAAA) : ");
+    printf("Entrez la date de l'entrainement (JJ MM AAAA) : ");
     scanf("%d %d %d", &date.day, &date.month, &date.year);
     printf("\n");
     while(!validDate(date)){
         printf("Date invalide. Veuillez entrer une date valide.\n");
-        printf("Entrez la date de l'entrainement (JJ/MM/AAAA) : ");
+        printf("Entrez la date de l'entrainement (JJ MM AAAA) : ");
         scanf("%d %d %d", &date.day, &date.month, &date.year);
         printf("\n");
     }
