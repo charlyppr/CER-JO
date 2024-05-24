@@ -1,5 +1,7 @@
 # CER-JO
 
+
+
 ## Table of Contents
 1. [Project Description](#project-description)
 2. [Features](#features)
@@ -9,9 +11,11 @@
 6. [Authors](#authors)
 
 
+
 ## Project Description
 
 C’est bientôt les JO ! Le but de ce projet est de développer un programme permettant à l’entraîneur de l’équipe d’athlétisme de France de suivre l’évolution des performances de ses sportifs. Les performances des athlètes lors des entraînements seront stockées dans des fichiers. Le programme permet de mettre à jour les résultats, de consulter certains résultats et de produire des statistiques sur les athlètes.
+
 
 
 ## Features
@@ -29,6 +33,7 @@ C’est bientôt les JO ! Le but de ce projet est de développer un programme pe
   - Meilleur, pire temps et moyenne d’un athlète pour une épreuve donnée
   - Top 3 athlètes pour chaque discipline pour sélection aux JO
   - Progression des athlètes entre deux dates
+
 
 
 ## Installation
@@ -70,6 +75,7 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
 Assurez-vous que le chemin dans `constants.h` est correct avant de compiler et d'exécuter le programme.
 
 
+
 ## Usage
 
 Pour utiliser le programme, suivez les instructions ci-dessous :
@@ -81,6 +87,7 @@ Pour utiliser le programme, suivez les instructions ci-dessous :
     - Voir les meilleurs, pires temps et moyennes d'un athlète pour une discipline.
     - Voir les trois meilleurs athlètes pour une discipline et savoir qui envoyer au JO.
     - Voir la progression d'un athlète entre deux dates pour une discipline.
+
 
 
 ## File Structure
@@ -98,13 +105,13 @@ CER-JO/
 ├── Liste/
 │ └── nomAthletes.txt # Fichiers des noms des athletes
 │ └── nomEpreuve.txt # Fichiers des noms des épreuves
-│ 
+│
 ├── fichiers/
 │ └── athlete.c # Fonctions pour gérer les athlètes
-│ └── def.c # Fonctions 
-│ └── entrainement.c # Fonctions
-│ └── historique.c # Fonctions
-│ └── statistique.c # Fonctions
+│ └── def.c # Fonctions diverses
+│ └── entrainement.c # Fonctions pour gérer les entrainements
+│ └── historique.c # Fonctions pour gérer l'historique
+│ └── statistique.c # Fonctions pour calculer les statistiques
 │
 ├── headers/
 │ └── athlete.h # Header pour athlete.c
@@ -117,11 +124,12 @@ CER-JO/
 │
 ├── output/
 │ └── .gitignore # Fichiers à ignorer par Git
-│ └── cerjo # L'executable qui permet de lancer le programme
+│ └── cerjo # L'exécutable qui permet de lancer le programme
 │
 ├── Makefile # Makefile pour compiler le projet
 ├── README.md # Ce fichier
 └── main.c # Point d'entrée principal du programme
+
 
 
 ## Authors
