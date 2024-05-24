@@ -64,12 +64,10 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
     make clean
     ```
 6. **Exécuter le programme** :
-    - 1ère option :
-      ```bash
+    - ```bash
       ./cerjo
       ```
-    - 2ème option :
-      ```bash
+    - ```bash
       make run
       ```
 
