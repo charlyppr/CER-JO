@@ -86,12 +86,7 @@ Pour utiliser le programme, suivez les instructions ci-dessous :
     - Modifier le prénom et le nom d'un athlète.
 
 2. **Ajouter/Supprimer/Modifier un entrainement** :
-    - Ajouter un entrainement à un athlète parmis :
-        - 100 m
-        - 400 m
-        - 5000 m
-        - Marathon
-        - Relais 4 x 400 m
+    - Ajouter un entrainement à un athlète parmis les 5 disciplines.
     - Supprimer un entrainement d'un athlète.
     - Modifier un entrainement d'un athlète :
         - La date.
