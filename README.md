@@ -49,7 +49,7 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
     cd CER-JO
     ```
 3. **Modifier le fichier constants.h** :
-    - Ouvrez le fichier `constants.h` dans un éditeur de texte.
+    - Ouvrez le fichier `headers/constants.h` dans un éditeur de texte.
     - Modifiez la ligne définissant `PATH` pour qu'elle corresponde au chemin absolu du dossier où se trouvent vos fichiers. Par exemple :
       ```c
       #define PATH "/Users/Prenom/Documents/CER-JO"
