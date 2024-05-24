@@ -119,14 +119,14 @@ void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]){
     int millisecondes = abs((differenceTemps % 60000) % 1000);
 
     if(differenceTemps < 0){
-        printf("L'athlète a progressé de %02dmin %02dsec %03dms\n", minutes, secondes, millisecondes);
-        exit(1);
+        printf("L'athlète a progressé de "); couleur("1"); printf("%02dmin %02dsec %03dms ", minutes, secondes, millisecondes); couleur("0"); printf("entre le %02d/%02d/%04d et le %02d/%02d/%04d\n\n", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee, entrainement2.dateEntrainement.jour, entrainement2.dateEntrainement.mois, entrainement2.dateEntrainement.annee);
+        return;
     } else if(differenceTemps > 0){
-        printf("L'athlète a régressé de %02dmin %02dsec %03dms\n", minutes, secondes, millisecondes);
-        exit(1);
+        printf("L'athlète a regressé de "); couleur("1"); printf("%02dmin %02dsec %03dms ", minutes, secondes, millisecondes); couleur("0"); printf("entre le %02d/%02d/%04d et le %02d/%02d/%04d\n\n", entrainement1.dateEntrainement.jour, entrainement1.dateEntrainement.mois, entrainement1.dateEntrainement.annee, entrainement2.dateEntrainement.jour, entrainement2.dateEntrainement.mois, entrainement2.dateEntrainement.annee);
+        return;
     } else {
-        printf("L'athlète a gardé le même temps\n");
-        exit(1);
+        printf("L'athlète a gardé le même temps\n\n");
+        return;
     }
 
     fclose(fichierAthlete);
@@ -183,7 +183,7 @@ void pireTemps(FILE *athlete, char typeEpreuve[MAX]){
     } else {
         printf("Pire temps pour %s :\n", typeEpreuve);
         printf("Date de l'entraînement : %02d/%02d/%04d\n", pireEntrainement.dateEntrainement.jour, pireEntrainement.dateEntrainement.mois, pireEntrainement.dateEntrainement.annee);
-        printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", pireEntrainement.tempsAthlete.minute, pireEntrainement.tempsAthlete.seconde, pireEntrainement.tempsAthlete.milliseconde);
+        printf("Temps de l'athlète :     "); couleur("1"); printf("%02dmin %02dsec %03dms\n", pireEntrainement.tempsAthlete.minute, pireEntrainement.tempsAthlete.seconde, pireEntrainement.tempsAthlete.milliseconde); couleur("0");
         if(pireEntrainement.position != 0){
             if(pireEntrainement.position == 1){
                 printf("Position au relais :     %der coureur\n", pireEntrainement.position);
@@ -221,7 +221,7 @@ void meilleurTemps(FILE *athlete, char typeEpreuve[MAX]){
     } else {
         printf("Meilleur temps pour %s :\n", typeEpreuve);
         printf("Date de l'entraînement : %02d/%02d/%04d\n", meilleurEntrainement.dateEntrainement.jour, meilleurEntrainement.dateEntrainement.mois, meilleurEntrainement.dateEntrainement.annee);
-        printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", meilleurEntrainement.tempsAthlete.minute, meilleurEntrainement.tempsAthlete.seconde, meilleurEntrainement.tempsAthlete.milliseconde);
+        printf("Temps de l'athlète :     "); couleur("1"); printf("%02dmin %02dsec %03dms\n", meilleurEntrainement.tempsAthlete.minute, meilleurEntrainement.tempsAthlete.seconde, meilleurEntrainement.tempsAthlete.milliseconde); couleur("0");
         if(meilleurEntrainement.position != 0){
             if(meilleurEntrainement.position == 1){
                 printf("Position au relais :     %der coureur\n", meilleurEntrainement.position);
@@ -305,7 +305,7 @@ void resumerEntrainement(void) {
         printf("Aucun entraînement de ce type n'a été trouvé.\n");
     } else {
         printf("Moyenne temps pour %s :\n", epreuve + 2);
-        printf("Moyenne de l'athlète :   %02dmin %02dsec %03dms\n", moyenne/60000, (moyenne % 60000)/1000, (moyenne % 1000));
+        printf("Moyenne de l'athlète :   "); couleur("1"); printf("%02dmin %02dsec %03dms\n", moyenne/60000, (moyenne % 60000)/1000, (moyenne % 1000)); couleur("0");
         printf("\n");
     }
 
@@ -385,9 +385,9 @@ void quiAuJO(void){
 
     printf("\nLes 3 meilleurs moyennes pour le %s sont :\n", epreuve + 2);
 
-    printf("%s  %s avec une moyenne de %02dmin %02dsec %03dms\n", "🥇", athletes[moyennesIndex[0].index], moyennes[moyennesIndex[0].index]/60000, (moyennes[moyennesIndex[0].index] % 60000)/1000, (moyennes[moyennesIndex[0].index] % 1000));
-    printf("%s  %s avec une moyenne de %02dmin %02dsec %03dms\n", "🥈", athletes[moyennesIndex[1].index], moyennes[moyennesIndex[1].index]/60000, (moyennes[moyennesIndex[1].index] % 60000)/1000, (moyennes[moyennesIndex[1].index] % 1000));
-    printf("%s  %s avec une moyenne de %02dmin %02dsec %03dms\n", "🥉", athletes[moyennesIndex[2].index], moyennes[moyennesIndex[2].index]/60000, (moyennes[moyennesIndex[2].index] % 60000)/1000, (moyennes[moyennesIndex[2].index] % 1000));
+    couleur("1"); printf("%s %s ", "🥇", athletes[moyennesIndex[0].index]); couleur("0"); printf("avec une moyenne de %02dmin %02dsec %03dms\n", moyennes[moyennesIndex[0].index]/60000, (moyennes[moyennesIndex[0].index] % 60000)/1000, (moyennes[moyennesIndex[0].index] % 1000));
+    couleur("1"); printf("%s %s ", "🥈", athletes[moyennesIndex[1].index]); couleur("0"); printf("avec une moyenne de %02dmin %02dsec %03dms\n", moyennes[moyennesIndex[1].index]/60000, (moyennes[moyennesIndex[1].index] % 60000)/1000, (moyennes[moyennesIndex[1].index] % 1000));
+    couleur("1"); printf("%s %s ", "🥉", athletes[moyennesIndex[2].index]); couleur("0"); printf("avec une moyenne de %02dmin %02dsec %03dms\n", moyennes[moyennesIndex[2].index]/60000, (moyennes[moyennesIndex[2].index] % 60000)/1000, (moyennes[moyennesIndex[2].index] % 1000));
     printf("\n");
 }
 
