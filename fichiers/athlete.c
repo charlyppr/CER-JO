@@ -56,11 +56,9 @@ void ajouterAthlete(void){
 }
 
 void supprimerAthlete(void){
-    int numeroAthlete;
-    char ligne[MAX];
-    int numero;
-    char prenom[MAX/2];
-    char nom[MAX/2];
+    int numeroAthlete, choix, compteur = 1, numero;
+    char prenom[MAX/2], nom[MAX/2];
+    char newPrenom[MAX/2], newNom[MAX/2];
     char nomFichier[MAX];
     char cheminComplet[MAX];
 
@@ -86,9 +84,19 @@ void supprimerAthlete(void){
 
     rewind(fichierAthletes);
     while (fscanf(fichierAthletes, "%d %s %s", &numero, prenom, nom) != EOF) {
-        if(numeroAthlete == numero){
+        if(numero == numeroAthlete){
             sprintf(nomFichier, "%s %s.txt", prenom, nom);
+            break;
         }
+    }
+    printf("Êtes-vous sûr de vouloir supprimer l'athlète %s %s ?\n", prenom, nom);
+    couleur("32"); printf("1. Oui\n"); couleur("0");
+    couleur("31"); printf("2. Non\n"); couleur("0");
+    printf("Choix : ");
+    scanf("%d", &choix);
+    printf("\n");
+    if(choix == 2){
+        return;
     }
 
     FILE *nouveauFichier = fopen(CHEMIN"/Liste/nomAthletesTemp.txt", "w");
@@ -99,10 +107,14 @@ void supprimerAthlete(void){
     }
 
     rewind(fichierAthletes);
-    while (fgets(ligne, sizeof(ligne), fichierAthletes) != NULL) {
-        sscanf(ligne, "%d %s %s", &numero, prenom, nom);
+    while (fscanf(fichierAthletes, "%d %s %s", &numero, prenom, nom) != EOF) {
         if (numero != numeroAthlete) {
-            fprintf(nouveauFichier, "%s", ligne);
+            fprintf(nouveauFichier, "%d %s %s\n", compteur, prenom, nom);
+            compteur++;
+        }
+        else{
+            strcpy(newPrenom, prenom);
+            strcpy(newNom, nom);
         }
     }
 
@@ -115,13 +127,12 @@ void supprimerAthlete(void){
     remove(CHEMIN"/Liste/nomAthletes.txt");
     rename(CHEMIN"/Liste/nomAthletesTemp.txt", CHEMIN"/Liste/nomAthletes.txt");
 
-    printf("L'athlète %s %s a été supprimé avec succès.\n\n", prenom, nom);
+    printf("L'athlète %s %s a été supprimé avec succès.\n\n", newPrenom, newNom);
 }
 
 void modifierAthlete(void){
-    int numeroAthlete;
+    int numeroAthlete, numero, compteur = 1;
     char ligne[MAX];
-    int numero;
     char prenom[MAX/2], nom[MAX/2];
     char newPrenom[MAX/2], newNom[MAX/2];
     char nomFichier[MAX];
@@ -169,10 +180,12 @@ void modifierAthlete(void){
     rewind(fichierAthletes);
     while (fscanf(fichierAthletes, "%d %s %s", &numero, prenom, nom) != EOF) {
         if (numero == numeroAthlete) {
-            fprintf(nouveauFichier, "%d %s %s\n", numero, newPrenom, newNom);
+            fprintf(nouveauFichier, "%d %s %s\n", compteur, newPrenom, newNom);
             sprintf(cheminComplet, "%s/Athletes/%s %s.txt", CHEMIN, prenom, nom);
+            compteur++;
         } else {
-            fprintf(nouveauFichier, "%d %s %s\n", numero, prenom, nom);
+            fprintf(nouveauFichier, "%d %s %s\n", compteur, prenom, nom);
+            compteur++;
         }
     }
 
