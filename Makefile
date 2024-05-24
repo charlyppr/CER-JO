@@ -21,12 +21,12 @@ $(OBJDIR)/%.o: $(SRC_DIR)/%.c | $(OBJDIR)
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
-run:
-	./$(OBJDIR)/cerjo
+run: all
+	./$(TARGET)
 
 # Nettoyage des fichiers objets et de l'exécutable
 clean:
 	rm -rf $(OBJDIR)/*.o $(TARGET)
 
 # Cibles phony pour éviter les conflits avec des fichiers de même nom
-.PHONY: all clean
+.PHONY: all clean run
