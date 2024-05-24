@@ -13,7 +13,7 @@ void showTrainingName(Training training1, int athleteChoice) {
     while (fgetc(file) != '\n');
 
     // Lire chaque ligne du fichier
-    while (fscanf(file, "%d %d %d %s %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
+    while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
         // Affichage des valeurs
         printf("Date de l'entraînement : %02d/%02d/%04d\n", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year);
         printf("Type d'épreuve :         %s\n", training1.raceType);
@@ -28,7 +28,13 @@ void showTrainingName(Training training1, int athleteChoice) {
                 }
             }
         }
-        printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+        if(strcmp(training1.raceType, "Marathon") == 0){
+            printf("Temps de l'athlète :     %02dh %02dmin %02dsec %03dms\n", training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+        } else if(strcmp(training1.raceType, "5000m") == 0) {
+            printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+        } else {
+            printf("Temps de l'athlète :     %02dsec %03dms\n", training1.athleteTime.second, training1.athleteTime.millisecond);
+        }
         printf("\n");
     }
 
@@ -89,7 +95,7 @@ void showTrainingRace(Training training1, int raceChoice) {
         // Sauter une ligne
         while (fgetc(file) != '\n');
 
-        while (fscanf(file, "%d %d %d %s %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
+        while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
             if (strcmp(training1.raceType, race + 2) == 0) {
                 // Affichage des valeurs
                 printf("Athlète :                %s\n", athlete + 2);
@@ -105,7 +111,14 @@ void showTrainingRace(Training training1, int raceChoice) {
                     }
                 }
                 printf("Date de l'entraînement : %02d/%02d/%04d\n", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year);
-                printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+                if(strcmp(training1.raceType, "Marathon") == 0){
+                    printf("Temps de l'athlète :     %02dh %02dmin %02dsec %03dms\n", training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+                } 
+                else if(strcmp(training1.raceType, "5000m") == 0) {
+                    printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+                } else {
+                    printf("Temps de l'athlète :     %02dsec %03dms\n", training1.athleteTime.second, training1.athleteTime.millisecond);
+                }
                 printf("\n");
                 trainingFound = 1;
             }
@@ -161,7 +174,7 @@ void showTrainingDate(Training training1) {
         }
 
         while (fgetc(file) != '\n');
-        while (fscanf(file, "%d %d %d %s %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
+        while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
             if (training1.trainingDate.day == date.day && training1.trainingDate.month == date.month && training1.trainingDate.year == date.year) {
                 printf("Athlète :                %s\n", athlete + 2);
                 printf("Type d'épreuve :         %s\n", training1.raceType);
@@ -176,7 +189,13 @@ void showTrainingDate(Training training1) {
                         }
                     }
                 }
-                printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+                if(strcmp(training1.raceType, "Marathon") == 0){
+                    printf("Temps de l'athlète :     %02dh %02dmin %02dsec %03dms\n", training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+                } else if(strcmp(training1.raceType, "5000m") == 0) {
+                    printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+                } else {
+                    printf("Temps de l'athlète :     %02dsec %03dms\n", training1.athleteTime.second, training1.athleteTime.millisecond);
+                }
                 printf("\n");
                 trainingFound = 1;
             }

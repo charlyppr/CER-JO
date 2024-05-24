@@ -2,7 +2,7 @@
 
 void addTraining(int athleteChoice) {
     int raceChoice, numRace, relayPosition;
-    int minutes, seconds, ms;
+    int hour, minutes, seconds, ms;
     char race[MAX];
     Date date;
 
@@ -61,6 +61,13 @@ void addTraining(int athleteChoice) {
     }
 
     printf("En combien de temps l'athlète a-t-il réalisé l'épreuve ?\n");
+    printf("Heures : ");
+    scanf("%d", &hour);
+    while(hour < 0 || hour > 23){
+        printf("Heures (entre 0 et 23) : ");
+        scanf("%d", &hour);
+    }
+
     printf("Minutes : ");
     scanf("%d", &minutes);
     while(minutes < 0 || minutes > 59){
@@ -90,7 +97,7 @@ void addTraining(int athleteChoice) {
     while (fgetc(Athlete) != '\n'); // Sauter une line
 
     // Ajouter une line dans le fichier de l'athlète
-    fprintf(Athlete, "%d %d %d %s %d %d %d %d\n", date.day, date.month, date.year, race + 2, minutes, seconds, ms, relayPosition);
+    fprintf(Athlete, "%d %d %d %s %d %d %d %d %d\n", date.day, date.month, date.year, race + 2, hour, minutes, seconds, ms, relayPosition);
 
     fclose(Athlete);
 
@@ -141,9 +148,9 @@ void removeTraining(void) {
 
     printf("Choisissez l'entrainement à supprimer\n");
     // Lire chaque line du fichier
-    while (fscanf(file, "%d %d %d %s %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
+    while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
         // Affichage des valeurs
-        printf("%d. %02d/%02d/%4d | %02dmin %02dsec %03dms | %s\n", count, training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, training1.raceType);
+        printf("%d. %02d/%02d/%4d | %02dh %02dmin %02dsec %03dms | %s\n", count, training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, training1.raceType);
         count++;
     }
 
@@ -171,9 +178,9 @@ void removeTraining(void) {
     while (fgetc(file) != '\n'); // Sauter une line
 
     count = 1;
-    while (fscanf(file, "%d %d %d %s %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
+    while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
         if (count != trainingChoice) {
-            fprintf(tempFile, "%d %d %d %s %d %d %d %d\n", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.raceType, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, position);
+            fprintf(tempFile, "%d %d %d %s %d %d %d %d %d\n", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.raceType, training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, position);
         }
         count++;
     }
@@ -233,9 +240,9 @@ void changeTraining(void){
 
     printf("Choisissez l'entrainement à modifier\n");
     // Lire chaque line du fichier
-    while (fscanf(file, "%d %d %d %s %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
+    while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
         // Affichage des valeurs
-        printf("%d. %02d/%02d/%4d | %02dmin %02dsec %03dms | %s\n", count, training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, training1.raceType);
+        printf("%d. %02d/%02d/%4d | %02dh %02dmin %02dsec %03dms | %s\n", count, training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, training1.raceType);
         count++;
     }
     printf("Choix : ");
@@ -248,7 +255,7 @@ void changeTraining(void){
         printf("\n");
     }
 
-    int newMinutes, newSeconds, newMs, changeChoice, newRaceType;
+    int newHour, newMinutes, newSeconds, newMs, changeChoice, newRaceType;
 
     printf("Faut-il changer la date de l'entrainement ?\n");
     color("32"); printf("1. Oui\n"); color("0");
@@ -366,6 +373,13 @@ void changeTraining(void){
 
     if(changeChoice == 1){
         printf("Entrez la nouvelle durée de l'entrainement\n");
+        printf("Heures : ");
+        scanf("%d", &newHour);
+        while(newHour < 0 || newHour > 23){
+            printf("Heures : ");
+            scanf("%d", &newHour);
+        }
+
         printf("Minutes : ");
         scanf("%d", &newMinutes);
         while(newMinutes < 0 || newMinutes > 59){
@@ -385,6 +399,7 @@ void changeTraining(void){
         }
         printf("\n");
     } else {
+        newHour = training1.athleteTime.hour;
         newMinutes = training1.athleteTime.minute;
         newSeconds = training1.athleteTime.second;
         newMs = training1.athleteTime.millisecond;
@@ -404,11 +419,11 @@ void changeTraining(void){
     while (fgetc(file) != '\n'); // Sauter une line
 
     count = 1;
-    while (fscanf(file, "%d %d %d %s %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &training1.position) != EOF) {
+    while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &training1.position) != EOF) {
         if (count != trainingChoice) {
-            fprintf(tempFile, "%d %d %d %s %d %d %d %d\n", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.raceType, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, training1.position);
+            fprintf(tempFile, "%d %d %d %s %d %d %d %d %d\n", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.raceType, training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, training1.position);
         } else if(count == trainingChoice) {
-            fprintf(tempFile, "%d %d %d %s %d %d %d %d\n", newTraining.trainingDate.day, newTraining.trainingDate.month, newTraining.trainingDate.year, race + 2, newMinutes, newSeconds, newMs, training1.position);
+            fprintf(tempFile, "%d %d %d %s %d %d %d %d %d\n", newTraining.trainingDate.day, newTraining.trainingDate.month, newTraining.trainingDate.year, race + 2, newHour, newMinutes, newSeconds, newMs, training1.position);
         }
         count++;
     }

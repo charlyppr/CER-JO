@@ -10,6 +10,7 @@ typedef struct {
 
 // Structure pour le temps
 typedef struct {
+    int hour;
     int minute;
     int second;
     int millisecond;
