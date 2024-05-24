@@ -21,6 +21,9 @@ $(OBJDIR)/%.o: $(SRC_DIR)/%.c | $(OBJDIR)
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
+run:
+	./$(OBJDIR)/cerjo
+
 # Nettoyage des fichiers objets et de l'exécutable
 clean:
 	rm -rf $(OBJDIR)/*.o $(TARGET)
