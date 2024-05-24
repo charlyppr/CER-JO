@@ -94,6 +94,7 @@ Pour utiliser le programme, suivez les instructions ci-dessous :
 
 Voici la structure des fichiers du projet :
 
+```bash
 CER-JO/
 │
 ├── Athletes/
@@ -129,6 +130,7 @@ CER-JO/
 ├── Makefile # Makefile pour compiler le projet
 ├── README.md # Ce fichier
 └── main.c # Point d'entrée principal du programme
+```
 
 
 
