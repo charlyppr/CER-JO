@@ -26,12 +26,12 @@ $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
 # Exécution de l'exécutable
-run: all
+run:
 	./$(TARGET)
 
-# Nettoyage des fichiers objets et de l'exécutable
+# Nettoyage des fichiers objets
 clean:
-	rm -rf $(OBJDIR)/*.o $(TARGET)
+	rm -rf $(OBJDIR)/*.o
 
 # Cibles phony pour éviter les conflits avec des fichiers de même nom
 .PHONY: all clean run
