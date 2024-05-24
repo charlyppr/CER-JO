@@ -138,8 +138,8 @@ CER-JO/
 │
 ├── output/
 │ └── .gitignore # Fichiers à ignorer par Git
-│ └── cerjo # L'exécutable qui permet de lancer le programme
 │
+├── cerjo # L'exécutable qui permet de lancer le programme
 ├── Makefile # Makefile pour compiler le projet
 ├── README.md # Ce fichier
 └── main.c # Point d'entrée principal du programme
