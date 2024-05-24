@@ -26,7 +26,7 @@ C’est bientôt les JO ! Le but de ce projet est de développer un programme pe
   - 5000 m
   - Marathon
   - Relais 4x400 m
-- Stockage des performances (entrainements) dans des fichiers individuels pour chaque athlète
+- Stockage des performances dans des fichiers individuels pour chaque athlète
 - Enregistrement et sauvegarde des informations des entrainements
 - Consultation de l’historique des entraînements par athlète, épreuve ou date
 - Statistiques de performances :
