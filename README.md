@@ -79,7 +79,7 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
       make run
       ```
 
-Assurez-vous que le chemin dans `constants.h` est correct avant de compiler et d'exécuter le programme.
+Assurez-vous que le chemin dans `PATH.h` est correct avant de compiler et d'exécuter le programme.
 
 
 
