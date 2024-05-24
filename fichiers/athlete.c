@@ -19,21 +19,49 @@ void ajouterAthlete(void){
     int dernierNumero = dernierNumeroAthlete();
     char cheminComplet[MAX];
 
-    printf("Entrez le prénom de l'athlète : ");
-    scanf("%s", prenom);
-
-    // Mettre la première lettre du prénom en majuscule
-    if (prenom[0] >= 'a' && prenom[0] <= 'z') {
-        prenom[0] = prenom[0] - 32;
+    FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
+    if (fichierAthletes == NULL) {
+        printf("Erreur d'ouverture du fichier nomAthletes.txt\n");
+        return;
     }
 
-    printf("Entrez le nom de l'athlète : ");
-    scanf("%s", nom);
+    int numero;
+    char prenomExistant[50], nomExistant[50];
 
-    // Mettre la première lettre du nom en majuscule
-    if (nom[0] >= 'a' && nom[0] <= 'z') {
-        nom[0] = nom[0] - 32;
+    while (1) {
+        printf("Entrez le prénom de l'athlète : ");
+        scanf("%s", prenom);
+
+        // Mettre la première lettre du prénom en majuscule
+        if (prenom[0] >= 'a' && prenom[0] <= 'z') {
+            prenom[0] = prenom[0] - 32;
+        }
+
+        printf("Entrez le nom de l'athlète : ");
+        scanf("%s", nom);
+
+        // Mettre la première lettre du nom en majuscule
+        if (nom[0] >= 'a' && nom[0] <= 'z') {
+            nom[0] = nom[0] - 32;
+        }
+
+        int existeDeja = 0;
+        rewind(fichierAthletes);
+        while (fscanf(fichierAthletes, "%d %s %s", &numero, prenomExistant, nomExistant) != EOF) {
+            if (strcmp(prenom, prenomExistant) == 0 && strcmp(nom, nomExistant) == 0) {
+                existeDeja = 1;
+                break;
+            }
+        }
+
+        if (existeDeja) {
+            printf("\nL'athlète %s %s existe déjà. Veuillez entrer un autre prénom et nom.\n", prenom, nom);
+        } else {
+            break;
+        }
     }
+
+    fclose(fichierAthletes);
 
     sprintf(cheminComplet, "%s/Athletes/%s %s.txt", CHEMIN, prenom, nom);
 
@@ -46,7 +74,7 @@ void ajouterAthlete(void){
 
     fclose(fichier);
 
-    FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "a");
+    fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "a");
     if (fichierAthletes != NULL) {
         fprintf(fichierAthletes, "%d %s %s\n", dernierNumero + 1, prenom, nom);
         fclose(fichierAthletes);
