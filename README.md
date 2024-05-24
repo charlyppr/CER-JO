@@ -85,7 +85,7 @@ Pour utiliser le programme, suivez les instructions ci-dessous :
     - Supprimer un athlète.
     - Modifier le prénom et le nom d'un athlète.
 
-2. **Ajouter/Supprimer/Modifier un entrainement** : Entrez les informations demandées pour 
+2. **Ajouter/Supprimer/Modifier un entrainement** :
     - Ajouter un entrainement à un athlète parmis :
         - 100 m
         - 400 m
@@ -98,7 +98,8 @@ Pour utiliser le programme, suivez les instructions ci-dessous :
         - La discipline.
         - Le temps
 
-3. **Voir l'historique des entrainements de l'athlète** : Choisissez un athlète, une épreuve ou une date pour afficher les entrainement correspondant.
+3. **Voir l'historique des entrainements de l'athlète** : 
+    Choisissez un athlète, une épreuve ou une date pour afficher les entrainement correspondant.
 
 4. **Consulter les statistiques** :
     - Voir les meilleurs, pires temps et moyennes d'un athlète pour une discipline.
