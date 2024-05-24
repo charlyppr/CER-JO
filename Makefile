@@ -17,6 +17,7 @@ $(TARGET): $(OBJS)
 $(OBJDIR)/%.o: $(SRC_DIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# Compilation du fichier main en objet
 $(OBJDIR)/main.o: main.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -24,6 +25,7 @@ $(OBJDIR)/main.o: main.c | $(OBJDIR)
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
+# Exécution de l'exécutable
 run: all
 	./$(TARGET)
 
