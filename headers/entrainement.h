@@ -1,6 +1,7 @@
 #ifndef ENTRAINEMENT_C
 #define ENTRAINEMENT_C
 
+#include "../PATH.h"
 #include "struct.h"
 #include "constants.h"
 #include "def.h"

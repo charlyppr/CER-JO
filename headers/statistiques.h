@@ -1,6 +1,7 @@
 #ifndef STATISTIQUES_H
 #define STATISTIQUES_H
 
+#include "../PATH.h"
 #include "struct.h"
 #include "constants.h"
 #include "def.h"

@@ -1,6 +1,7 @@
 #ifndef DEF_H
 #define DEF_H
 
+#include "../PATH.h"
 #include "constants.h"
 #include "struct.h"
 

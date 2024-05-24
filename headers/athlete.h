@@ -1,6 +1,7 @@
 #ifndef ATHLETE_H
 #define ATHLETE_H
 
+#include "../PATH.h"
 #include "struct.h"
 #include "constants.h"
 #include "def.h"

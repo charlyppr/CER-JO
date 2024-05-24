@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define PATH "/Users/charly/Documents/École/Info/CER-JO"
-
 #define MAX 100
 #define INT_MAX 1000000000
 #define INT_MIN 1
