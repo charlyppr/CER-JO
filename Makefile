@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align -Wconversion -Wsign-conversion -Wnull-dereference
 OBJDIR = output
 SRC_DIR = fichiers
-SRCS = $(SRC_DIR)/def.c $(SRC_DIR)/athlete.c $(SRC_DIR)/entrainement.c $(SRC_DIR)/historique.c main.c $(SRC_DIR)/statistiques.c
+SRCS = $(wildcard $(SRC_DIR)/*.c) main.c
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 TARGET = $(OBJDIR)/cerjo
 
@@ -15,6 +15,9 @@ $(TARGET): $(OBJS)
 
 # Compilation des fichiers source en objets
 $(OBJDIR)/%.o: $(SRC_DIR)/%.c | $(OBJDIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR)/main.o: main.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Création du répertoire des objets s'il n'existe pas
