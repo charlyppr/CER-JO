@@ -388,7 +388,7 @@ void quiAuJO(void){
     printf("%s  %s avec une moyenne de %02dmin %02dsec %03dms\n", "🥇", athletes[moyennesIndex[0].index], moyennes[moyennesIndex[0].index]/60000, (moyennes[moyennesIndex[0].index] % 60000)/1000, (moyennes[moyennesIndex[0].index] % 1000));
     printf("%s  %s avec une moyenne de %02dmin %02dsec %03dms\n", "🥈", athletes[moyennesIndex[1].index], moyennes[moyennesIndex[1].index]/60000, (moyennes[moyennesIndex[1].index] % 60000)/1000, (moyennes[moyennesIndex[1].index] % 1000));
     printf("%s  %s avec une moyenne de %02dmin %02dsec %03dms\n", "🥉", athletes[moyennesIndex[2].index], moyennes[moyennesIndex[2].index]/60000, (moyennes[moyennesIndex[2].index] % 60000)/1000, (moyennes[moyennesIndex[2].index] % 1000));
-
+    printf("\n");
 }
 
 void statistiqueAthlete(Entrainement entrainement1, FILE *file) {

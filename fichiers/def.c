@@ -67,6 +67,32 @@ int comparer(const void *a, const void *b) {
     return miA->moyenne - miB->moyenne;
 }
 
+int faireChoixAthlete(void){
+    int choixAthlete;
+    FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
+    if (fichierAthletes == NULL) {
+        printf("Impossible d'ouvrir le fichier nomAthletes\n");
+        exit(1);
+    }
+    int lignes = compterLignes(fichierAthletes);
+
+    rewind(fichierAthletes);
+    afficherListeAthlete(fichierAthletes);
+    printf("Choix : ");
+    scanf("%d", &choixAthlete);
+    printf("\n");
+    while(choixAthlete < 1 || choixAthlete > lignes){
+        printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", lignes);
+        printf("Choix : ");
+        scanf("%d", &choixAthlete);
+        printf("\n");
+    }
+
+    fclose(fichierAthletes);
+
+    return choixAthlete;
+}
+
 void afficherNomAthlete(FILE *file) {
     char nomAthlete[MAX];
     

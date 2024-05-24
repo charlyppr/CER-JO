@@ -5,7 +5,7 @@
 #include "constants.h"
 #include "def.h"
 
-extern void ajouterEntrainement(void);
+extern void ajouterEntrainement(int choixAthlete);
 
 extern void supprimerEntrainement(void);
 

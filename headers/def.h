@@ -12,6 +12,8 @@ extern int compareDates(const void *a, const void *b);
 
 extern int comparer(const void *a, const void *b);
 
+extern int faireChoixAthlete(void);
+
 extern void afficherNomAthlete(FILE *file);
 
 extern void afficherListeAthlete(FILE *nomAthlete);

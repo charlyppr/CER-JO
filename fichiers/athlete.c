@@ -1,12 +1,9 @@
 #include "../headers/athlete.h"
 #include "../headers/entrainement.h"
 
-void ajouterAthlete(void){
-    char prenom[MAX/2], nom[MAX/2];
+int dernierNumeroAthlete(void){
     int dernierNumero = 0;
     char ligne[MAX];
-    char cheminComplet[MAX];
-
     FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
     if (fichierAthletes != NULL) {
         while (fgets(ligne, sizeof(ligne), fichierAthletes) != NULL) {
@@ -14,6 +11,13 @@ void ajouterAthlete(void){
         }
         fclose(fichierAthletes);
     }
+    return dernierNumero;
+}
+
+void ajouterAthlete(void){
+    char prenom[MAX/2], nom[MAX/2];
+    int dernierNumero = dernierNumeroAthlete();
+    char cheminComplet[MAX];
 
     printf("Entrez le prénom de l'athlète : ");
     scanf("%s", prenom);
@@ -42,7 +46,7 @@ void ajouterAthlete(void){
 
     fclose(fichier);
 
-    fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "a");
+    FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "a");
     if (fichierAthletes != NULL) {
         fprintf(fichierAthletes, "%d %s %s\n", dernierNumero + 1, prenom, nom);
         fclose(fichierAthletes);
@@ -111,7 +115,7 @@ void supprimerAthlete(void){
     remove(CHEMIN"/Liste/nomAthletes.txt");
     rename(CHEMIN"/Liste/nomAthletesTemp.txt", CHEMIN"/Liste/nomAthletes.txt");
 
-    printf("L'athlète %s %s a été supprimé avec succès.\n", prenom, nom);
+    printf("L'athlète %s %s a été supprimé avec succès.\n\n", prenom, nom);
 }
 
 void modifierAthlete(void){
@@ -211,7 +215,7 @@ void modifierAthlete(void){
 }
 
 void modifAthlete(void) {
-    int choix;
+    int choix, dernierNumero = dernierNumeroAthlete();
 
     printf("1. Créer un nouvel athlète\n");
     printf("2. Supprimer un athlète\n");
@@ -234,7 +238,7 @@ void modifAthlete(void) {
             printf("\n");
 
             if (choix == 1) {
-                ajouterEntrainement();
+                ajouterEntrainement(dernierNumero + 1);
             }
             else {
                 return;
