@@ -4,30 +4,30 @@
 #include "constants.h"
 #include "struct.h"
 
-extern int compterLignes(FILE *file);
+extern int countLine(FILE *file);
 
-extern int dateValide(Date date);
+extern int validDate(Date date);
 
 extern int compareDates(const void *a, const void *b);
 
-extern int comparer(const void *a, const void *b);
+extern int compareAverage(const void *a, const void *b);
 
-extern int faireChoixAthlete(void);
+extern int makeAthleteChoice(void);
 
-extern void afficherNomAthlete(FILE *file);
+extern void showAthleteName(FILE *file);
 
-extern void afficherListeAthlete(FILE *nomAthlete);
+extern void showAthleteList(FILE *nomAthlete);
 
-extern void afficherNomEpreuve(FILE *nomEpreuve);
+extern void showRaceName(FILE *nomEpreuve);
 
-extern void afficherListeEpreuve(FILE *nomEpreuve);
+extern void showRaceList(FILE *nomEpreuve);
 
-extern FILE *ouvrirFichierAthlete(int choixAthlete);
+extern FILE *openAthleteFile(int choixAthlete);
 
-extern FILE *modifierFichierAthlete(int choixAthlete);
+extern FILE *changeAthleteFile(int choixAthlete);
 
-extern void choisirAthlete(int *choixAthlete);
+extern void chooseAthlete(int *choixAthlete);
 
-extern void choisirEpreuve(int *choixEpreuve, char epreuve[MAX]);
+extern void chooseRace(int *choixEpreuve, char epreuve[MAX]);
 
 #endif

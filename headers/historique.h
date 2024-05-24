@@ -6,12 +6,12 @@
 #include "def.h"
 
 
-extern void afficherEntrainementNom(Entrainement entrainement1, int choixAthlete);
+extern void showTrainingName(Training training1, int athleteChoice);
 
-extern void afficherEntrainementTypeEpreuve(Entrainement entrainement1, int choixEpreuve);
+extern void showTrainingRace(Training training1, int raceChoice);
 
-extern void afficherEntrainementDate(Entrainement entrainement1);
+extern void showTrainingDate(Training training1);
 
-extern void historiqueEntrainement(Entrainement entrainement1, FILE *file);
+extern void trainingHistory(Training training1, FILE *file);
 
 #endif

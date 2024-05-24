@@ -5,11 +5,11 @@
 #include "constants.h"
 #include "def.h"
 
-extern void ajouterEntrainement(int choixAthlete);
+extern void addTraining(int choixAthlete);
 
-extern void supprimerEntrainement(void);
+extern void removeTraining(void);
 
-extern void modifierEntrainement(void);
+extern void changeTraining(void);
 
 extern void modifEntrainement(void);
 

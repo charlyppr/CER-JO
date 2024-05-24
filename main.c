@@ -4,78 +4,78 @@
 #include "headers/statistiques.h"
 
 
-int continuerProgramme(){
-    int continuer;
-    couleur("32"); printf("1. Retour au menu principal\n"); couleur("0");
-    couleur("31"); printf("2. Quitter\n"); couleur("0");
+int continueProgramme(){
+    int continueProg;
+    color("32"); printf("1. Retour au menu principal\n"); color("0");
+    color("31"); printf("2. Quitter\n"); color("0");
     printf("Choix : ");
-    scanf("%d", &continuer);
+    scanf("%d", &continueProg);
     printf("\n");
 
-    if(continuer == 1){
-        // Code pour continuer
+    if(continueProg == 1){
+        // Code pour continuer le programme
         return 1;  
     }
-    else if(continuer == 2){
+    else if(continueProg == 2){
         return 0;
     }
     else{
         printf("Choix invalide.\n");
-        return continuerProgramme();
+        return continueProgramme();
     }
 }
 
-void debutProgramme(Entrainement entrainement1, FILE *file) {    
-    int choix, continuer;
+void startProgramme(Training training1, FILE *file) {    
+    int choice, continueProg;
     printf("1. Ajouter/Supprimer/Modifier un athlète\n");
     printf("2. Ajouter/Supprimer/Modifier un entrainement\n");
     printf("3. Voir l'historique des entrainements de l'athlète\n");
     printf("4. Consulter des statistiques de performances de chaque athlète\n");
-    couleur("31"); printf("5. Quitter\n"); couleur("0");
+    color("31"); printf("5. Quitter\n"); color("0");
     printf("Choix : ");
-    scanf("%d", &choix);
+    scanf("%d", &choice);
     printf("\n");
 
-    while (choix != 5) {
-        if(choix == 1){
+    while (choice != 5) {
+        if(choice == 1){
             // Code pour ajouter/supprimer un athlète
             modifAthlete();
-            continuer = continuerProgramme();
-            if(continuer == 1){
-                debutProgramme(entrainement1, file);
+            continueProg = continueProgramme();
+            if(continueProg == 1){
+                startProgramme(training1, file);
             }
             else{
                 exit(0);
             }
         }
-        else if(choix == 2){
+        else if(choice == 2){
             // Code pour entrer et sauvegarder les informations/résultats d'un nouvel entrainement
             modifEntrainement();
-            continuer = continuerProgramme();
-            if(continuer == 1){
-                debutProgramme(entrainement1, file);
+            continueProg = continueProgramme();
+            if(continueProg == 1){
+                startProgramme(training1, file);
             }
             else{
                 exit(0);
             }
         }
-        else if(choix == 3){
+        else if(choice == 3){
             // Code pour consulter l'historique des entrainements de l'athlète
-            historiqueEntrainement(entrainement1, file);
-            continuer = continuerProgramme();
-            if(continuer == 1){
-                debutProgramme(entrainement1, file);
+            trainingHistory(training1, file);
+            continueProg = continueProgramme();
+            if(continueProg == 1){
+                startProgramme(training1, file);
             }
             else{
                 exit(0);
             }
         }
-        else if(choix == 4){
+        else if(choice == 4){
             // Code pour consulter des statistiques de performances de chaque athlète
-            statistiqueAthlete(entrainement1, file);
-            continuer = continuerProgramme();
-            if(continuer == 1){
-                debutProgramme(entrainement1, file);
+            athleteStatistic(training1, file);
+            continueProg = continueProgramme();
+            if(continueProg == 1){
+                startProgramme(training1, file);
             }
             else{
                 exit(0);
@@ -94,9 +94,9 @@ int main(void){
     FILE *fileN = NULL;
 
     printf("\n");
-    couleur("1"); couleur("32"); printf("Bienvenue dans le programme de gestion des entrainements des athlètes.\n\n"); couleur("0");
+    color("1"); color("32"); printf("Bienvenue dans le programme de gestion des entrainements des athlètes.\n\n"); color("0");
 
-    debutProgramme(entrainement, fileN);
+    startProgramme(training, fileN);
     
     return 0;
 }

@@ -5,18 +5,18 @@
 #include "constants.h"
 #include "def.h"
 
-extern void afficherDiffTemps(int *choixAthlete, int *choixEpreuve, char epreuve[MAX]);
+extern void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]);
 
-extern int moyenneTemps(FILE *athlete, char typeEpreuve[MAX]);
+extern int averageTime(FILE *athlete, char raceType[MAX]);
 
-extern void pireTemps(FILE *athlete, char typeEpreuve[MAX]);
+extern void worstTime(FILE *athlete, char raceType[MAX]);
 
-extern void meilleurTemps(FILE *athlete, char typeEpreuve[MAX]);
+extern void bestTime(FILE *athlete, char raceType[MAX]);
 
-extern void resumerEntrainement(void);
+extern void trainingResume(void);
 
-extern void quiAuJO(void);
+extern void whoInOG(void);
 
-extern void statistiqueAthlete(Entrainement entrainement1, FILE *file);
+extern void athleteStatistic(Training training1, FILE *file);
 
 #endif

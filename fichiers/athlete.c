@@ -1,326 +1,326 @@
 #include "../headers/athlete.h"
 #include "../headers/entrainement.h"
 
-int dernierNumeroAthlete(void){
-    int dernierNumero = 0;
-    char ligne[MAX];
-    FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
-    if (fichierAthletes != NULL) {
-        while (fgets(ligne, sizeof(ligne), fichierAthletes) != NULL) {
-            sscanf(ligne, "%d", &dernierNumero);
+int lastNumberAthlete(void){
+    int lastNumber = 0;
+    char line[MAX];
+    FILE *athletesFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
+    if (athletesFile != NULL) {
+        while (fgets(line, sizeof(line), athletesFile) != NULL) {
+            sscanf(line, "%d", &lastNumber);
         }
-        fclose(fichierAthletes);
+        fclose(athletesFile);
     }
-    return dernierNumero;
+    return lastNumber;
 }
 
-void ajouterAthlete(void){
-    char prenom[MAX/2], nom[MAX/2];
-    int dernierNumero = dernierNumeroAthlete();
-    char cheminComplet[MAX];
+void addAthlete(void){
+    char name[MAX/2], lastname[MAX/2];
+    int lastNumber = lastNumberAthlete();
+    char completePath[MAX];
 
-    FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
-    if (fichierAthletes == NULL) {
+    FILE *athletesFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
+    if (athletesFile == NULL) {
         printf("Erreur d'ouverture du fichier nomAthletes.txt\n");
         return;
     }
 
-    int numero;
-    char prenomExistant[50], nomExistant[50];
+    int number;
+    char existingName[50], existingLastname[50];
 
     while (1) {
         printf("Entrez le prénom de l'athlète : ");
-        scanf("%s", prenom);
+        scanf("%s", name);
 
         // Mettre la première lettre du prénom en majuscule
-        if (prenom[0] >= 'a' && prenom[0] <= 'z') {
-            prenom[0] = prenom[0] - 32;
+        if (name[0] >= 'a' && name[0] <= 'z') {
+            name[0] = name[0] - 32;
         }
 
         printf("Entrez le nom de l'athlète : ");
-        scanf("%s", nom);
+        scanf("%s", lastname);
 
-        // Mettre la première lettre du nom en majuscule
-        if (nom[0] >= 'a' && nom[0] <= 'z') {
-            nom[0] = nom[0] - 32;
+        // Mettre la première lettre du lastname en majuscule
+        if (lastname[0] >= 'a' && lastname[0] <= 'z') {
+            lastname[0] = lastname[0] - 32;
         }
 
-        int existeDeja = 0;
-        rewind(fichierAthletes);
-        while (fscanf(fichierAthletes, "%d %s %s", &numero, prenomExistant, nomExistant) != EOF) {
-            if (strcmp(prenom, prenomExistant) == 0 && strcmp(nom, nomExistant) == 0) {
-                existeDeja = 1;
+        int alreadyExist = 0;
+        rewind(athletesFile);
+        while (fscanf(athletesFile, "%d %s %s", &number, existingName, existingLastname) != EOF) {
+            if (strcmp(name, existingName) == 0 && strcmp(lastname, existingLastname) == 0) {
+                alreadyExist = 1;
                 break;
             }
         }
 
-        if (existeDeja) {
-            printf("\nL'athlète %s %s existe déjà. Veuillez entrer un autre prénom et nom.\n", prenom, nom);
+        if (alreadyExist) {
+            printf("\nL'athlète %s %s existe déjà. Veuillez entrer un autre prénom et nom.\n", name, lastname);
         } else {
             break;
         }
     }
 
-    fclose(fichierAthletes);
+    fclose(athletesFile);
 
-    sprintf(cheminComplet, "%s/Athletes/%s %s.txt", CHEMIN, prenom, nom);
+    sprintf(completePath, "%s/Athletes/%s %s.txt", PATH, name, lastname);
 
-    FILE *fichier = fopen(cheminComplet, "w");
-    if (fichier == NULL) {
-        printf("Impossible de créer le fichier %s\n", cheminComplet);
+    FILE *file = fopen(completePath, "w");
+    if (file == NULL) {
+        printf("Impossible de créer le fichier %s\n", completePath);
         return;
     }
-    fprintf(fichier, "%s %s\n", prenom, nom);
+    fprintf(file, "%s %s\n", name, lastname);
 
-    fclose(fichier);
+    fclose(file);
 
-    fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "a");
-    if (fichierAthletes != NULL) {
-        fprintf(fichierAthletes, "%d %s %s\n", dernierNumero + 1, prenom, nom);
-        fclose(fichierAthletes);
+    athletesFile = fopen(PATH"/Liste/nomAthletes.txt", "a");
+    if (athletesFile != NULL) {
+        fprintf(athletesFile, "%d %s %s\n", lastNumber + 1, name, lastname);
+        fclose(athletesFile);
     }
 
-    printf("\nL'athlète %s %s a été créé avec succès.\n", prenom, nom);
+    printf("\nL'athlète %s %s a été créé avec succès.\n", name, lastname);
 }
 
-void supprimerAthlete(void){
-    int numeroAthlete, choix, compteur = 1, numero;
-    char prenom[MAX/2], nom[MAX/2];
-    char newPrenom[MAX/2], newNom[MAX/2];
-    char nomFichier[MAX];
-    char cheminComplet[MAX];
+void removeAthlete(void){
+    int athleteNumber, choice, count = 1, number;
+    char name[MAX/2], lastname[MAX/2];
+    char newName[MAX/2], newLastname[MAX/2];
+    char fileName[MAX];
+    char completePath[MAX];
 
-    FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
-    if (fichierAthletes == NULL) {
+    FILE *athletesFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
+    if (athletesFile == NULL) {
         printf("Impossible d'ouvrir le fichier nomAthletes\n");
         return;
     }
-    int lignes = compterLignes(fichierAthletes);
+    int lignes = countLine(athletesFile);
 
-    rewind(fichierAthletes);
-    afficherListeAthlete(fichierAthletes);
+    rewind(athletesFile);
+    showAthleteList(athletesFile);
     printf("Choix : ");
-    scanf("%d", &numeroAthlete);
+    scanf("%d", &athleteNumber);
     printf("\n");
-    while(numeroAthlete < 1 || numeroAthlete > lignes){
+    while(athleteNumber < 1 || athleteNumber > lignes){
         printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", lignes);
         printf("Choix : ");
-        scanf("%d", &numeroAthlete);
+        scanf("%d", &athleteNumber);
         printf("\n");
     }
 
 
-    rewind(fichierAthletes);
-    while (fscanf(fichierAthletes, "%d %s %s", &numero, prenom, nom) != EOF) {
-        if(numero == numeroAthlete){
-            sprintf(nomFichier, "%s %s.txt", prenom, nom);
+    rewind(athletesFile);
+    while (fscanf(athletesFile, "%d %s %s", &number, name, lastname) != EOF) {
+        if(number == athleteNumber){
+            sprintf(fileName, "%s %s.txt", name, lastname);
             break;
         }
     }
-    printf("Êtes-vous sûr de vouloir supprimer l'athlète %s %s ?\n", prenom, nom);
-    couleur("32"); printf("1. Oui\n"); couleur("0");
-    couleur("31"); printf("2. Non\n"); couleur("0");
+    printf("Êtes-vous sûr de vouloir supprimer l'athlète %s %s ?\n", name, lastname);
+    color("32"); printf("1. Oui\n"); color("0");
+    color("31"); printf("2. Non\n"); color("0");
     printf("Choix : ");
-    scanf("%d", &choix);
+    scanf("%d", &choice);
     printf("\n");
-    if(choix == 2){
+    if(choice == 2){
         return;
     }
 
-    FILE *nouveauFichier = fopen(CHEMIN"/Liste/nomAthletesTemp.txt", "w");
-    if (nouveauFichier == NULL) {
+    FILE *newFile = fopen(PATH"/Liste/nomAthletesTemp.txt", "w");
+    if (newFile == NULL) {
         printf("Impossible de créer le fichier temporaire\n");
-        fclose(fichierAthletes);
+        fclose(athletesFile);
         return;
     }
 
-    rewind(fichierAthletes);
-    while (fscanf(fichierAthletes, "%d %s %s", &numero, prenom, nom) != EOF) {
-        if (numero != numeroAthlete) {
-            fprintf(nouveauFichier, "%d %s %s\n", compteur, prenom, nom);
-            compteur++;
+    rewind(athletesFile);
+    while (fscanf(athletesFile, "%d %s %s", &number, name, lastname) != EOF) {
+        if (number != athleteNumber) {
+            fprintf(newFile, "%d %s %s\n", count, name, lastname);
+            count++;
         }
         else{
-            strcpy(newPrenom, prenom);
-            strcpy(newNom, nom);
+            strcpy(newName, name);
+            strcpy(newLastname, lastname);
         }
     }
 
-    fclose(fichierAthletes);
-    fclose(nouveauFichier);
+    fclose(athletesFile);
+    fclose(newFile);
 
-    sprintf(cheminComplet, "%s/Athletes/%s", CHEMIN, nomFichier);
+    sprintf(completePath, "%s/Athletes/%s", PATH, fileName);
 
-    remove(cheminComplet);
-    remove(CHEMIN"/Liste/nomAthletes.txt");
-    rename(CHEMIN"/Liste/nomAthletesTemp.txt", CHEMIN"/Liste/nomAthletes.txt");
+    remove(completePath);
+    remove(PATH"/Liste/nomAthletes.txt");
+    rename(PATH"/Liste/nomAthletesTemp.txt", PATH"/Liste/nomAthletes.txt");
 
-    printf("L'athlète %s %s a été supprimé avec succès.\n\n", newPrenom, newNom);
+    printf("L'athlète %s %s a été supprimé avec succès.\n\n", newName, newLastname);
 }
 
-void modifierAthlete(void){
-    int numeroAthlete, numero, compteur = 1, choix;
-    char ligne[MAX];
-    char prenom[MAX/2], nom[MAX/2];
-    char newPrenom[MAX/2], newNom[MAX/2];
-    char nomFichier[MAX];
-    char cheminComplet[MAX];
+void changeAthlete(void){
+    int athleteNumber, number, count = 1, choice;
+    char line[MAX];
+    char name[MAX/2], lastname[MAX/2];
+    char newName[MAX/2], newLastname[MAX/2];
+    char fileName[MAX];
+    char completePath[MAX];
 
-    numeroAthlete = faireChoixAthlete();
-    FILE *nomAthlete = ouvrirFichierAthlete(numeroAthlete);
-    if (nomAthlete == NULL) {
+    athleteNumber = makeAthleteChoice();
+    FILE *athleteName = openAthleteFile(athleteNumber);
+    if (athleteName == NULL) {
         printf("Impossible d'ouvrir le fichier Athlete\n");
         return;
     }
 
-    fgets(ligne, sizeof(ligne), nomAthlete);
-    sscanf(ligne, "%s %s", prenom, nom);
+    fgets(line, sizeof(line), athleteName);
+    sscanf(line, "%s %s", name, lastname);
 
-    fclose(nomAthlete);
+    fclose(athleteName);
 
     printf("Faut-il modifier le prénom de l'athlète ?\n");
-    couleur("32"); printf("1. Oui\n"); couleur("0");
-    couleur("31"); printf("2. Non\n"); couleur("0");
+    color("32"); printf("1. Oui\n"); color("0");
+    color("31"); printf("2. Non\n"); color("0");
     printf("Choix : ");
-    scanf("%d", &choix);
+    scanf("%d", &choice);
     printf("\n");
 
-    if (choix == 1) {
+    if (choice == 1) {
         // Code pour modifier un athlète
         printf("Quel est le nouveau prénom de l'athlète ? ");
-        scanf("%s", newPrenom);
-        if(newPrenom[0] >= 'a' && newPrenom[0] <= 'z'){
-            newPrenom[0] = newPrenom[0] - 32;
+        scanf("%s", newName);
+        if(newName[0] >= 'a' && newName[0] <= 'z'){
+            newName[0] = newName[0] - 32;
         }
         printf("\n");
-    } else if(choix < 1 || choix > 2){
+    } else if(choice < 1 || choice > 2){
         printf("Choix invalide.\n");
         printf("Quel est le nouveau prénom de l'athlète ? ");
-        scanf("%s", newPrenom);
-        if(newPrenom[0] >= 'a' && newPrenom[0] <= 'z'){
-            newPrenom[0] = newPrenom[0] - 32;
+        scanf("%s", newName);
+        if(newName[0] >= 'a' && newName[0] <= 'z'){
+            newName[0] = newName[0] - 32;
         }
         printf("\n");
     } else {
-        strcpy(newPrenom, prenom);
+        strcpy(newName, name);
     }
 
     printf("Faut-il modifier le nom de l'athlète ?\n");
-    couleur("32"); printf("1. Oui\n"); couleur("0");
-    couleur("31"); printf("2. Non\n"); couleur("0");
+    color("32"); printf("1. Oui\n"); color("0");
+    color("31"); printf("2. Non\n"); color("0");
     printf("Choix : ");
-    scanf("%d", &choix);
+    scanf("%d", &choice);
     printf("\n");
 
-    if (choix == 1) {
+    if (choice == 1) {
         // Code pour modifier un athlète
         printf("Quel est le nouveau nom de l'athlète ? ");
-        scanf("%s", newNom);
-        if(newNom[0] >= 'a' && newNom[0] <= 'z'){
-            newNom[0] = newNom[0] - 32;
+        scanf("%s", newLastname);
+        if(newLastname[0] >= 'a' && newLastname[0] <= 'z'){
+            newLastname[0] = newLastname[0] - 32;
         }
         printf("\n");
-    } else if(choix < 1 || choix > 2){
+    } else if(choice < 1 || choice > 2){
         printf("Choix invalide.\n");
         printf("Quel est le nouveau nom de l'athlète ? ");
-        scanf("%s", newNom);
-        if(newNom[0] >= 'a' && newNom[0] <= 'z'){
-            newNom[0] = newNom[0] - 32;
+        scanf("%s", newLastname);
+        if(newLastname[0] >= 'a' && newLastname[0] <= 'z'){
+            newLastname[0] = newLastname[0] - 32;
         }
         printf("\n");
     } else {
-        strcpy(newNom, nom);
+        strcpy(newLastname, lastname);
     }
 
-    sprintf(nomFichier, "%s/Athletes/%s %s.txt", CHEMIN, newPrenom, newNom);
+    sprintf(fileName, "%s/Athletes/%s %s.txt", PATH, newName, newLastname);
 
-    FILE *fichierAthletes = fopen(CHEMIN"/Liste/nomAthletes.txt", "r");
-    if (fichierAthletes == NULL) {
+    FILE *athletesFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
+    if (athletesFile == NULL) {
         printf("Impossible d'ouvrir le fichier nomAthletes\n");
         return;
     }
 
-    FILE *nouveauFichier = fopen(CHEMIN"/Liste/nomAthletesTemp.txt", "w");
-    if (nouveauFichier == NULL) {
+    FILE *newFile = fopen(PATH"/Liste/nomAthletesTemp.txt", "w");
+    if (newFile == NULL) {
         printf("Impossible de créer le fichier temporaire\n");
         return;
     }
 
-    rewind(fichierAthletes);
-    while (fscanf(fichierAthletes, "%d %s %s", &numero, prenom, nom) != EOF) {
-        if (numero == numeroAthlete) {
-            fprintf(nouveauFichier, "%d %s %s\n", compteur, newPrenom, newNom);
-            sprintf(cheminComplet, "%s/Athletes/%s %s.txt", CHEMIN, prenom, nom);
-            compteur++;
+    rewind(athletesFile);
+    while (fscanf(athletesFile, "%d %s %s", &number, name, lastname) != EOF) {
+        if (number == athleteNumber) {
+            fprintf(newFile, "%d %s %s\n", count, newName, newLastname);
+            sprintf(completePath, "%s/Athletes/%s %s.txt", PATH, name, lastname);
+            count++;
         } else {
-            fprintf(nouveauFichier, "%d %s %s\n", compteur, prenom, nom);
-            compteur++;
+            fprintf(newFile, "%d %s %s\n", count, name, lastname);
+            count++;
         }
     }
 
-    fclose(fichierAthletes);
-    fclose(nouveauFichier); 
+    fclose(athletesFile);
+    fclose(newFile); 
 
-    FILE *AthleteTemp = fopen(CHEMIN"/Athletes/AthletesTemp.txt", "w");
+    FILE *AthleteTemp = fopen(PATH"/Athletes/AthletesTemp.txt", "w");
     if (AthleteTemp == NULL) {
         printf("Impossible de créer le fichier temporaire\n");
-        fclose(fichierAthletes);
+        fclose(athletesFile);
         return;
     }
 
-    FILE *Athlete = ouvrirFichierAthlete(numeroAthlete);
+    FILE *Athlete = openAthleteFile(athleteNumber);
     if (Athlete == NULL) {
         printf("Impossible d'ouvrir le fichier Athlete\n");
-        fclose(fichierAthletes);
+        fclose(athletesFile);
         return;
     }
 
-    // recopier le nouveau prenom et nom dans le fichier temporaire
-    fprintf(AthleteTemp, "%s %s\n", newPrenom, newNom);
+    // recopier le nouveau name et lastname dans le fichier temporaire
+    fprintf(AthleteTemp, "%s %s\n", newName, newLastname);
 
     while (fgetc(Athlete) != '\n');
     // recopier le reste du fichier Athlete dans le fichier temporaire
-    while (fgets(ligne, sizeof(ligne), Athlete) != NULL) {
-        fprintf(AthleteTemp, "%s", ligne);
+    while (fgets(line, sizeof(line), Athlete) != NULL) {
+        fprintf(AthleteTemp, "%s", line);
     }
 
     fclose(Athlete);
     fclose(AthleteTemp);
 
-    remove(cheminComplet);
-    remove(CHEMIN"/Liste/nomAthletes.txt");
-    rename(CHEMIN"/Liste/nomAthletesTemp.txt", CHEMIN"/Liste/nomAthletes.txt");
-    rename(CHEMIN"/Athletes/AthletesTemp.txt", nomFichier);
+    remove(completePath);
+    remove(PATH"/Liste/nomAthletes.txt");
+    rename(PATH"/Liste/nomAthletesTemp.txt", PATH"/Liste/nomAthletes.txt");
+    rename(PATH"/Athletes/AthletesTemp.txt", fileName);
 
-    printf("L'athlète %s %s a été modifié avec succès.\n\n", newPrenom, newNom);
+    printf("L'athlète %s %s a été modifié avec succès.\n\n", newName, newLastname);
 
 }
 
 void modifAthlete(void) {
-    int choix, dernierNumero = dernierNumeroAthlete();
+    int choice, lastNumber = lastNumberAthlete();
 
     printf("1. Créer un nouvel athlète\n");
     printf("2. Supprimer un athlète\n");
     printf("3. Modifier un athlète\n");
-    couleur("31"); printf("4. Quitter\n"); couleur("0");
+    color("31"); printf("4. Quitter\n"); color("0");
     printf("Choix : ");
-    scanf("%d", &choix);
+    scanf("%d", &choice);
     printf("\n");
 
-    switch (choix) {
+    switch (choice) {
         case 1:
             // Code pour ajouter un athlète
-            ajouterAthlete();
+            addAthlete();
 
             printf("\nVoulez-vous ajouter un entrainement pour cet athlète ?\n");
-            couleur("32"); printf("1. Oui\n"); couleur("0");
-            couleur("31"); printf("2. Non\n"); couleur("0");
+            color("32"); printf("1. Oui\n"); color("0");
+            color("31"); printf("2. Non\n"); color("0");
             printf("Choix : ");
-            scanf("%d", &choix);
+            scanf("%d", &choice);
             printf("\n");
 
-            if (choix == 1) {
-                ajouterEntrainement(dernierNumero + 1);
+            if (choice == 1) {
+                addTraining(lastNumber + 1);
             }
             else {
                 return;
@@ -329,11 +329,11 @@ void modifAthlete(void) {
             break;
         case 2:
             // Code pour supprimer un athlète
-            supprimerAthlete();
+            removeAthlete();
             break;
         case 3:
             // Code pour modifier un athlète
-            modifierAthlete();
+            changeAthlete();
             break;
         case 4:
             break;

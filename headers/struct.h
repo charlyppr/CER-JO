@@ -3,33 +3,34 @@
 
 // Structure pour la date
 typedef struct {
-    int annee;
-    int mois;
-    int jour;
+    int year;
+    int month;
+    int day;
 } Date;
 
 // Structure pour le temps
 typedef struct {
     int minute;
-    int seconde;
-    int milliseconde;
-} Temps;
+    int second;
+    int millisecond;
+} Time;
 
 
 // Structure pour l'entraînement d'un athlète
-typedef struct Entrainement {
-    char nomAthlete[100];
-    Date dateEntrainement;
-    char typeEpreuve[100];
-    Temps tempsAthlete;
-    int position;
-} Entrainement;
-
-Entrainement entrainement;  // Variable globale pour l'entraînement
-
 typedef struct {
-    int moyenne;
+    int position;
+    char athleteName[100];
+    char raceType[100];
+    Date trainingDate;
+    Time athleteTime;
+} Training;
+
+Training training;  // Variable globale pour l'entraînement
+
+// Structure pour la moyenne et l'index
+typedef struct {
+    int average;
     int index;
-} MoyenneIndex;
+} AverageIndex;
 
 #endif
