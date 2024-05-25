@@ -1,17 +1,20 @@
 #include "../headers/entrainement.h"
 
+// Procédure pour ajouter un entrainement à un athlète
 void addTraining(int athleteChoice) {
     int raceChoice, numRace, relayPosition;
     int hour, minutes, seconds, ms;
     char race[MAX];
     Date date;
 
+    // Ouverture du fichier nomEpreuve.txt
     FILE *raceFile = fopen(PATH"/Liste/nomEpreuve.txt", "r");
     if (raceFile == NULL) {
         printf("Impossible d'ouvrir le fichier nomEpreuve\n");
         return;
     }
 
+    // Afficher la liste des épreuves et demander le choix de l'utilisateur
     showRaceList(raceFile);
     printf("Choix : ");
     scanf("%d", &raceChoice);
@@ -23,6 +26,7 @@ void addTraining(int athleteChoice) {
         printf("\n");
     }
 
+    // Si l'épreuve choisie est un relais, demander la position
     if(raceChoice == 5){
         printf("Position lors du relais : ");
         scanf("%d", &relayPosition);
@@ -50,6 +54,7 @@ void addTraining(int athleteChoice) {
 
     fclose(raceFile);
 
+    // Demander la date de l'entrainement
     printf("Entrez la date de l'entrainement (JJ MM AAAA) : ");
     scanf("%d %d %d", &date.day, &date.month, &date.year);
     printf("\n");
@@ -60,6 +65,7 @@ void addTraining(int athleteChoice) {
         printf("\n");
     }
 
+    // Demander le temps de l'athlète
     printf("En combien de temps l'athlète a-t-il réalisé l'épreuve ?\n");
     printf("Heures : ");
     scanf("%d", &hour);
@@ -88,6 +94,7 @@ void addTraining(int athleteChoice) {
     }
     printf("\n");
 
+    // Ouvrir le fichier de l'athlète choisi en mode lecture et écriture
     FILE *Athlete = changeAthleteFile(athleteChoice);
     if (Athlete == NULL) {
         printf("Impossible d'ouvrir le fichier de l'athlète\n");
@@ -96,7 +103,7 @@ void addTraining(int athleteChoice) {
 
     while (fgetc(Athlete) != '\n'); // Sauter une line
 
-    // Ajouter une line dans le fichier de l'athlète
+    // Ajouter l'entrainement à la fin du fichier
     fprintf(Athlete, "%d %d %d %s %d %d %d %d %d\n", date.day, date.month, date.year, race + 2, hour, minutes, seconds, ms, relayPosition);
 
     fclose(Athlete);
@@ -105,30 +112,33 @@ void addTraining(int athleteChoice) {
 
 }
 
+// Procédure pour supprimer un entrainement d'un athlète
 void removeTraining(void) {
     Training training1;
     int number;
-    char name[MAX/2];
-    char lastname[MAX/2];
-    char fileName[MAX];
-    char completePath[MAX];
+    char name[MAX/2], lastname[MAX/2];
+    char fileName[MAX], completePath[MAX];
 
     int athleteChoice = makeAthleteChoice();
 
+    // Ouvrir le fichier nomAthletes.txt
     FILE *athleteFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if (athleteFile == NULL) {
         printf("Impossible d'ouvrir le fichier nomAthletes\n");
         return;
     }
 
+    // Lire chaque ligne du fichier et récupérer le prénom et le nom de l'athlète choisi
     rewind(athleteFile);
     while (fscanf(athleteFile, "%d %s %s", &number, name, lastname) != EOF) {
         if(athleteChoice == number){
+            // Créer le nom du fichier de l'athlète choisi
             sprintf(fileName, "%s %s.txt", name, lastname);
             break;
         }
     }
 
+    // Créer le chemin du fichier de l'athlète choisi
     sprintf(completePath, "%s/Athletes/%s", PATH, fileName);
 
     int position, count = 1, trainingChoice;
@@ -154,6 +164,7 @@ void removeTraining(void) {
         count++;
     }
 
+    // Demander le choix de l'entrainement à supprimer
     printf("Choix : ");
     scanf("%d", &trainingChoice);
     printf("\n");
@@ -177,6 +188,7 @@ void removeTraining(void) {
     rewind(file);
     while (fgetc(file) != '\n'); // Sauter une line
 
+    // Copie de toutes les lines sauf celle à supprimer
     count = 1;
     while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
         if (count != trainingChoice) {
@@ -195,17 +207,17 @@ void removeTraining(void) {
     printf("Entrainement supprimé avec succès.\n\n");
 }
 
+// Procédure pour modifier un entrainement d'un athlète
 void changeTraining(void){
     Training training1, newTraining;
     int number, numRace;
     char race[MAX];
-    char name[MAX/2];
-    char lastname[MAX/2];
-    char fileName[MAX];
-    char completePath[MAX];
+    char name[MAX/2], lastname[MAX/2];
+    char fileName[MAX], completePath[MAX];
 
     int athleteChoice = makeAthleteChoice();
 
+    // Ouvrir le fichier nomAthletes.txt
     FILE *athleteFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if (athleteFile == NULL) {
         printf("Impossible d'ouvrir le fichier nomAthletes\n");
@@ -213,16 +225,20 @@ void changeTraining(void){
     }
     int lines = countLine(athleteFile);
 
+    // Lire chaque ligne du fichier et récupérer le prénom et le nom de l'athlète choisi
     rewind(athleteFile);
     while (fscanf(athleteFile, "%d %s %s", &number, name, lastname) != EOF) {
         if(athleteChoice == number){
+            // Créer le nom du fichier de l'athlète choisi
             sprintf(fileName, "%s %s.txt", name, lastname);
             break;
         }
     }
 
+    // Créer le chemin du fichier de l'athlète choisi
     sprintf(completePath, "%s/Athletes/%s", PATH, fileName);
 
+    // Ouvrir le fichier de l'athlète choisi en mode lecture et écriture
     int position, count = 1, trainingChoice;
     FILE *file = changeAthleteFile(athleteChoice);
     if (file == NULL) {
@@ -245,6 +261,8 @@ void changeTraining(void){
         printf("%d. %02d/%02d/%4d | %02dh %02dmin %02dsec %03dms | %s\n", count, training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, training1.raceType);
         count++;
     }
+
+    // Demander le choix de l'entrainement à modifier
     printf("Choix : ");
     scanf("%d", &trainingChoice);
     printf("\n");
@@ -257,6 +275,7 @@ void changeTraining(void){
 
     int newHour, newMinutes, newSeconds, newMs, changeChoice, newRaceType;
 
+    // Demander les nouvelles valeurs
     printf("Faut-il changer la date de l'entrainement ?\n");
     color("32"); printf("1. Oui\n"); color("0");
     color("31"); printf("2. Non\n"); color("0");
@@ -289,6 +308,7 @@ void changeTraining(void){
         newTraining.trainingDate.year = training1.trainingDate.year;
     }
 
+    // Demander si l'utilisateur veut changer le type de l'épreuve
     printf("Faut-il changer le type d'épreuve de l'entrainement ?\n");
     color("32"); printf("1. Oui\n"); color("0");
     color("31"); printf("2. Non\n"); color("0");
@@ -305,7 +325,9 @@ void changeTraining(void){
         printf("\n");
     }
 
+    // Si l'utilisateur veut changer le type de l'épreuve, afficher la liste des épreuves et demander le choix
     if(changeChoice == 1){
+        // Ouvrir le fichier nomEpreuve.txt
         FILE *raceFile = fopen(PATH"/Liste/nomEpreuve.txt", "r");
         if (raceFile == NULL) {
             printf("Impossible d'ouvrir le fichier nomEpreuve\n");
@@ -313,6 +335,7 @@ void changeTraining(void){
         }
         lines = countLine(raceFile);
 
+        // Afficher la liste des épreuves et demander le choix de l'utilisateur
         rewind(raceFile);
         showRaceList(raceFile);
         printf("Choix : ");
@@ -325,6 +348,7 @@ void changeTraining(void){
             printf("\n");
         }
 
+        // Si l'épreuve choisie est un relais, demander la position
         if(newRaceType == 5){
             printf("Position lors du relais : ");
             scanf("%d", &newTraining.position);
@@ -336,14 +360,15 @@ void changeTraining(void){
                 printf("\n");
             }
         } else {
+            // Si l'épreuve n'est pas un relais, la position est 0
             newTraining.position = 0;
         }
 
         rewind(raceFile);
         // Lire le fichier race jusqu'à trouver l'épreuve choisie
         while (fgets(race, sizeof(race), raceFile)) {
-            sscanf(race, "%d", &numRace);
-            race[strcspn(race, "\n")] = 0;
+            sscanf(race, "%d", &numRace); // Lire le numéro de l'épreuve
+            race[strcspn(race, "\n")] = 0; // Supprimer le retour à la ligne
 
             if(numRace == newRaceType) {
                 break;
@@ -352,9 +377,10 @@ void changeTraining(void){
 
         fclose(raceFile);
     } else {
-        strcpy(race, training1.raceType);
+        strcpy(race, training1.raceType); // Copier le type de l'épreuve actuelle si l'utilisateur ne veut pas le changer
     }
 
+    // Demander si l'utilisateur veut changer le temps de l'entrainement
     printf("Faut-il changer la durée de l'entrainement ?\n");
     color("32"); printf("1. Oui\n"); color("0");
     color("31"); printf("2. Non\n"); color("0");
@@ -371,6 +397,7 @@ void changeTraining(void){
         printf("\n");
     }
 
+    // Si l'utilisateur veut changer la durée de l'entrainement, demander les nouvelles valeurs
     if(changeChoice == 1){
         printf("Entrez la nouvelle durée de l'entrainement\n");
         printf("Heures : ");
@@ -399,6 +426,7 @@ void changeTraining(void){
         }
         printf("\n");
     } else {
+        // Si l'utilisateur ne veut pas changer la durée de l'entrainement, copier les valeurs actuelles
         newHour = training1.athleteTime.hour;
         newMinutes = training1.athleteTime.minute;
         newSeconds = training1.athleteTime.second;
@@ -412,12 +440,12 @@ void changeTraining(void){
         return;
     }
 
-    // Copie de toutes les lines et modification de celle à modifier
     fprintf(tempFile, "%s %s\n", name, lastname); // Écrire le prénom et le nom de l'athlète
 
     rewind(file);
     while (fgetc(file) != '\n'); // Sauter une line
 
+    // Copie de toutes les lignes sauf celle à modifier
     count = 1;
     while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &training1.position) != EOF) {
         if (count != trainingChoice) {
@@ -439,6 +467,7 @@ void changeTraining(void){
 
 }
 
+// Procédure principale pour ajouter, supprimer ou modifier un entrainement
 void modifEntrainement(void) {
     int choice, athleteChoice;
     printf("1. Ajouter un entrainement\n");
@@ -464,7 +493,7 @@ void modifEntrainement(void) {
             changeTraining();
             break;
         case 4:
-            // Code pour retourner au début du programme
+            // Retourner au menu principal
             break;
         default:
             printf("Choix invalide.\n\n");

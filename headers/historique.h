@@ -6,7 +6,6 @@
 #include "constants.h"
 #include "def.h"
 
-
 extern void showTrainingName(Training training1, int athleteChoice);
 
 extern void showTrainingRace(Training training1, int raceChoice);

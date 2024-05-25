@@ -1,8 +1,10 @@
 #include "../headers/historique.h"
 
+// Procédure qui permet d'afficher les entraînements d'un athlète
 void showTrainingName(Training training1, int athleteChoice) {
     int position;
 
+    // Ouvrir le fichier de l'athlète
     FILE *file = openAthleteFile(athleteChoice);
     if (file == NULL) {
         printf("Impossible d'ouvrir le fichier athleteChoice\n");
@@ -28,11 +30,16 @@ void showTrainingName(Training training1, int athleteChoice) {
                 }
             }
         }
+        // Si le type d'épreuve est un marathon, afficher les heures
         if(strcmp(training1.raceType, "Marathon") == 0){
             printf("Temps de l'athlète :     %02dh %02dmin %02dsec %03dms\n", training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
-        } else if(strcmp(training1.raceType, "5000m") == 0) {
+        } 
+        // Si le type d'épreuve est un 5000m, afficher les minutes
+        else if(strcmp(training1.raceType, "5000m") == 0) {
             printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
-        } else {
+        } 
+        
+        else {
             printf("Temps de l'athlète :     %02dsec %03dms\n", training1.athleteTime.second, training1.athleteTime.millisecond);
         }
         printf("\n");
@@ -42,20 +49,24 @@ void showTrainingName(Training training1, int athleteChoice) {
     fclose(file);
 }
 
+// Procédure qui permet d'afficher les entraînements d'un type d'épreuve
 void showTrainingRace(Training training1, int raceChoice) {
     char race[MAX];
     int numRace, position;
 
+    // Ouvrir le fichier de toutes les épreuves
     FILE *raceName = fopen(PATH"/Liste/nomEpreuve.txt", "r");
     if(raceName == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
         exit(1);
     }
 
+    // Lire le fichier epreuves jusqu'à trouver l'épreuve choisie (raceChoice)
     while (fgets(race, sizeof(race), raceName)) {
-        sscanf(race, "%d", &numRace);
-        race[strcspn(race, "\n")] = 0;
+        sscanf(race, "%d", &numRace); // Récupérer le numéro de l'épreuve
+        race[strcspn(race, "\n")] = 0; // Supprimer le retour à la ligne
 
+        // Si l'épreuve choisie est trouvée, afficher le type d'épreuve et sortir de la boucle
         if(numRace == raceChoice) {
             printf("%s :\n", race + 2);
             break;
@@ -76,12 +87,12 @@ void showTrainingRace(Training training1, int raceChoice) {
     int lines = countLine(athleteName);
     rewind(athleteName);
 
+    // Lire chaque ligne du fichier nomAthlètes
     for(int i = 0; i < lines; i++) {
         int trainingFound = 0;
-
-        // Lecture du nom de l'athlète
-        fgets(athlete, sizeof(athlete), athleteName);
-        athlete[strcspn(athlete, "\n")] = 0;
+        
+        fgets(athlete, sizeof(athlete), athleteName); // Lecture du nom de l'athlète
+        athlete[strcspn(athlete, "\n")] = 0; // Supprimer le retour à la ligne
 
         // Ouvrir le fichier de l'athlète
         char fileName[MAX] = {0};
@@ -92,9 +103,9 @@ void showTrainingRace(Training training1, int raceChoice) {
             exit(1);
         }
 
-        // Sauter une ligne
-        while (fgetc(file) != '\n');
+        while (fgetc(file) != '\n'); // Sauter une ligne
 
+        // Lire chaque ligne du fichier de l'athlète et afficher les entraînements de l'épreuve choisie
         while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
             if (strcmp(training1.raceType, race + 2) == 0) {
                 // Affichage des valeurs
@@ -137,10 +148,12 @@ void showTrainingRace(Training training1, int raceChoice) {
     fclose(athleteName);
 }
 
+// Procédure qui permet d'afficher les entraînements d'une date
 void showTrainingDate(Training training1) {
     int position;
     Date date;
 
+    // Demander la date de l'entraînement
     printf("Entrez la date de l'entrainement (JJ MM AAAA) : ");
     scanf("%d %d %d", &date.day, &date.month, &date.year);
     printf("\n");
@@ -151,6 +164,7 @@ void showTrainingDate(Training training1) {
         printf("\n");
     }
 
+    // Ouvrir le fichier nomAthlètes
     FILE *athleteName = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteName == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlètes 1.\n");
@@ -166,14 +180,15 @@ void showTrainingDate(Training training1) {
         athlete[strcspn(athlete, "\n")] = 0;
 
         char fileName[MAX] = {0};
-        sprintf(fileName, PATH"/Athletes/%s.txt", athlete + 3);
-        FILE *file = fopen(fileName, "r");
+        sprintf(fileName, PATH"/Athletes/%s.txt", athlete + 3); // Créer le chemin du fichier de l'athlète
+        FILE *file = fopen(fileName, "r"); // Ouvrir le fichier de l'athlète en mode lecture
         if (file == NULL) {
             printf("Impossible d'ouvrir le fichier de l'athlète.\n");
             exit(1);
         }
 
-        while (fgetc(file) != '\n');
+        while (fgetc(file) != '\n'); // Sauter une ligne
+        // Lire chaque ligne du fichier de l'athlète et afficher les entraînements à la date choisie
         while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
             if (training1.trainingDate.day == date.day && training1.trainingDate.month == date.month && training1.trainingDate.year == date.year) {
                 printf("Athlète :                %s\n", athlete + 3);
@@ -189,11 +204,16 @@ void showTrainingDate(Training training1) {
                         }
                     }
                 }
+                // Si le type d'épreuve est un marathon, afficher les heures
                 if(strcmp(training1.raceType, "Marathon") == 0){
                     printf("Temps de l'athlète :     %02dh %02dmin %02dsec %03dms\n", training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
-                } else if(strcmp(training1.raceType, "5000m") == 0) {
+                } 
+                // Si le type d'épreuve est un 5000m, afficher les minutes
+                else if(strcmp(training1.raceType, "5000m") == 0) {
                     printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
-                } else {
+                } 
+                
+                else {
                     printf("Temps de l'athlète :     %02dsec %03dms\n", training1.athleteTime.second, training1.athleteTime.millisecond);
                 }
                 printf("\n");
@@ -212,15 +232,18 @@ void showTrainingDate(Training training1) {
     fclose(athleteName);
 }
 
+// Procédure principale qui permet de choisir comment afficher les entraînements
 void trainingHistory(Training training1, FILE *file) {
     int choice, athleteChoice, raceChoice, lines;
 
+    // Ouvrir le fichier nomAthlètes
     FILE *athleteName = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteName == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlète.\n");
         exit(1);
     }
 
+    // Ouvrir le fichier nomEpreuve
     FILE *raceName = fopen(PATH"/Liste/nomEpreuve.txt", "r");
     if(raceName == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
@@ -237,6 +260,7 @@ void trainingHistory(Training training1, FILE *file) {
 
     switch (choice) {
         case 1:
+            // Code pour afficher les entraînements par nom d'athlète
             showAthleteList(athleteName);
             printf("Choix : ");
             scanf("%d", &athleteChoice);
@@ -254,6 +278,7 @@ void trainingHistory(Training training1, FILE *file) {
             showTrainingName(training1, athleteChoice);
             break;
         case 2:
+            // Code pour afficher les entraînements par type d'épreuve
             showRaceList(raceName);
             printf("Choix : ");
             scanf("%d", &raceChoice);
@@ -272,9 +297,11 @@ void trainingHistory(Training training1, FILE *file) {
             showTrainingRace(training1, raceChoice);
             break;
         case 3:
+            // Code pour afficher les entraînements par date
             showTrainingDate(training1);
             break;
         case 4:
+            // Retourner au menu principal
             break;
         default:
             printf("Choix invalide.\n\n");

@@ -1,5 +1,6 @@
 #include "../headers/def.h"
 
+// Fonction qui compte le nombre de lignes dans un fichier
 int countLine(FILE *file) {
     int c;
     int lines = 0;
@@ -13,6 +14,7 @@ int countLine(FILE *file) {
     return lines;
 }
 
+// Fonction qui vérifie si une date est valide
 int validDate(Date date) {
     if (date.year < 2000 || date.year > 2024) {
         return 0;
@@ -47,6 +49,7 @@ int validDate(Date date) {
     return 1;
 }
 
+// Fonction qui compare deux dates
 int compareDates(const void *a, const void *b) {
     Date *dateA = (Date *)a;
     Date *dateB = (Date *)b;
@@ -59,6 +62,7 @@ int compareDates(const void *a, const void *b) {
         return dateA->day - dateB->day;
 }
 
+// Fonction qui compare deux temps
 int compareAverage(const void *a, const void *b) {
     AverageIndex *miA = (AverageIndex *)a;
     AverageIndex *miB = (AverageIndex *)b;
@@ -67,6 +71,7 @@ int compareAverage(const void *a, const void *b) {
     return miA->average - miB->average;
 }
 
+// Procédure qui affiche le nom de l'athlète
 void showAthleteName(FILE *file) {
     char athleteName[MAX];
     int athleteNumber;
@@ -77,9 +82,10 @@ void showAthleteName(FILE *file) {
     fgets(athleteName, sizeof(athleteName), file); // Lecture du nom de l'athlète
     
     athleteName[strcspn(athleteName, "\n")] = 0; // Suppression de la nouvelle ligne
-    printf("%s\n", athleteName);
+    printf("%s\n", athleteName); // Affichage du nom de l'athlète
 }
 
+// Procédure qui affiche la liste des athlètes grace à showAthleteName
 void showAthleteList(FILE *athleteName) {
     int lines = countLine(athleteName);
 
@@ -93,6 +99,7 @@ void showAthleteList(FILE *athleteName) {
     }
 }
 
+// Fonction qui permet de choisir un athlète
 int makeAthleteChoice(void){
     int athleteChoice;
     FILE *athleteFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
@@ -119,17 +126,19 @@ int makeAthleteChoice(void){
     return athleteChoice;
 }
 
+// Procédure qui affiche le nom de l'épreuve
 void showRaceName(FILE *raceFile) {
     char race[MAX];
-    // Sauter le numéro de l'épreuve
-    fseek(raceFile, 2, SEEK_CUR);
-    // Lecture du nom de l'épreuve
-    fgets(race, sizeof(race), raceFile);
-    // Suppression de la nouvelle ligne
-    race[strcspn(race, "\n")] = 0;
-    printf("%s\n", race);
+    
+    fseek(raceFile, 2, SEEK_CUR); // Sauter le numéro de l'épreuve
+
+    fgets(race, sizeof(race), raceFile); // Lecture du nom de l'épreuve
+    race[strcspn(race, "\n")] = 0; // Suppression de la nouvelle ligne
+
+    printf("%s\n", race); // Affichage du nom de l'épreuve
 }
 
+// Procédure qui affiche la liste des épreuves grace à showRaceName
 void showRaceList(FILE *raceFile) {
     int lines = countLine(raceFile);
 
@@ -143,6 +152,7 @@ void showRaceList(FILE *raceFile) {
     }
 }
 
+// Fonction qui ouvre le fichier de l'athlète choisi
 FILE *openAthleteFile(int athleteChoice) {
     int numAthlete;
     char fileName[MAX];
@@ -157,16 +167,18 @@ FILE *openAthleteFile(int athleteChoice) {
 
     // Lire chaque ligne du fichier
     while (fgets(athleteName, sizeof(athleteName), athleteFile)) {
-        sscanf(athleteName, "%d", &numAthlete);
-        athleteName[strcspn(athleteName, "\n")] = 0;
+        sscanf(athleteName, "%d", &numAthlete); // Lecture du numéro de l'athlète
+        athleteName[strcspn(athleteName, "\n")] = 0; // Suppression de la nouvelle ligne
 
         if(numAthlete == athleteChoice) {
             break;
         }
     }
 
+    // Créer le chemin du fichier de l'athlète choisi
     sprintf(fileName, PATH"/Athletes/%s.txt", athleteName + 3);
     
+    // Ouvrir le fichier de l'athlète choisi
     FILE *file = fopen(fileName, "r");
     if(file == NULL){
         printf("Impossible d'ouvrir le fichier %s.txt.\n", athleteName + 3);
@@ -175,6 +187,7 @@ FILE *openAthleteFile(int athleteChoice) {
     return file;
 }
 
+// Fonction qui permet de modifier le fichier de l'athlète choisi
 FILE *changeAthleteFile(int athleteChoice) {
     int numAthlete;
     char fileName[MAX];
@@ -189,6 +202,7 @@ FILE *changeAthleteFile(int athleteChoice) {
 
     // Lire chaque ligne du fichier
     while (fgets(athleteName, sizeof(athleteName), athleteFile)) {
+        // Lecture du numéro de l'athlète
         sscanf(athleteName, "%d", &numAthlete);
         athleteName[strcspn(athleteName, "\n")] = 0;
 
@@ -197,9 +211,10 @@ FILE *changeAthleteFile(int athleteChoice) {
         }
     }
 
-    
+    // Créer le chemin du fichier de l'athlète choisi
     sprintf(fileName, PATH"/Athletes/%s.txt", athleteName + 3);
     
+    // Ouvrir le fichier de l'athlète choisi en mode lecture et écriture
     FILE *file = fopen(fileName, "r+");
     if(file == NULL){
         printf("Impossible d'ouvrir le fichier %s.txt.\n", athleteName + 3);
@@ -208,8 +223,10 @@ FILE *changeAthleteFile(int athleteChoice) {
     return file;
 }
 
+// Procédure qui permet de choisir une un athlète
 void chooseAthlete(int *athleteChoice){
     int lines;
+
     // Ouvrir le fichier de tous les athlètes
     FILE *athleteFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteFile == NULL){
@@ -217,6 +234,7 @@ void chooseAthlete(int *athleteChoice){
         exit(1);
     }
 
+    // Afficher la liste des athlètes et demander le choix de l'utilisateur
     showAthleteList(athleteFile);
     printf("Choix : ");
     scanf("%d", athleteChoice);
@@ -236,14 +254,18 @@ void chooseAthlete(int *athleteChoice){
     fclose(athleteFile);
 }
 
+// Procédure qui permet de choisir une épreuve
 void chooseRace(int *raceChoice, char race[MAX]){
     int numRace;
+
+    // Ouvrir le fichier de toutes les épreuves
     FILE *raceFile = fopen(PATH"/Liste/nomEpreuve.txt", "r");
     if(raceFile == NULL){
         printf("Impossible d'ouvrir le fichier raceFile.\n");
         exit(1);
     }
 
+    // Afficher la liste des épreuves et demander le choix de l'utilisateur
     showRaceList(raceFile);
     printf("Choix : ");
     scanf("%d", raceChoice);
@@ -259,8 +281,8 @@ void chooseRace(int *raceChoice, char race[MAX]){
         printf("\n");
     }
 
-
     rewind(raceFile);
+    // Lire le fichier epreuves jusqu'à trouver l'épreuve choisie
     while (fgets(race, MAX, raceFile)) {
         sscanf(race, "%d", &numRace);
         race[strcspn(race, "\n")] = 0;

@@ -1,5 +1,6 @@
 #include "../headers/statistiques.h"
 
+// Procédure pour afficher la différence de temps entre deux entraînements
 void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
     int count = 0;
 
@@ -15,23 +16,26 @@ void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
     int dateCount = 0, dateChoice1, dateChoice2, raceCount = 0;
     Date dates[MAX];
 
-    //si l'épreuve est celle choisie alors afficher l'training
+    //si l'épreuve est celle choisie alors afficher l'entrainement
     while (fgetc(Athlete) != '\n');
     while (fscanf(Athlete, "%d %d %d %s %d %d %d %d %d", &training.trainingDate.day, &training.trainingDate.month, &training.trainingDate.year, training.raceType, &training.athleteTime.hour, &training.athleteTime.minute, &training.athleteTime.second, &training.athleteTime.millisecond, &training.position) != EOF) {
         if (strcmp(training.raceType, race + 2) == 0) {
-            //afficher les dates des entraînements disponibles pour l'épreuve choisie
+            // Ajouter la date à un tableau
             dates[dateCount++] = training.trainingDate;
             raceCount++;
         }
     }
 
+    // Si aucune date n'a été trouvée
     if(raceCount == 0){
         printf("Aucun entraînement pour cette épreuve n'a été trouvé.\n");
         printf("Veuillez choisir une autre épreuve.\n\n");
 
         chooseRace(raceChoice, race);
         showDiffTime(athleteChoice, raceChoice, race);
-    } else if (raceCount == 1) {
+    } 
+    // Si une seule date a été trouvée
+    else if (raceCount == 1) {
         printf("Il n'y a qu'un seul entraînement pour cette épreuve.\n");
         printf("Veuillez choisir une autre épreuve.\n\n");
 
@@ -48,6 +52,7 @@ void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
     }
     printf("\n");
 
+    // Demander à l'utilisateur de choisir deux dates
     printf("Choix de la première date (entre 1 et %d) : ", dateCount-1);
     scanf("%d", &dateChoice1);
     while(dateChoice1 < 1 || dateChoice1 > dateCount-1){
@@ -65,12 +70,11 @@ void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
     }
     printf("\n");
 
-    //appliquer training1 avec dateChoice1 et training2 avec dateChoice2
     rewind(Athlete);
     while (fgetc(Athlete) != '\n');
 
     Training training1, training2;
-
+    // Lire le fichier de l'athlète pour trouver les deux dates
     while (fscanf(Athlete, "%d %d %d %s %d %d %d %d %d", &training.trainingDate.day, &training.trainingDate.month, &training.trainingDate.year, training.raceType, &training.athleteTime.hour, &training.athleteTime.minute, &training.athleteTime.second, &training.athleteTime.millisecond, &training.position) != EOF) {
         if (strcmp(training.raceType, race + 2) == 0) {
             if (training.trainingDate.day == dates[dateChoice1 - 1].day && training.trainingDate.month == dates[dateChoice1 - 1].month && training.trainingDate.year == dates[dateChoice1 - 1].year) {
@@ -83,10 +87,12 @@ void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
         }
     }
 
+    // Si les deux dates n'ont pas été trouvées, quitter le programme
     if (count < 2) {
         exit(1);
     }
 
+    // Afficher les deux entraînements
     if(training1.athleteTime.hour != 0) {
         printf("%02d/%02d/%04d | %02dh %02dmin %02dsec %03dms ", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
     } else if(training1.athleteTime.minute != 0) {
@@ -122,15 +128,18 @@ void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
     }
     printf("\n");
 
+    // Calculer la différence de temps entre les deux entraînements
     int millisecondsTime1 = training1.athleteTime.hour * 3600000 + training1.athleteTime.minute * 60000 + training1.athleteTime.second * 1000 + training1.athleteTime.millisecond;
     int millisecondsTime2 = training2.athleteTime.hour * 3600000 + training2.athleteTime.minute * 60000 + training2.athleteTime.second * 1000 + training2.athleteTime.millisecond;
     int diffTime = millisecondsTime2 - millisecondsTime1;
 
+    // Mettre la différence de temps en heures, minutes, secondes et millisecondes en valeur absolue
     int hours = abs(diffTime / 3600000);
     int minutes = abs(diffTime / 60000);
     int seconds = abs((diffTime % 60000) / 1000);
     int milliseconds = abs((diffTime % 60000) % 1000);
 
+    // Si la différence de temps est négative, l'athlète a progressé
     if(diffTime < 0){
         if(hours != 0){
             printf("L'athlète a progressé de "); color("1"); printf("%02dh %02dmin %02dsec %03dms ", hours, minutes, seconds, milliseconds); color("0"); printf("entre le %02d/%02d/%04d et le %02d/%02d/%04d\n\n", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training2.trainingDate.day, training2.trainingDate.month, training2.trainingDate.year);
@@ -143,7 +152,9 @@ void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
             return;
         }
         return;
-    } else if(diffTime > 0){
+    } 
+    // Si la différence de temps est positive, l'athlète a régressé
+    else if(diffTime > 0){
         if(hours != 0){
             printf("L'athlète a regressé de "); color("1"); printf("%02dh %02dmin %02dsec %03dms ", hours, minutes, seconds, milliseconds); color("0"); printf("entre le %02d/%02d/%04d et le %02d/%02d/%04d\n\n", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training2.trainingDate.day, training2.trainingDate.month, training2.trainingDate.year);
             return;
@@ -155,7 +166,9 @@ void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
             return;
         }
         return;
-    } else {
+    } 
+    // Si la différence de temps est nulle, l'athlète a gardé le même temps
+    else {
         printf("L'athlète a gardé le même temps\n\n");
         return;
     }
@@ -163,14 +176,14 @@ void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
     fclose(Athlete);
 }
 
+// Fonction qui calcule la moyenne des temps de l'athlète pour une épreuve donnée et la retourne
 int averageTime(FILE *athlete, char raceType[MAX]){
-    // Code pour afficher le meilleur temps de l'athlète pour une épreuve donnée
     int averageTime = 0; 
     int count = 0;
 
     rewind(athlete);
     while (fgetc(athlete) != '\n');
-
+    // Lire le fichier de l'athlète pour trouver les entraînements de l'épreuve choisie
     while (fscanf(athlete, "%d %d %d %s %d %d %d %d %d", &training.trainingDate.day, &training.trainingDate.month, &training.trainingDate.year, training.raceType, &training.athleteTime.hour, &training.athleteTime.minute, &training.athleteTime.second, &training.athleteTime.millisecond, &training.position) != EOF) {
         if (strcmp(training.raceType, raceType) == 0) {
             int millisecondsTime = training.athleteTime.hour * 3600000 + training.athleteTime.minute * 60000 + training.athleteTime.second * 1000 + training.athleteTime.millisecond;
@@ -179,27 +192,30 @@ int averageTime(FILE *athlete, char raceType[MAX]){
             count++;
         }
     }
+    // Si aucun entraînement n'a été trouvé, retourner 0
     if(count == 0){
         return 0;
     }
 
+    // Calculer la moyenne des temps
     averageTime = averageTime/count;
 
     return averageTime;
 }
 
+// Procédure pour afficher le pire temps de l'athlète pour une épreuve donnée
 void worstTime(FILE *athlete, char raceType[MAX]){
-    // Code pour afficher le meilleur temps de l'athlète pour une épreuve donnée
-    int worstRaceTime = INT_MIN; // INT_MAX est la valeur la plus élevée qu'un int peut avoir
+    int worstRaceTime = INT_MIN;
     Training worstTraining;
 
     rewind(athlete);
     while (fgetc(athlete) != '\n');
-
+    // Lire le fichier de l'athlète pour trouver le pire temps de l'épreuve choisie
     while (fscanf(athlete, "%d %d %d %s %d %d %d %d %d", &training.trainingDate.day, &training.trainingDate.month, &training.trainingDate.year, training.raceType, &training.athleteTime.hour, &training.athleteTime.minute, &training.athleteTime.second, &training.athleteTime.millisecond, &training.position) != EOF) {
         if (strcmp(training.raceType, raceType) == 0) {
             int millisecondsTime = training.athleteTime.hour * 3600000 + training.athleteTime.minute * 60000 + training.athleteTime.second * 1000 + training.athleteTime.millisecond;
 
+            // Si le temps est plus grand que le pire temps actuel, le remplacer
             if (millisecondsTime > worstRaceTime) {
                 worstRaceTime = millisecondsTime;
                 worstTraining = training;
@@ -207,11 +223,14 @@ void worstTime(FILE *athlete, char raceType[MAX]){
         }
     }
 
+    // Si aucun entraînement n'a été trouvé, quitter le programme
     if (worstRaceTime == INT_MIN) {
         printf("Aucun entraînement de ce type n'a été trouvé.\n");
         exit(1);
 
-    } else {
+    } 
+    // Sinon, afficher le pire temps
+    else {
         printf("Pire temps pour %s :\n", raceType);
         printf("Date de l'entraînement : %02d/%02d/%04d\n", worstTraining.trainingDate.day, worstTraining.trainingDate.month, worstTraining.trainingDate.year);
         if(worstTraining.athleteTime.hour != 0){
@@ -232,18 +251,19 @@ void worstTime(FILE *athlete, char raceType[MAX]){
     }
 }
 
+// Procédure pour afficher le meilleur temps de l'athlète pour une épreuve donnée
 void bestTime(FILE *athlete, char raceType[MAX]){
-    // Code pour afficher le meilleur temps de l'athlète pour une épreuve donnée
-    int bestRaceTime = INT_MAX; // INT_MAX est la valeur la plus élevée qu'un int peut avoir
+    int bestRaceTime = INT_MAX;
     Training bestTraining;
 
     rewind(athlete);
     while (fgetc(athlete) != '\n');
-
+    // Lire le fichier de l'athlète pour trouver le meilleur temps de l'épreuve choisie
     while (fscanf(athlete, "%d %d %d %s %d %d %d %d %d", &training.trainingDate.day, &training.trainingDate.month, &training.trainingDate.year, training.raceType, &training.athleteTime.hour, &training.athleteTime.minute, &training.athleteTime.second, &training.athleteTime.millisecond, &training.position) != EOF) {
         if (strcmp(training.raceType, raceType) == 0) {
             int millisecondsTime = training.athleteTime.hour * 3600000 + training.athleteTime.minute * 60000 + training.athleteTime.second * 1000 + training.athleteTime.millisecond;
 
+            // Si le temps est plus petit que le meilleur temps actuel, le remplacer
             if (millisecondsTime < bestRaceTime) {
                 bestRaceTime = millisecondsTime;
                 bestTraining = training;
@@ -251,11 +271,14 @@ void bestTime(FILE *athlete, char raceType[MAX]){
         }
     }
 
+    // Si aucun entraînement n'a été trouvé, quitter le programme
     if (bestRaceTime == INT_MAX) {
         printf("Aucun entraînement de ce type n'a été trouvé.\n");
         exit(1);
 
-    } else {
+    } 
+    // Sinon, afficher le meilleur temps
+    else {
         printf("Meilleur temps pour %s :\n", raceType);
         printf("Date de l'entraînement : %02d/%02d/%04d\n", bestTraining.trainingDate.day, bestTraining.trainingDate.month, bestTraining.trainingDate.year);
         if(bestTraining.athleteTime.hour != 0){
@@ -276,9 +299,11 @@ void bestTime(FILE *athlete, char raceType[MAX]){
     }
 }
 
+// Procédure pour afficher le pire, le meilleur et la moyenne des temps de l'athlète pour une épreuve donnée
 void trainingResume(void) {
     int athleteChoice, lines, raceChoice, numRace;
     char race[MAX];
+
     // Ouvrir le fichier de tous les athlètes
     FILE *athleteName = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteName == NULL){
@@ -286,6 +311,7 @@ void trainingResume(void) {
         exit(1);
     }
 
+    // Afficher la liste des athlètes et demander le choix de l'utilisateur
     showAthleteList(athleteName);
     printf("Choix : ");
     scanf("%d", &athleteChoice);
@@ -308,13 +334,14 @@ void trainingResume(void) {
         exit(1);
     }
 
-
+    // Ouvrir le fichier de toutes les épreuves
     FILE *raceName = fopen(PATH"/Liste/nomEpreuve.txt", "r");
     if(raceName == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
         exit(1);
     }
 
+    // Afficher la liste des épreuves et demander le choix de l'utilisateur
     showRaceList(raceName);
     printf("Choix : ");
     scanf("%d", &raceChoice);
@@ -330,6 +357,7 @@ void trainingResume(void) {
         printf("\n");
     }
 
+    // Si l'épreuve est celle choisie alors sortir de la boucle
     rewind(raceName);
     while (fgets(race, sizeof(race), raceName)) {
         sscanf(race, "%d", &numRace);
@@ -340,7 +368,7 @@ void trainingResume(void) {
         }
     }
 
-
+    // Afficher le pire, le meilleur et la moyenne des temps de l'athlète pour l'épreuve choisie
     bestTime(Athlete, race + 2);
     worstTime(Athlete, race + 2);
     int average = averageTime(Athlete, race + 2);
@@ -362,15 +390,18 @@ void trainingResume(void) {
     fclose(raceName);
 }
 
+// Procédure pour afficher les 3 meilleurs moyennes de temps pour une épreuve donnée
 void whoInOG(void){
     int lines, raceChoice;
-    // Code pour déterminer qui envoyer aux Jeux Olympiques
+
+    // Ouvrir le fichier de toutes les épreuves
     FILE *raceName = fopen(PATH"/Liste/nomEpreuve.txt", "r");
     if(raceName == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.txt.\n");
         exit(1);
     }
 
+    // Afficher la liste des épreuves et demander le choix de l'utilisateur
     showRaceList(raceName);
     printf("Choix : ");
     scanf("%d", &raceChoice);
@@ -386,6 +417,7 @@ void whoInOG(void){
         printf("\n");
     }
 
+    // Si l'épreuve est celle choisie alors sortir de la boucle
     rewind(raceName);
     char race[MAX];
     while (fgets(race, sizeof(race), raceName)) {
@@ -407,7 +439,7 @@ void whoInOG(void){
     lines = countLine(athleteName);
 
     rewind(athleteName);
-    //mettre le nom des athlètes dans un tableau
+    // Mettre le nom des athlètes dans un tableau
     char athletes[MAX][MAX]; int athleteNumber;
     for(int i = 0; i < lines; i++){
         fscanf(athleteName, "%d", &athleteNumber); // Lecture du numéro de l'athlète
@@ -417,24 +449,25 @@ void whoInOG(void){
         athletes[i][strcspn(athletes[i], "\n")] = 0;
     }
     
-    //mettre average temps de chaque athlète dans un tableau
+    // Mettre la moyenne de chaque athlète dans un tableau de l'épreuve choisie
     int averages[MAX];
     for(int i = 0; i < lines; i++){
-        FILE *Athlete = openAthleteFile(i+1);
-        averages[i] = averageTime(Athlete, race + 2);
+        FILE *Athlete = openAthleteFile(i+1); // Ouvrir le fichier de l'athlète
+        averages[i] = averageTime(Athlete, race + 2); // Calculer la moyenne de l'athlète
         fclose(Athlete);
     }
 
-    // Afficher les 3 meilleurs averages
+    // Créer un tableau de structures pour pouvoir trier les moyennes
     AverageIndex averageIndex[lines];
     for(int i = 0; i < lines; i++){
         averageIndex[i].average = averages[i];
         averageIndex[i].index = i;
     }
 
+    // Trier les moyennes avec le tableau de structures
     qsort(averageIndex, (size_t)lines, sizeof(AverageIndex), compareAverage);
 
-    // Si l'epreuve est marathon, afficher les 3 meilleurs moyennes
+    // Si l'epreuve est Marathon, afficher les 3 meilleurs moyennes 
     if(averages[averageIndex[2].index]/3600000 != 0){
         printf("\nLes 3 meilleurs moyenne pour le %s sont :\n", race + 2);
         color("1"); printf("%s %s ", "🥇", athletes[averageIndex[0].index]); color("0"); printf("avec une moyenne de %02dh %02dmin %02dsec %03dms\n", averages[averageIndex[0].index]/3600000, (averages[averageIndex[0].index] % 3600000)/60000, (averages[averageIndex[0].index] % 60000)/1000, (averages[averageIndex[0].index] % 1000));
@@ -442,13 +475,16 @@ void whoInOG(void){
         color("1"); printf("%s %s ", "🥉", athletes[averageIndex[2].index]); color("0"); printf("avec une moyenne de %02dh %02dmin %02dsec %03dms\n", averages[averageIndex[2].index]/3600000, (averages[averageIndex[2].index] % 3600000)/60000, (averages[averageIndex[2].index] % 60000)/1000, (averages[averageIndex[2].index] % 1000));
         printf("\n");
     }
+    // Si l'épreuve est 5000m, afficher les 3 meilleurs moyennes sans les heures
     else if (averages[averageIndex[2].index]/60000 != 0) {
         printf("\nLes 3 meilleurs moyenne pour le %s sont :\n", race + 2);
         color("1"); printf("%s %s ", "🥇", athletes[averageIndex[0].index]); color("0"); printf("avec une moyenne de %02dmin %02dsec %03dms\n", averages[averageIndex[0].index]/60000, (averages[averageIndex[0].index] % 60000)/1000, (averages[averageIndex[0].index] % 1000));
         color("1"); printf("%s %s ", "🥈", athletes[averageIndex[1].index]); color("0"); printf("avec une moyenne de %02dmin %02dsec %03dms\n", averages[averageIndex[1].index]/60000, (averages[averageIndex[1].index] % 60000)/1000, (averages[averageIndex[1].index] % 1000));
         color("1"); printf("%s %s ", "🥉", athletes[averageIndex[2].index]); color("0"); printf("avec une moyenne de %02dmin %02dsec %03dms\n", averages[averageIndex[2].index]/60000, (averages[averageIndex[2].index] % 60000)/1000, (averages[averageIndex[2].index] % 1000));
         printf("\n");
-    } else {
+    } 
+    // Si l'épreuve est autre que Marathon ou 5000m, afficher les 3 meilleurs moyennes sans les heures et les minutes
+    else {
         printf("\nLes 3 meilleurs moyenne pour le %s sont : \n", race + 2);
         color("1"); printf("%s %s ", "🥇", athletes[averageIndex[0].index]); color("0"); printf("avec une moyenne de %02dsec %03dms\n", averages[averageIndex[0].index]/1000, (averages[averageIndex[0].index] % 1000));
         color("1"); printf("%s %s ", "🥈", athletes[averageIndex[1].index]); color("0"); printf("avec une moyenne de %02dsec %03dms\n", averages[averageIndex[1].index]/1000, (averages[averageIndex[1].index] % 1000));
@@ -457,8 +493,8 @@ void whoInOG(void){
     }
 }
 
+// Procédure principale pour consulter des statistiques de performances de chaque athlète
 void athleteStatistic(Training training1, FILE *file) {
-    // Code pour consulter des statistiques de performances de chaque athlète
     int choice, athleteChoice, raceChoice;
     char race[MAX];
 
@@ -486,7 +522,7 @@ void athleteStatistic(Training training1, FILE *file) {
             showDiffTime(&athleteChoice, &raceChoice, race);
             break;
         case 4:
-            // Code pour retourner au début du programme
+            // Retourner au menu principal
             break;
         default:
             printf("Choix invalide.\n\n");
