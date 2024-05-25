@@ -98,9 +98,9 @@ Pour utiliser le programme, suivez les instructions ci-dessous :
     - Ajouter un entrainement à un athlète parmis les 5 disciplines.
     - Supprimer un entrainement d'un athlète.
     - Modifier un entrainement d'un athlète :
-        - **La date.**
-        - **La discipline.**
-        - **Le temps.**
+        - La date.
+        - La discipline.
+        - Le temps.
 
 3. **Voir l'historique des entrainements de l'athlète** : 
     - Choisissez un athlète, une épreuve ou une date pour afficher les entrainement correspondant.
