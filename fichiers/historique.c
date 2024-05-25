@@ -85,7 +85,7 @@ void showTrainingRace(Training training1, int raceChoice) {
 
         // Ouvrir le fichier de l'athlète
         char fileName[MAX] = {0};
-        sprintf(fileName, PATH"/Athletes/%s.txt", athlete + 2);
+        sprintf(fileName, PATH"/Athletes/%s.txt", athlete + 3);
         FILE *file = fopen(fileName, "r");
         if (file == NULL) {
             printf("Impossible d'ouvrir le fichier de l'athlète.\n");
@@ -98,7 +98,7 @@ void showTrainingRace(Training training1, int raceChoice) {
         while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
             if (strcmp(training1.raceType, race + 2) == 0) {
                 // Affichage des valeurs
-                printf("Athlète :                %s\n", athlete + 2);
+                printf("Athlète :                %s\n", athlete + 3);
                 if(strcmp(training1.raceType, "Relais") == 0){
                     if(position == 0){
                         continue;
@@ -166,7 +166,7 @@ void showTrainingDate(Training training1) {
         athlete[strcspn(athlete, "\n")] = 0;
 
         char fileName[MAX] = {0};
-        sprintf(fileName, PATH"/Athletes/%s.txt", athlete + 2);
+        sprintf(fileName, PATH"/Athletes/%s.txt", athlete + 3);
         FILE *file = fopen(fileName, "r");
         if (file == NULL) {
             printf("Impossible d'ouvrir le fichier de l'athlète.\n");
@@ -176,7 +176,7 @@ void showTrainingDate(Training training1) {
         while (fgetc(file) != '\n');
         while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
             if (training1.trainingDate.day == date.day && training1.trainingDate.month == date.month && training1.trainingDate.year == date.year) {
-                printf("Athlète :                %s\n", athlete + 2);
+                printf("Athlète :                %s\n", athlete + 3);
                 printf("Type d'épreuve :         %s\n", training1.raceType);
                 if(strcmp(training1.raceType, "Relais") == 0){
                     if(position == 0){
