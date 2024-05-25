@@ -4,11 +4,15 @@
 void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
     int count = 0;
 
+    if(raceChoice == 0){
+        return;
+    }
+
     // Ouvrir le fichier de l'athlète choisi
     FILE *Athlete = openAthleteFile(*athleteChoice);
     if(Athlete == NULL){
         printf("Impossible d'ouvrir le fichier de l'athlète.\n");
-        exit(1);
+        exit(0);
     }
 
     printf("Date où il a effectué le %s\n", race + 2);
@@ -28,19 +32,13 @@ void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
 
     // Si aucune date n'a été trouvée
     if(raceCount == 0){
-        printf("Aucun entraînement pour cette épreuve n'a été trouvé.\n");
-        printf("Veuillez choisir une autre épreuve.\n\n");
-
-        chooseRace(raceChoice, race);
-        showDiffTime(athleteChoice, raceChoice, race);
+        printf("Aucun entraînement pour cette épreuve n'a été trouvé.\n\n");
+        return;
     } 
     // Si une seule date a été trouvée
     else if (raceCount == 1) {
         printf("Il n'y a qu'un seul entraînement pour cette épreuve.\n");
-        printf("Veuillez choisir une autre épreuve.\n\n");
-
-        chooseRace(raceChoice, race);
-        showDiffTime(athleteChoice, raceChoice, race);
+        return;
     }
 
     // Trier les dates
@@ -89,7 +87,7 @@ void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
 
     // Si les deux dates n'ont pas été trouvées, quitter le programme
     if (count < 2) {
-        exit(1);
+        return;
     }
 
     // Afficher les deux entraînements
@@ -225,8 +223,7 @@ void worstTime(FILE *athlete, char raceType[MAX]){
 
     // Si aucun entraînement n'a été trouvé, quitter le programme
     if (worstRaceTime == INT_MIN) {
-        printf("Aucun entraînement de ce type n'a été trouvé.\n");
-        exit(1);
+        return;
 
     } 
     // Sinon, afficher le pire temps
@@ -273,8 +270,8 @@ void bestTime(FILE *athlete, char raceType[MAX]){
 
     // Si aucun entraînement n'a été trouvé, quitter le programme
     if (bestRaceTime == INT_MAX) {
-        printf("Aucun entraînement de ce type n'a été trouvé.\n");
-        exit(1);
+        printf("Aucun entraînement de ce type n'a été trouvé.\n\n");
+        return;
 
     } 
     // Sinon, afficher le meilleur temps
@@ -308,7 +305,7 @@ void trainingResume(void) {
     FILE *athleteName = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteName == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlètes.\n");
-        exit(1);
+        exit(0);
     }
 
     // Afficher la liste des athlètes et demander le choix de l'utilisateur
@@ -331,14 +328,14 @@ void trainingResume(void) {
     FILE *Athlete = openAthleteFile(athleteChoice);
     if(Athlete == NULL){
         printf("Impossible d'ouvrir le fichier de l'athlète.\n");
-        exit(1);
+        exit(0);
     }
 
     // Ouvrir le fichier de toutes les épreuves
     FILE *raceName = fopen(PATH"/Liste/nomEpreuve.txt", "r");
     if(raceName == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
-        exit(1);
+        exit(0);
     }
 
     // Afficher la liste des épreuves et demander le choix de l'utilisateur
@@ -373,7 +370,7 @@ void trainingResume(void) {
     worstTime(Athlete, race + 2);
     int average = averageTime(Athlete, race + 2);
     if (average == 0) {
-        printf("Aucun entraînement de ce type n'a été trouvé.\n");
+        return;
     } else {
         printf("Moyenne temps pour %s :\n", race + 2);
         if(average/3600000 != 0){
@@ -398,7 +395,7 @@ void whoInOG(void){
     FILE *raceName = fopen(PATH"/Liste/nomEpreuve.txt", "r");
     if(raceName == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.txt.\n");
-        exit(1);
+        exit(0);
     }
 
     // Afficher la liste des épreuves et demander le choix de l'utilisateur
@@ -434,7 +431,7 @@ void whoInOG(void){
     FILE *athleteName = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteName == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlètes.\n");
-        exit(1);
+        exit(0);
     }
     lines = countLine(athleteName);
 

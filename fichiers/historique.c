@@ -2,7 +2,7 @@
 
 // Procédure qui permet d'afficher les entraînements d'un athlète
 void showTrainingName(Training training1, int athleteChoice) {
-    int position;
+    int position, trainingFound = 0;
 
     // Ouvrir le fichier de l'athlète
     FILE *file = openAthleteFile(athleteChoice);
@@ -43,6 +43,13 @@ void showTrainingName(Training training1, int athleteChoice) {
             printf("Temps de l'athlète :     %02dsec %03dms\n", training1.athleteTime.second, training1.athleteTime.millisecond);
         }
         printf("\n");
+        trainingFound = 1;
+    }
+
+    // Si aucun entraînement de ce type n'a été trouvé pour l'athlète
+    if (!trainingFound) {
+        printf("Aucun entraînement de ce type n'a été trouvé pour l'athlète.\n\n");
+        return;
     }
 
     // Fermeture du fichier
@@ -58,7 +65,7 @@ void showTrainingRace(Training training1, int raceChoice) {
     FILE *raceName = fopen(PATH"/Liste/nomEpreuve.txt", "r");
     if(raceName == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
-        exit(1);
+        exit(0);
     }
 
     // Lire le fichier epreuves jusqu'à trouver l'épreuve choisie (raceChoice)
@@ -80,7 +87,7 @@ void showTrainingRace(Training training1, int raceChoice) {
     FILE *athleteName = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteName == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlètes 2.\n");
-        exit(1);
+        exit(0);
     }
 
     char athlete[MAX] = {0};
@@ -100,7 +107,7 @@ void showTrainingRace(Training training1, int raceChoice) {
         FILE *file = fopen(fileName, "r");
         if (file == NULL) {
             printf("Impossible d'ouvrir le fichier de l'athlète.\n");
-            exit(1);
+            exit(0);
         }
 
         while (fgetc(file) != '\n'); // Sauter une ligne
@@ -168,7 +175,7 @@ void showTrainingDate(Training training1) {
     FILE *athleteName = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteName == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlètes 1.\n");
-        exit(1);
+        exit(0);
     }
 
     char athlete[MAX] = {0};
@@ -184,7 +191,7 @@ void showTrainingDate(Training training1) {
         FILE *file = fopen(fileName, "r"); // Ouvrir le fichier de l'athlète en mode lecture
         if (file == NULL) {
             printf("Impossible d'ouvrir le fichier de l'athlète.\n");
-            exit(1);
+            exit(0);
         }
 
         while (fgetc(file) != '\n'); // Sauter une ligne
@@ -240,14 +247,14 @@ void trainingHistory(Training training1, FILE *file) {
     FILE *athleteName = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteName == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlète.\n");
-        exit(1);
+        exit(0);
     }
 
     // Ouvrir le fichier nomEpreuve
     FILE *raceName = fopen(PATH"/Liste/nomEpreuve.txt", "r");
     if(raceName == NULL){
         printf("Impossible d'ouvrir le fichier nomEpreuve.\n");
-        exit(1);
+        exit(0);
     }
 
     printf("1. Voir par nom des Athlètes\n");

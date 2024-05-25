@@ -147,7 +147,7 @@ int makeAthleteChoice(void){
     FILE *athleteFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if (athleteFile == NULL) {
         printf("Impossible d'ouvrir le fichier nomAthletes\n");
-        exit(1);
+        exit(0);
     }
     int lines = countLine(athleteFile);
 
@@ -204,7 +204,7 @@ FILE *openAthleteFile(int athleteChoice) {
     FILE *athleteFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteFile == NULL){
         printf("Impossible d'ouvrir le fichier athleteName 2.\n");
-        exit(1);
+        exit(0);
     }
 
     // Lire chaque ligne du fichier
@@ -224,8 +224,8 @@ FILE *openAthleteFile(int athleteChoice) {
     FILE *file = fopen(fileName, "r");
     if(file == NULL){
         printf("Impossible d'ouvrir le fichier %s.txt.\n", athleteName + 3);
-        printf("Verifier qu'il y a des zéros deant les chiffres du fichier nomAthletes.txt\n");
-        exit(1);
+        printf("Verifier qu'il y a des zéro devant les chiffres du fichier nomAthletes.txt\n");
+        exit(0);
     }
     return file;
 }
@@ -240,7 +240,7 @@ FILE *changeAthleteFile(int athleteChoice) {
     FILE *athleteFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteFile == NULL){
         printf("Impossible d'ouvrir le fichier nomAthlete.\n");
-        exit(1);
+        exit(0);
     }
 
     // Lire chaque ligne du fichier
@@ -262,7 +262,7 @@ FILE *changeAthleteFile(int athleteChoice) {
     if(file == NULL){
         printf("Impossible d'ouvrir le fichier %s.txt.\n", athleteName + 3);
         printf("Verifier qu'il y a des zéros deant les chiffres du fichier nomAthletes.txt\n");
-        exit(1);
+        exit(0);
     }
     return file;
 }
@@ -275,7 +275,7 @@ void chooseAthlete(int *athleteChoice){
     FILE *athleteFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteFile == NULL){
         printf("Impossible d'ouvrir le fichier nomAthletes.\n");
-        exit(1);
+        exit(0);
     }
 
     // Afficher la liste des athlètes et demander le choix de l'utilisateur
@@ -306,7 +306,7 @@ void chooseRace(int *raceChoice, char race[MAX]){
     FILE *raceFile = fopen(PATH"/Liste/nomEpreuve.txt", "r");
     if(raceFile == NULL){
         printf("Impossible d'ouvrir le fichier raceFile.\n");
-        exit(1);
+        exit(0);
     }
 
     // Afficher la liste des épreuves et demander le choix de l'utilisateur
