@@ -3,7 +3,6 @@
 #include "headers/historique.h"
 #include "headers/statistiques.h"
 
-
 int continueProgramme(){
     int continueProg;
     color("32"); printf("1. Retour au menu principal\n"); color("0");
