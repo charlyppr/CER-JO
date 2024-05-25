@@ -54,8 +54,7 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
 
 4. **Modifier le fichier PATH.h** :
     - Ouvrez le fichier `PATH.h` dans un éditeur de texte.
-    - Modifiez la ligne définissant `PATH` pour qu'elle corresponde au chemin absolu du dossier où se trouvent les fichiers du programme. Par exemple :
-
+    - Modifiez la ligne définissant `PATH` pour qu'elle corresponde au chemin absolu ou se trouve le dossier. Par exemple :
       ```c
       #define PATH "/Users/Prenom/Documents/CER-JO"
       ```
