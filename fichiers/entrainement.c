@@ -67,19 +67,24 @@ void addTraining(int athleteChoice) {
 
     // Demander le temps de l'athlète
     printf("En combien de temps l'athlète a-t-il réalisé l'épreuve ?\n");
-    printf("Heures : ");
-    scanf("%d", &hour);
-    while(hour < 0 || hour > 23){
-        printf("Heures (entre 0 et 23) : ");
+    if(raceChoice ==4){
+        printf("Heures : ");
         scanf("%d", &hour);
+        while(hour < 0 || hour > 23){
+            printf("Heures (entre 0 et 23) : ");
+            scanf("%d", &hour);
+        }
     }
 
-    printf("Minutes : ");
-    scanf("%d", &minutes);
-    while(minutes < 0 || minutes > 59){
-        printf("Minutes (entre 0 et 59) : ");
+    if(raceChoice == 3 || raceChoice == 4){
+        printf("Minutes : ");
         scanf("%d", &minutes);
+        while(minutes < 0 || minutes > 59){
+            printf("Minutes (entre 0 et 59) : ");
+            scanf("%d", &minutes);
+        }
     }
+
     printf("Secondes : ");
     scanf("%d", &seconds);
     while(seconds < 0 || seconds > 59){

@@ -3,27 +3,6 @@
 #include "headers/historique.h"
 #include "headers/statistiques.h"
 
-int continueProgramme(){
-    int continueProg;
-    color("32"); printf("1. Retour au menu principal\n"); color("0");
-    color("31"); printf("2. Quitter\n"); color("0");
-    printf("Choix : ");
-    scanf("%d", &continueProg);
-    printf("\n");
-
-    if(continueProg == 1){
-        // Code pour continuer le programme
-        return 1;  
-    }
-    else if(continueProg == 2){
-        return 0;
-    }
-    else{
-        printf("Choix invalide.\n");
-        return continueProgramme();
-    }
-}
-
 void startProgramme(Training training1, FILE *file) {    
     int choice, continueProg;
     printf("1. Ajouter/Supprimer/Modifier un athlète\n");
@@ -87,15 +66,31 @@ void startProgramme(Training training1, FILE *file) {
     exit(0);
 }
 
-
 int main(void){
     clrscr();
     FILE *fileN = NULL;
+    int start = 0;
 
-    printf("\n");
-    color("1"); color("32"); printf("Bienvenue dans le programme de gestion des entrainements des athlètes.\n\n"); color("0");
+    color("5"); printf("\nVerification que PATH est bien correct ...\n"); color("0");
+    printf("PATH = %s\n\n", PATH);
+    FILE *file = fopen(PATH"/Liste/nomEpreuve.txt", "r");
+    if(file == NULL){
+        color("31"); printf("PATH n'est pas correct !\n"); color("0");
+        printf("Corriger sa valeur en copiant le chemin d'accès du dossier directement dans le fichier PATH.h\n\n");
+        exit(0);
+    } else {
+        color("32"); printf("PATH est correct !.\n"); color("0");
+        start = 1;
+    }
+    fclose(file);
 
-    startProgramme(training, fileN);
+    if(start == 1){
+        clrscr();
+        color("1"); color("32"); printf("\nBienvenue dans le programme de gestion des entrainements des athlètes.\n"); color("0");
+        OGStart();
+
+        startProgramme(training, fileN);
+    }
     
     return 0;
 }

@@ -1,5 +1,47 @@
 #include "../headers/def.h"
 
+void OGStart(void){
+    // Obtenir le temps actuel
+    time_t now;
+    time(&now);
+
+    // Définir le temps de l'événement
+    struct tm eventTime = *localtime(&now);
+    eventTime.tm_year = 2024 - 1900; // Année de l'événement
+    eventTime.tm_mon = 7 - 1; // Mois de l'événement
+    eventTime.tm_mday = 26; // Jour de l'événement
+
+    // Calculez la différence en secondes
+    double seconds = difftime(mktime(&eventTime), now);
+
+    // Convertir en jours
+    int days = (int)seconds / (24 * 60 * 60);
+
+    color("33"); printf("Les JO commencent dans %d jours !\n\n", days); color("0");
+}
+
+// Fonction qui permet de continuer le programme ou de quitter
+int continueProgramme(void){
+    int continueProg;
+    color("32"); printf("1. Retour au menu principal\n"); color("0");
+    color("31"); printf("2. Quitter\n"); color("0");
+    printf("Choix : ");
+    scanf("%d", &continueProg);
+    printf("\n");
+
+    if(continueProg == 1){
+        // Code pour continuer le programme
+        return 1;  
+    }
+    else if(continueProg == 2){
+        return 0;
+    }
+    else{
+        printf("Choix invalide.\n");
+        return continueProgramme();
+    }
+}
+
 // Fonction qui compte le nombre de lignes dans un fichier
 int countLine(FILE *file) {
     int c;
@@ -182,6 +224,7 @@ FILE *openAthleteFile(int athleteChoice) {
     FILE *file = fopen(fileName, "r");
     if(file == NULL){
         printf("Impossible d'ouvrir le fichier %s.txt.\n", athleteName + 3);
+        printf("Verifier qu'il y a des zéros deant les chiffres du fichier nomAthletes.txt\n");
         exit(1);
     }
     return file;
@@ -196,7 +239,7 @@ FILE *changeAthleteFile(int athleteChoice) {
     // Ouvrir le fichier athleteFile
     FILE *athleteFile = fopen(PATH"/Liste/nomAthletes.txt", "r");
     if(athleteFile == NULL){
-        printf("Impossible d'ouvrir le fichier athleteName 2.\n");
+        printf("Impossible d'ouvrir le fichier nomAthlete.\n");
         exit(1);
     }
 
@@ -218,6 +261,7 @@ FILE *changeAthleteFile(int athleteChoice) {
     FILE *file = fopen(fileName, "r+");
     if(file == NULL){
         printf("Impossible d'ouvrir le fichier %s.txt.\n", athleteName + 3);
+        printf("Verifier qu'il y a des zéros deant les chiffres du fichier nomAthletes.txt\n");
         exit(1);
     }
     return file;
@@ -296,4 +340,3 @@ void chooseRace(int *raceChoice, char race[MAX]){
     fclose(raceFile);
 
 }
-

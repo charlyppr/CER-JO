@@ -5,6 +5,10 @@
 #include "constants.h"
 #include "struct.h"
 
+extern void OGStart(void);
+
+extern int continueProgramme(void);
+
 extern int countLine(FILE *file);
 
 extern int validDate(Date date);
