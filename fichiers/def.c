@@ -69,9 +69,11 @@ int compareAverage(const void *a, const void *b) {
 
 void showAthleteName(FILE *file) {
     char athleteName[MAX];
+    int athleteNumber;
     
-    fseek(file, 2, SEEK_CUR); // Sauter le numéro de l'athlète
-    
+    fscanf(file, "%d", &athleteNumber); // Lecture du numéro de l'athlète
+    fseek(file, 1, SEEK_CUR); // Sauter l'espace
+
     fgets(athleteName, sizeof(athleteName), file); // Lecture du nom de l'athlète
     
     athleteName[strcspn(athleteName, "\n")] = 0; // Suppression de la nouvelle ligne
@@ -163,11 +165,11 @@ FILE *openAthleteFile(int athleteChoice) {
         }
     }
 
-    sprintf(fileName, PATH"/Athletes/%s.txt", athleteName + 2);
+    sprintf(fileName, PATH"/Athletes/%s.txt", athleteName + 3);
     
     FILE *file = fopen(fileName, "r");
     if(file == NULL){
-        printf("Impossible d'ouvrir le fichier %s.txt.\n", athleteName + 2);
+        printf("Impossible d'ouvrir le fichier %s.txt.\n", athleteName + 3);
         exit(1);
     }
     return file;
@@ -195,11 +197,12 @@ FILE *changeAthleteFile(int athleteChoice) {
         }
     }
 
-    sprintf(fileName, PATH"/Athletes/%s.txt", athleteName + 2);
+    
+    sprintf(fileName, PATH"/Athletes/%s.txt", athleteName + 3);
     
     FILE *file = fopen(fileName, "r+");
     if(file == NULL){
-        printf("Impossible d'ouvrir le fichier %s.txt.\n", athleteName + 2);
+        printf("Impossible d'ouvrir le fichier %s.txt.\n", athleteName + 3);
         exit(1);
     }
     return file;

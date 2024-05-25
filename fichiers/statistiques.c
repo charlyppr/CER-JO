@@ -408,9 +408,11 @@ void whoInOG(void){
 
     rewind(athleteName);
     //mettre le nom des athlètes dans un tableau
-    char athletes[MAX][MAX];
+    char athletes[MAX][MAX]; int athleteNumber;
     for(int i = 0; i < lines; i++){
-        fseek(athleteName, 2, SEEK_CUR); // Sauter le numéro de l'athlète
+        fscanf(athleteName, "%d", &athleteNumber); // Lecture du numéro de l'athlète
+        fseek(athleteName, 1, SEEK_CUR); // Sauter le numéro de l'athlète
+
         fgets(athletes[i], sizeof(athletes[i]), athleteName);
         athletes[i][strcspn(athletes[i], "\n")] = 0;
     }
@@ -451,6 +453,7 @@ void whoInOG(void){
         color("1"); printf("%s %s ", "🥇", athletes[averageIndex[0].index]); color("0"); printf("avec une moyenne de %02dsec %03dms\n", averages[averageIndex[0].index]/1000, (averages[averageIndex[0].index] % 1000));
         color("1"); printf("%s %s ", "🥈", athletes[averageIndex[1].index]); color("0"); printf("avec une moyenne de %02dsec %03dms\n", averages[averageIndex[1].index]/1000, (averages[averageIndex[1].index] % 1000));
         color("1"); printf("%s %s ", "🥉", athletes[averageIndex[2].index]); color("0"); printf("avec une moyenne de %02dsec %03dms\n", averages[averageIndex[2].index]/1000, (averages[averageIndex[2].index] % 1000));
+        printf("\n");
     }
 }
 
