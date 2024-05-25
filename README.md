@@ -1,6 +1,4 @@
-# CER-JO
-
-
+# <img width="70" alt="JO" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Olympic_rings_without_rims.svg/langfr-360px-Olympic_rings_without_rims.svg.png">&nbsp;&nbsp; CER-JO &nbsp;&nbsp;<img width="70" alt="JO" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Olympic_rings_without_rims.svg/langfr-360px-Olympic_rings_without_rims.svg.png">
 
 ## Table of Contents
 1. [Project Description](#project-description)
