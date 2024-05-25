@@ -46,14 +46,14 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
     ```
     ou
 
-    ! [Button] (<button type="button" id=":R55ab:" aria-haspopup="true" tabindex="0" class="types__StyledButton-sc-ws60qy-0 kHdfWW"><span data-component="buttonContent" class="Box-sc-g0xbh4-0 kkrdEu"><span data-component="leadingVisual" class="Box-sc-g0xbh4-0 trpoQ"><div class="Box-sc-g0xbh4-0 bVvbgP"><svg aria-hidden="true" focusable="false" role="img" class="octicon octicon-code" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display:inline-block;user-select:none;vertical-align:text-bottom;overflow:visible"><path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path></svg></div></span><span data-component="text">Code</span></span><span data-component="trailingAction" class="Box-sc-g0xbh4-0 trpoQ"><svg aria-hidden="true" focusable="false" class="octicon octicon-triangle-down" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="display:inline-block;user-select:none;vertical-align:text-bottom;overflow:visible"><path d="m4.427 7.427 3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 7H4.604a.25.25 0 0 0-.177.427Z"></path></svg></span></button>)
+    <img width="150" alt="Capture d’écran 2024-05-25 à 15 05 35" src="https://github.com/charlyppr/CER-JO/assets/166821960/65f773fb-9813-41ad-9e3a-ada18d74718d"> &nbsp;&nbsp;&nbsp; <img width="400" alt="Capture d’écran 2024-05-25 à 15 07 52" src="https://github.com/charlyppr/CER-JO/assets/166821960/24e7f3de-8de3-4181-971d-47bb91aa2f44">
 
-2. **Accédez au répertoire du projet** :
+3. **Accédez au répertoire du projet** :
     ```bash
     cd CER-JO
     ```
 
-3. **Modifier le fichier PATH.h** :
+4. **Modifier le fichier PATH.h** :
     - Ouvrez le fichier `PATH.h` dans un éditeur de texte.
     - Modifiez la ligne définissant `PATH` pour qu'elle corresponde au chemin absolu du dossier où se trouvent les fichiers du programme. Par exemple :
 
@@ -63,27 +63,29 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
 
     - Enregistrez les modifications.
 
-4. **Compiler le programme** :
+5. **Compiler le programme** :
     ```bash
     make
     ```
 
-5. **Nettoyer les fichiers objets** :
+6. **Nettoyer les fichiers objets** :
     ```bash
     make clean
     ```
 
-6. **Exécuter le programme** :
-    - ```bash
-      ./cerjo
-      ```
+7. **Exécuter le programme** :
+     ```bash
+     ./cerjo
+     ```
     
-    ou
+    ou bien
 
-    - ```bash
-      make run
-      ```
+     ```bash
+     make run
+     ```
 
+  
+> [!WARNING]
 > Assurez-vous que le chemin dans `PATH.h` est correct avant de compiler et d'exécuter le programme.
 
 
