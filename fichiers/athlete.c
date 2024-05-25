@@ -83,7 +83,7 @@ void addAthlete(void){
     athletesFile = fopen(PATH"/Liste/nomAthletes.txt", "a");
     if (athletesFile != NULL) {
         // Écrire le numéro, le prénom et le nom de l'athlète dans le fichier nomAthletes.txt
-        fprintf(athletesFile, "%d %s %s\n", lastNumber + 1, name, lastname);
+        fprintf(athletesFile, "%02d %s %s\n", lastNumber + 1, name, lastname);
         fclose(athletesFile);
     }
 
@@ -148,7 +148,7 @@ void removeAthlete(void){
     rewind(athletesFile);
     while (fscanf(athletesFile, "%d %s %s", &number, name, lastname) != EOF) {
         if (number != athleteNumber) {
-            fprintf(newFile, "%d %s %s\n", count, name, lastname);
+            fprintf(newFile, "%02d %s %s\n", count, name, lastname);
             count++;
         }
         else{
