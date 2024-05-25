@@ -95,27 +95,26 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
 ## Usage
 
 Pour utiliser le programme, suivez les instructions ci-dessous :
-
-1. **Ajouter/Supprimer/Modifier un athlète** :
+#### 1. **Ajouter/Supprimer/Modifier un athlète** :
   - Ajouter un athlète.
   - Supprimer un athlète.
   - Modifier le prénom et le nom d'un athlète.
 
-2. **Ajouter/Supprimer/Modifier un entrainement** :
-    - Ajouter un entrainement à un athlète parmis les 5 disciplines.
-    - Supprimer un entrainement d'un athlète.
-    - Modifier un entrainement d'un athlète :
-      - La date.
-      - La discipline.
-      - Le temps.
+#### 2. **Ajouter/Supprimer/Modifier un entrainement** :
+  - Ajouter un entrainement à un athlète parmis les 5 disciplines.
+  - Supprimer un entrainement d'un athlète.
+  - Modifier un entrainement d'un athlète :
+    - La date.
+    - La discipline.
+    - Le temps.
 
-3. **Voir l'historique des entrainements de l'athlète** : 
-    - Choisissez un athlète, une épreuve ou une date pour afficher les entrainement correspondant.
+#### 3. **Voir l'historique des entrainements de l'athlète** : 
+  - Choisissez un athlète, une épreuve ou une date pour afficher les entrainement correspondant.
 
-4. **Consulter les statistiques** :
-    - Voir les meilleurs, pires temps et moyennes d'un athlète pour une discipline.
-    - Voir les trois meilleurs athlètes pour une discipline et savoir qui envoyer au JO.
-    - Voir la progression d'un athlète entre deux dates pour une discipline.
+#### 4. **Consulter les statistiques** :
+  - Voir les meilleurs, pires temps et moyennes d'un athlète pour une discipline.
+  - Voir les trois meilleurs athlètes pour une discipline et savoir qui envoyer au JO.
+  - Voir la progression d'un athlète entre deux dates pour une discipline.
 
 
 
@@ -168,31 +167,32 @@ CER-JO/
 
 ### 1. Commencement
   Nous avons entrepris en groupe de trois, constitué de Charly, Aline, et Amir, le projet CER-JO, visant à développer un programme de gestion d'athlètes pour les JO. Il permet de suivre les performances et les informations des participants.
+
   
-  Avant de choisir ce projet, nous hesitions entre 3, CY-Fest, CY-BER-Path et CER-JO. Nous avons finalement choisi CER-JO car c'est celui qui semblait le plus atteignable pour nous trois.
+  Avant de choisir ce projet, nous hésitions entre 3, CY-Fest, CY-BER-Path et CER-JO. Nous avons finalement choisi CER-JO car c'est celui qui semblait le plus atteignable pour nous trois.
 
 ### 2. Planning du projet
 |Date|Activité|
 |----|--------|
-|12 avril|Début du projet, réunion de lancement|
-|13 avril - 21 avril|Faible productivité dû a d'autre devoirs|
-|22 avril - 28 avril|Mise en place du squelette du programme<br>Ajout des premières fonctions|
-|29 avril|Réunion pour discuter de l'avancé du projet<br>Première difficulté (ouvrir correctement les fichiers)|
-|30 avril - 5 mai|Répartition du programme sur plusieurs fichier .c et .h<br>Moitié du programme déjà fini magré plusieurs bugs|
-|6 mai - 15 mai|Avancé conséquente du programme|
-|16 mai - 19 mai|Programme quasi terminé<br>Ajouts de fonctionnalités, correction de bugs mineurs|
-|20 mai - 22 mai|Pas de nouveautés|
-|21 mai|Dernière réunion pour répartir les dernières taches<br>(ajouts de plusieurs fichiers d'athlètes, test des erreurs, ...)|
-|23 mai - 25 mai|Dernière modification du programme avant rendu|
-|25 mai|Rendu du programme|
+|12 avril|Début du projet, réunion de lancement.|
+|13 avril - 21 avril|Faible productivité dû à d'autres devoirs.|
+|22 avril - 28 avril|Mise en place du squelette du programme, ajout des premières fonctions.|
+|29 avril|Réunion pour discuter de l'avancé du projet.<br>Premières difficultés (ouvrir correctement les fichiers textes).|
+|30 avril - 5 mai|Répartition du programme sur plusieurs fichiers .c et .h.<br>Moitié du programme déjà fini malgré plusieurs bugs.|
+|6 mai - 15 mai|Avancée conséquente du programme.|
+|16 mai - 19 mai|Programme quasi terminé.<br>Ajouts de fonctionnalités, correction de bugs mineurs.|
+|20 mai - 22 mai|Pas de nouveautés.|
+|21 mai|Dernière réunion pour répartir les dernières taches<br>(ajouts de plusieurs fichiers d'athlètes, test des erreurs, ...).|
+|23 mai - 25 mai|Dernière modification du programme avant rendu.|
+|25 mai|Rendu du programme.|
 
 ### 3. Difficultés rencontrées
 Nous avons rencontré plusieurs difficultés au cours de l'élaboration de notre programme :
-  - __Gestion du Temps__ : Faible productivité initiale nécessitant un réajustement du planning.
-  - __Ouverture des fichiers texte__ : Impossibilités d'ouvrir les fichiers, nécessitant de la documentation pour regler le problème.
-  - __Lire un fichier texte__ : Programme non fonctionnel du à la lecture de la mauvaise ligne, il fallait donc apprendre à sauter une ligne
-  - __Trier les athlètes__ : Aucune connaissance sur les tris, nécessité de se documenter
-  - __Problème lorsqu'il y a plus de 10 athlètes__ : Impossibilité pour le programme de lire correctement les noms, necessité d'ajuster FSEEK
+  - **Gestion du Temps** : Faible productivité initiale nécessitant un réajustement du planning.
+  - **Ouverture des fichiers texte** : Impossibilités d'ouvrir les fichiers, nécessitant de la documentation pour regler le problème.
+  - **Lire un fichier texte** : Programme non fonctionnel du à la lecture de la mauvaise ligne, il fallait donc apprendre à sauter une ligne
+  - **Trier les athlètes** : Aucune connaissance sur les tris, nécessité de se documenter
+  - **Problème lorsqu'il y a plus de 10 athlètes** : Impossibilité pour le programme de lire correctement les noms, necessité d'ajuster FSEEK
 
 ### 4. Conclusion
 Malgré les difficultés rencontrés, nous avons développé un programme fonctionnelle pour la gestion des athlètes. Ce projet nous a permis de renforcer nos compétences en développement et en travail d'équipe. 👍
