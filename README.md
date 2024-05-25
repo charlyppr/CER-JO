@@ -8,7 +8,8 @@
 3. [Installation](#installation)
 4. [Usage](#usage)
 5. [File Structure](#file-structure)
-6. [Authors](#authors)
+6. [Report](#report)
+7. [Authors](#authors)
 
 
 
@@ -84,6 +85,7 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
      make run
      ```
 
+*Et voila ! 🎉*
   
 > [!WARNING]
 > Assurez-vous que le chemin dans `PATH.h` est correct avant de compiler et d'exécuter le programme.
@@ -95,17 +97,17 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
 Pour utiliser le programme, suivez les instructions ci-dessous :
 
 1. **Ajouter/Supprimer/Modifier un athlète** :
-    - Ajouter un athlète.
-    - Supprimer un athlète.
-    - Modifier le prénom et le nom d'un athlète.
+  - Ajouter un athlète.
+  - Supprimer un athlète.
+  - Modifier le prénom et le nom d'un athlète.
 
 2. **Ajouter/Supprimer/Modifier un entrainement** :
     - Ajouter un entrainement à un athlète parmis les 5 disciplines.
     - Supprimer un entrainement d'un athlète.
     - Modifier un entrainement d'un athlète :
-        - La date.
-        - La discipline.
-        - Le temps.
+      - La date.
+      - La discipline.
+      - Le temps.
 
 3. **Voir l'historique des entrainements de l'athlète** : 
     - Choisissez un athlète, une épreuve ou une date pour afficher les entrainement correspondant.
@@ -161,6 +163,13 @@ CER-JO/
 
 
 
+---
+## Report
+
+
+
+
+---
 ## Authors
 
 - **Charly Pupier** - [charly.pupier@etu.cyu.fr](mailto:charly.pupier@etu.cyu.fr)
