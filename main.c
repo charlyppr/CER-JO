@@ -3,18 +3,37 @@
 #include "headers/historique.h"
 #include "headers/statistiques.h"
 
+
+#define TERMINAL_WIDTH 80 // La largeur du terminal (vous pouvez ajuster cette valeur)
+
+void afficherCentrer(const char *texte) {
+    int longueur = strlen(texte);
+    int espaces = (TERMINAL_WIDTH - longueur) / 2;
+
+    for (int i = 0; i < espaces; i++) {
+        printf(" ");
+    }
+    printf("%s\n", texte);
+}
+
+void afficherMenu() {
+    afficherCentrer("*******************************************************************\n");
+    afficherCentrer("*                          Menu Principal                         *\n");
+    afficherCentrer("*******************************************************************\n");
+    afficherCentrer("* 1. Ajouter/Supprimer/Modifier un athlète                        *\n");
+    afficherCentrer("* 2. Ajouter/Supprimer/Modifier un entrainement                   *\n");
+    afficherCentrer("* 3. Voir l'historique des entrainements de l'athlète             *\n");
+    afficherCentrer("* 4. Consulter des statistiques de performances de chaque athlète *\n");
+    afficherCentrer("*");color("31"); printf("5. Quitter                                                      "); color("0"); printf("*\n");
+    afficherCentrer("*******************************************************************\n");
+    afficherCentrer("Choix : ");
+}
+
+
+
 void startProgramme(Training training1, FILE *file) {    
     int choice, continueProg;
-    printf("*******************************************************************\n");
-    printf("*                          Menu Principal                         *\n");
-    printf("*******************************************************************\n");
-    printf("* 1. Ajouter/Supprimer/Modifier un athlète                        *\n");
-    printf("* 2. Ajouter/Supprimer/Modifier un entrainement                   *\n");
-    printf("* 3. Voir l'historique des entrainements de l'athlète             *\n");
-    printf("* 4. Consulter des statistiques de performances de chaque athlète *\n");
-    color("31"); printf("* 5. Quitter                                                      *\n"); color("0");
-    printf("*******************************************************************\n");
-    printf("Choix : ");
+    afficherMenu();
     scanf("%d", &choice);
     printf("\n");
 
