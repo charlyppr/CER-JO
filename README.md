@@ -119,7 +119,7 @@ Pour utiliser le programme, suivez les instructions ci-dessous :
 
 Voici la structure des fichiers du projet :
 
-```bash
+```yaml
 CER-JO/
 │
 ├── Athletes/
