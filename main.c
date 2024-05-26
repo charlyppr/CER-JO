@@ -71,11 +71,11 @@ int main(void){
     FILE *fileN = NULL;
     int start = 0;
 
-    color("5"); printf("\nVerification que PATH est bien correct ...\n"); color("0");
+    printf("\nVerification que PATH est bien correct ...\n");
     printf("PATH = %s\n\n", PATH);
     FILE *file = fopen(PATH"/Liste/nomEpreuve.txt", "r");
     if(file == NULL){
-        color("31"); printf("PATH n'est pas correct !\n"); color("0");
+        color("5"); color("31"); printf("PATH n'est pas correct !\n"); color("0");
         printf("Corriger sa valeur en copiant le chemin d'accès du dossier directement dans le fichier PATH.h\n\n");
         exit(0);
     } else {
