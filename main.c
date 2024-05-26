@@ -20,11 +20,11 @@ void afficherMenu() {
     afficherCentrer("*******************************************************************\n");
     afficherCentrer("*                          Menu Principal                         *\n");
     afficherCentrer("*******************************************************************\n");
-    afficherCentrer("* 1. Ajouter/Supprimer/Modifier un athlète                        *\n");
+    afficherCentrer(" * 1. Ajouter/Supprimer/Modifier un athlète                        *\n");
     afficherCentrer("* 2. Ajouter/Supprimer/Modifier un entrainement                   *\n");
-    afficherCentrer("* 3. Voir l'historique des entrainements de l'athlète             *\n");
-    afficherCentrer("* 4. Consulter des statistiques de performances de chaque athlète *\n");
-    afficherCentrer("*");color("31"); afficherCentrer("5. Quitter                                                      "); color("0"); afficherCentrer("*\n");
+    afficherCentrer(" * 3. Voir l'historique des entrainements de l'athlète             *\n");
+    afficherCentrer(" * 4. Consulter des statistiques de performances de chaque athlète *\n");
+    afficherCentrer("*");color("31"); printf("5. Quitter                                                      "); color("0"); printf("*\n");
     afficherCentrer("*******************************************************************\n");
     afficherCentrer("Choix : ");
 }
