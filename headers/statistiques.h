@@ -18,6 +18,6 @@ extern void trainingResume(void);
 
 extern void whoInOG(void);
 
-extern void athleteStatistic(Training training1, FILE *file);
+extern void athleteStatistic(void);
 
 #endif

@@ -12,6 +12,6 @@ extern void showTrainingRace(Training training1, int raceChoice);
 
 extern void showTrainingDate(Training training1);
 
-extern void trainingHistory(Training training1, FILE *file);
+extern void trainingHistory(Training training1);
 
 #endif

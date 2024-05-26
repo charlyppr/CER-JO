@@ -29,6 +29,14 @@ int continueProgramme(void){
     scanf("%d", &continueProg);
     printf("\n");
 
+    while(continueProg < 1 || continueProg > 2){
+        while (getchar() != '\n');
+        printf("Choix invalide. Veuillez saisir 1 ou 2.\n");
+        printf("Choix : ");
+        scanf("%d", &continueProg);
+        printf("\n");
+    }
+
     if(continueProg == 1){
         // Code pour continuer le programme
         return 1;  
@@ -157,6 +165,7 @@ int makeAthleteChoice(void){
     scanf("%d", &athleteChoice);
     printf("\n");
     while(athleteChoice < 1 || athleteChoice > lines){
+        while (getchar() != '\n');
         printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", lines);
         printf("Choix : ");
         scanf("%d", &athleteChoice);
@@ -224,7 +233,7 @@ FILE *openAthleteFile(int athleteChoice) {
     FILE *file = fopen(fileName, "r");
     if(file == NULL){
         printf("Impossible d'ouvrir le fichier %s.txt.\n", athleteName + 3);
-        printf("Verifier qu'il y a des zéro devant les chiffres du fichier nomAthletes.txt\n");
+        color("32"); printf("Verifier qu'il y a des zéro devant les chiffres du fichier nomAthletes.txt\n\n"); color("0");
         exit(0);
     }
     return file;
@@ -261,7 +270,7 @@ FILE *changeAthleteFile(int athleteChoice) {
     FILE *file = fopen(fileName, "r+");
     if(file == NULL){
         printf("Impossible d'ouvrir le fichier %s.txt.\n", athleteName + 3);
-        printf("Verifier qu'il y a des zéros deant les chiffres du fichier nomAthletes.txt\n");
+        color("32"); printf("Verifier qu'il y a des zéros deant les chiffres du fichier nomAthletes.txt\n\n"); color("0");
         exit(0);
     }
     return file;
@@ -288,6 +297,7 @@ void chooseAthlete(int *athleteChoice){
     lines = countLine(athleteFile);
 
     while (*athleteChoice < 1 || *athleteChoice > lines) {
+        while (getchar() != '\n');
         printf("Choix invalide. Veuillez choisir un numéro d'athlète entre 1 et %d.\n", lines);
         printf("Choix : ");
         scanf("%d", athleteChoice);
@@ -319,6 +329,7 @@ void chooseRace(int *raceChoice, char race[MAX]){
     int lines = countLine(raceFile);
 
     while (*raceChoice < 1 || *raceChoice > lines) {
+        while (getchar() != '\n');
         printf("Choix invalide. Veuillez choisir un numéro d'épreuve entre 1 et %d.\n", lines);
         printf("Choix : ");
         scanf("%d", raceChoice);

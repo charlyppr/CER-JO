@@ -20,6 +20,7 @@ void addTraining(int athleteChoice) {
     scanf("%d", &raceChoice);
     printf("\n");
     while(raceChoice < 1 || raceChoice > 5){
+        while (getchar() != '\n');
         printf("Choix invalide. Veuillez choisir un numéro d'épreuve entre 1 et 5.\n");
         printf("Choix : ");
         scanf("%d", &raceChoice);
@@ -32,6 +33,7 @@ void addTraining(int athleteChoice) {
         scanf("%d", &relayPosition);
         printf("\n");
         while (relayPosition < 1 || relayPosition > 4){
+            while (getchar() != '\n');
             printf("Choix invalide. Veuillez choisir une position entre 1 et 4.\n");
             printf("Position lors du relais : ");
             scanf("%d", &relayPosition);
@@ -59,6 +61,7 @@ void addTraining(int athleteChoice) {
     scanf("%d %d %d", &date.day, &date.month, &date.year);
     printf("\n");
     while(!validDate(date)){
+        while (getchar() != '\n');
         printf("Date invalide. Veuillez entrer une date valide.\n");
         printf("Entrez la date de l'entrainement (JJ MM AAAA) : ");
         scanf("%d %d %d", &date.day, &date.month, &date.year);
@@ -71,6 +74,7 @@ void addTraining(int athleteChoice) {
         printf("Heures : ");
         scanf("%d", &hour);
         while(hour < 0 || hour > 23){
+            while (getchar() != '\n');
             printf("Heures (entre 0 et 23) : ");
             scanf("%d", &hour);
         }
@@ -80,6 +84,7 @@ void addTraining(int athleteChoice) {
         printf("Minutes : ");
         scanf("%d", &minutes);
         while(minutes < 0 || minutes > 59){
+            while (getchar() != '\n');
             printf("Minutes (entre 0 et 59) : ");
             scanf("%d", &minutes);
         }
@@ -88,12 +93,14 @@ void addTraining(int athleteChoice) {
     printf("Secondes : ");
     scanf("%d", &seconds);
     while(seconds < 0 || seconds > 59){
+        while (getchar() != '\n');
         printf("Secondes (entre 0 et 59) : ");
         scanf("%d", &seconds);
     }
     printf("Millisecondes : ");
     scanf("%d", &ms);
     while(ms < 0 || ms > 999){
+        while (getchar() != '\n');
         printf("Millisecondes (entre 0 et 59) : ");
         scanf("%d", &ms);
     }
@@ -174,6 +181,7 @@ void removeTraining(void) {
     scanf("%d", &trainingChoice);
     printf("\n");
     while(trainingChoice < 1 || trainingChoice > count - 1){
+        while (getchar() != '\n');
         printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", count - 1);
         printf("Choix : ");
         scanf("%d", &trainingChoice);
@@ -272,6 +280,7 @@ void changeTraining(void){
     scanf("%d", &trainingChoice);
     printf("\n");
     while(trainingChoice < 1 || trainingChoice > count - 1){
+        while (getchar() != '\n');
         printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", count - 1);
         printf("Choix : ");
         scanf("%d", &trainingChoice);
@@ -288,6 +297,7 @@ void changeTraining(void){
     scanf("%d", &changeChoice);
     printf("\n");
     while(changeChoice != 1 && changeChoice != 2){
+        while (getchar() != '\n');
         printf("Choix invalide. Veuillez entrer un choice valide.\n");
         printf("Faut-il changer la date de l'entrainement ?\n");
         color("32"); printf("1. Oui\n"); color("0");
@@ -302,6 +312,7 @@ void changeTraining(void){
         scanf("%d %d %d", &newTraining.trainingDate.day, &newTraining.trainingDate.month, &newTraining.trainingDate.year);
         printf("\n");
         while(!validDate(newTraining.trainingDate)){
+            while (getchar() != '\n');
             printf("Date invalide. Veuillez entrer une date valide.\n");
             printf("Entrez la date de l'entrainement (JJ MM AAAA) : ");
             scanf("%d %d %d", &newTraining.trainingDate.day, &newTraining.trainingDate.month, &newTraining.trainingDate.year);
@@ -321,6 +332,7 @@ void changeTraining(void){
     scanf("%d", &changeChoice);
     printf("\n");
     while(changeChoice != 1 && changeChoice != 2){
+        while (getchar() != '\n');
         printf("Choix invalide. Veuillez entrer un choice valide.\n");
         printf("Faut-il changer le type d'épreuve de l'entrainement ?\n");
         color("32"); printf("1. Oui\n"); color("0");
@@ -347,6 +359,7 @@ void changeTraining(void){
         scanf("%d", &newRaceType);
         printf("\n");
         while (newRaceType < 1 || newRaceType > lines) {
+            while (getchar() != '\n');
             printf("Choix invalide. Veuillez choisir un numéro d'épreuve entre 1 et %d.\n", lines);
             printf("Choix : ");
             scanf("%d", &newRaceType);
@@ -359,6 +372,7 @@ void changeTraining(void){
             scanf("%d", &newTraining.position);
             printf("\n");
             while (newTraining.position < 1 || newTraining.position > 4){
+                while (getchar() != '\n');
                 printf("Choix invalide. Veuillez choisir une position entre 1 et 4.\n");
                 printf("Position lors du relais : ");
                 scanf("%d", &newTraining.position);
@@ -393,6 +407,7 @@ void changeTraining(void){
     scanf("%d", &changeChoice);
     printf("\n");
     while(changeChoice != 1 && changeChoice != 2){
+        while (getchar() != '\n');
         printf("Choix invalide. Veuillez entrer un choice valide.\n");
         printf("Faut-il changer la durée de l'entrainement ?\n");
         color("32"); printf("1. Oui\n"); color("0");
@@ -408,6 +423,7 @@ void changeTraining(void){
         printf("Heures : ");
         scanf("%d", &newHour);
         while(newHour < 0 || newHour > 23){
+            while (getchar() != '\n');
             printf("Heures : ");
             scanf("%d", &newHour);
         }
@@ -415,17 +431,21 @@ void changeTraining(void){
         printf("Minutes : ");
         scanf("%d", &newMinutes);
         while(newMinutes < 0 || newMinutes > 59){
+            while (getchar() != '\n');
             printf("Minutes : ");
             scanf("%d", &newMinutes);
         }
         printf("Secondes : ");
         scanf("%d", &newSeconds);
         while(newSeconds < 0 || newSeconds > 59){
+            while (getchar() != '\n');
+            printf("Secondes : ");
             scanf("%d", &newSeconds);
         }
         printf("Millisecondes : ");
         scanf("%d", &newMs);
         while(newMs < 0 || newMs > 999){
+            while (getchar() != '\n');
             printf("Millisecondes : ");
             scanf("%d", &newMs);
         }
@@ -474,7 +494,8 @@ void changeTraining(void){
 
 // Procédure principale pour ajouter, supprimer ou modifier un entrainement
 void modifEntrainement(void) {
-    int choice, athleteChoice;
+    int choice = 0, athleteChoice;
+
     printf("1. Ajouter un entrainement\n");
     printf("2. Supprimer un entrainement\n");
     printf("3. Modifier un entrainement\n");
@@ -483,25 +504,31 @@ void modifEntrainement(void) {
     scanf("%d", &choice);
     printf("\n");
 
-    switch (choice) {
-        case 1:
-            // Code pour ajouter un entrainement
-            athleteChoice = makeAthleteChoice();
-            addTraining(athleteChoice);
-            break;
-        case 2:
-            // Code pour supprimer un entrainement
-            removeTraining();
-            break;
-        case 3:
-            // Code pour modifier un entrainement
-            changeTraining();
-            break;
-        case 4:
-            // Retourner au menu principal
-            break;
-        default:
-            printf("Choix invalide.\n\n");
-            modifEntrainement();
+    while(choice < 1 || choice > 4){
+        while (getchar() != '\n');
+        printf("Choix invalide. Veuillez saisir un chiffre entre 1 et 4 : ");
+        scanf("%d", &choice);
+        printf("\n");
     }
+
+    if(choice == 4){
+        return;
+    }
+
+    else if(choice == 1){
+        // Code pour ajouter un entrainement
+        athleteChoice = makeAthleteChoice();
+        addTraining(athleteChoice);
+    }
+    
+    else if(choice == 2){
+        // Code pour supprimer un entrainement
+        removeTraining();
+    }
+    
+    else if(choice == 3){
+        // Code pour modifier un entrainement
+        changeTraining();
+    }
+
 }

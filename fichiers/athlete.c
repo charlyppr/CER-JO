@@ -111,6 +111,7 @@ void removeAthlete(void){
     scanf("%d", &athleteNumber);
     printf("\n");
     while(athleteNumber < 1 || athleteNumber > lignes){
+        while (getchar() != '\n');
         printf("Choix invalide. Entrez un nombre entre 1 et %d.\n", lignes);
         printf("Choix : ");
         scanf("%d", &athleteNumber);
@@ -132,6 +133,17 @@ void removeAthlete(void){
     printf("Choix : ");
     scanf("%d", &choice);
     printf("\n");
+    while(choice < 1 || choice > 2){
+        while (getchar() != '\n');
+        printf("Choix invalide.\n");
+        printf("Voulez-vous vraiment supprimer l'athlète %s %s ?\n", name, lastname);
+        color("32"); printf("1. Oui\n"); color("0");
+        color("31"); printf("2. Non\n"); color("0");
+        printf("Choix : ");
+        scanf("%d", &choice);
+        printf("\n");
+    }
+
     if(choice == 2){
         return;
     }
@@ -201,17 +213,16 @@ void changeAthlete(void){
     printf("Choix : ");
     scanf("%d", &choice);
     printf("\n");
+    
+    while(choice < 1 || choice > 2){
+        while (getchar() != '\n');
+        printf("Choix invalide. Veuillez saisir 1 ou 2 : ");
+        scanf("%d", &choice);
+        printf("\n");
+    }
 
     // Demander le nouveau prénom de l'athlète
     if (choice == 1) {
-        printf("Quel est le nouveau prénom de l'athlète ? ");
-        scanf("%s", newName);
-        if(newName[0] >= 'a' && newName[0] <= 'z'){
-            newName[0] = newName[0] - 32;
-        }
-        printf("\n");
-    } else if(choice < 1 || choice > 2){
-        printf("Choix invalide.\n");
         printf("Quel est le nouveau prénom de l'athlète ? ");
         scanf("%s", newName);
         if(newName[0] >= 'a' && newName[0] <= 'z'){
@@ -223,12 +234,21 @@ void changeAthlete(void){
         strcpy(newName, name);
     }
 
+    choice = 0;
+
     printf("Faut-il modifier le nom de l'athlète ?\n");
     color("32"); printf("1. Oui\n"); color("0");
     color("31"); printf("2. Non\n"); color("0");
     printf("Choix : ");
     scanf("%d", &choice);
     printf("\n");
+
+    while(choice < 1 || choice > 2){
+        while (getchar() != '\n');
+        printf("Choix invalide. Veuillez saisir 1 ou 2 : ");
+        scanf("%d", &choice);
+        printf("\n");
+    }
 
     // Demander le nouveau nom de l'athlète
     if (choice == 1) {
@@ -269,14 +289,14 @@ void changeAthlete(void){
     }
 
     rewind(athletesFile);
-    while (fscanf(athletesFile, "%d %s %s", &number, name, lastname) != EOF) {
+    while (fscanf(athletesFile, "%02d %s %s", &number, name, lastname) != EOF) {
         // Écrire les athlètes dans le fichier temporaire en modifiant celui à modifier
         if (number == athleteNumber) {
-            fprintf(newFile, "%d %s %s\n", count, newName, newLastname);
+            fprintf(newFile, "%02d %s %s\n", count, newName, newLastname);
             sprintf(completePath, "%s/Athletes/%s %s.txt", PATH, name, lastname);
             count++;
         } else {
-            fprintf(newFile, "%d %s %s\n", count, name, lastname);
+            fprintf(newFile, "%02d %s %s\n", count, name, lastname);
             count++;
         }
     }
@@ -324,7 +344,7 @@ void changeAthlete(void){
 
 // Procédure principale pour ajouter, supprimer ou modifier un athlète
 void modifAthlete(void) {
-    int choice, lastNumber = lastNumberAthlete();
+    int choice = 0, lastNumber = lastNumberAthlete();
 
     printf("1. Créer un nouvel athlète\n");
     printf("2. Supprimer un athlète\n");
@@ -334,39 +354,44 @@ void modifAthlete(void) {
     scanf("%d", &choice);
     printf("\n");
 
-    switch (choice) {
-        case 1:
-            // Code pour ajouter un athlète
-            addAthlete();
+    while (choice < 1 || choice > 4){
+        while (getchar() != '\n');
+        printf("Choix invalide. Veuillez saisir un chiffre entre 1 et 4 : ");
+        scanf("%d", &choice);
+        printf("\n");
+    }
+    
+    if(choice == 4){
+        return;
+    }
 
-            // Demander si l'utilisateur veut ajouter un entrainement pour l'athlète ajouté
-            printf("\nVoulez-vous ajouter un entrainement pour cet athlète ?\n");
-            color("32"); printf("1. Oui\n"); color("0");
-            color("31"); printf("2. Non\n"); color("0");
-            printf("Choix : ");
-            scanf("%d", &choice);
-            printf("\n");
-            if (choice == 1) {
-                addTraining(lastNumber + 1);
-            }
-            else {
-                return;
-            }
-            break;
-        case 2:
-            // Code pour supprimer un athlète
-            removeAthlete();
-            break;
-        case 3:
-            // Code pour modifier un athlète
-            changeAthlete();
-            break;
-        case 4:
-            // Retourner au menu principal
-            break;
-        default:
-            printf("Choix invalide.\n\n");
-            modifAthlete();
+    else if(choice == 1){
+        // Code pour ajouter un athlète
+        addAthlete();
+
+        // Demander si l'utilisateur veut ajouter un entrainement pour l'athlète ajouté
+        printf("\nVoulez-vous ajouter un entrainement pour cet athlète ?\n");
+        color("32"); printf("1. Oui\n"); color("0");
+        color("31"); printf("2. Non\n"); color("0");
+        printf("Choix : ");
+        scanf("%d", &choice);
+        printf("\n");
+        if (choice == 1) {
+            addTraining(lastNumber + 1);
+        }
+        else {
+            return;
+        }
+    }
+
+    else if(choice == 2){
+        removeAthlete();
+        return;
+    }
+
+    else if(choice == 3){
+        changeAthlete();
+        return;
     }
     
 }

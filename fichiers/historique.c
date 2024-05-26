@@ -110,34 +110,41 @@ void showTrainingRace(Training training1, int raceChoice) {
             exit(0);
         }
 
-        while (fgetc(file) != '\n'); // Sauter une ligne
+        printf("+—————————————————————————————————————————————————+\n");
+        printf("|"); color("1"); color("30");  printf(" Athlète : %s\n", athlete + 3); color("0");
+        printf("|                                                 |\n");
 
+        while (fgetc(file) != '\n'); // Sauter une ligne
         // Lire chaque ligne du fichier de l'athlète et afficher les entraînements de l'épreuve choisie
         while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
             if (strcmp(training1.raceType, race + 2) == 0) {
                 // Affichage des valeurs
-                printf("Athlète :                %s\n", athlete + 3);
                 if(strcmp(training1.raceType, "Relais") == 0){
                     if(position == 0){
                         continue;
                     } else {
                         if(position == 1) {
-                            printf("Position au relais :     %der coureur\n", position);
+                            printf("| Position au relais :     %der coureur            |\n", position);
                         } else if(position > 1) {
-                            printf("Position au relais :     %dème coureur\n", position);
+                            printf("| Position au relais :     %dème coureur           |\n", position);
                         }
                     }
                 }
-                printf("Date de l'entraînement : %02d/%02d/%04d\n", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year);
+
                 if(strcmp(training1.raceType, "Marathon") == 0){
-                    printf("Temps de l'athlète :     %02dh %02dmin %02dsec %03dms\n", training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+                    printf("| Date de l'entraînement : %02d/%02d/%04d             |\n", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year);
+                    printf("| Temps de l'athlète :     %02dh %02dmin %02dsec %03dms  |\n", training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+                    printf("|"); color("30"); printf("  ---------------------------------------------  "); color("0"); printf("|\n");
                 } 
                 else if(strcmp(training1.raceType, "5000m") == 0) {
-                    printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+                    printf("| Date de l'entraînement : %02d/%02d/%04d             |\n", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year);                    
+                    printf("| Temps de l'athlète :     %02dmin %02dsec %03dms      |\n", training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+                    printf("|"); color("30"); printf("  ---------------------------------------------  "); color("0"); printf("|\n");
                 } else {
-                    printf("Temps de l'athlète :     %02dsec %03dms\n", training1.athleteTime.second, training1.athleteTime.millisecond);
+                    printf("| Date de l'entraînement : %02d/%02d/%04d             |\n", training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year);
+                    printf("| Temps de l'athlète :     %02dsec %03dms            |\n", training1.athleteTime.second, training1.athleteTime.millisecond);
+                    printf("|"); color("30"); printf("  ---------------------------------------------  "); color("0"); printf("|\n");
                 }
-                printf("\n");
                 trainingFound = 1;
             }
         }
@@ -165,6 +172,7 @@ void showTrainingDate(Training training1) {
     scanf("%d %d %d", &date.day, &date.month, &date.year);
     printf("\n");
     while(!validDate(date)){
+        while (getchar() != '\n');
         printf("Date invalide. Veuillez entrer une date valide.\n");
         printf("Entrez la date de l'entrainement (JJ MM AAAA) : ");
         scanf("%d %d %d", &date.day, &date.month, &date.year);
@@ -194,43 +202,48 @@ void showTrainingDate(Training training1) {
             exit(0);
         }
 
+        printf("+—————————————————————————————————————————————————+\n");
+        printf("|"); color("1"); color("30");  printf(" Athlète : %s\n", athlete + 3); color("0");
+        printf("|                                                 |\n");
+
         while (fgetc(file) != '\n'); // Sauter une ligne
         // Lire chaque ligne du fichier de l'athlète et afficher les entraînements à la date choisie
         while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
             if (training1.trainingDate.day == date.day && training1.trainingDate.month == date.month && training1.trainingDate.year == date.year) {
-                printf("Athlète :                %s\n", athlete + 3);
-                printf("Type d'épreuve :         %s\n", training1.raceType);
+                
+                printf("| Type d'épreuve :         %s\n", training1.raceType);
                 if(strcmp(training1.raceType, "Relais") == 0){
                     if(position == 0){
                         continue;
                     } else {
                         if(position == 1) {
-                            printf("Position au relais :     %der coureur\n", position);
+                            printf("| Position au relais :     %der coureur            |\n", position);
                         } else if(position > 1) {
-                            printf("Position au relais :     %dème coureur\n", position);
+                            printf("| Position au relais :     %dème coureur           |\n", position);
                         }
                     }
                 }
                 // Si le type d'épreuve est un marathon, afficher les heures
                 if(strcmp(training1.raceType, "Marathon") == 0){
-                    printf("Temps de l'athlète :     %02dh %02dmin %02dsec %03dms\n", training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+                    printf("| Temps de l'athlète :     %02dh %02dmin %02dsec %03dms  |\n", training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
                 } 
                 // Si le type d'épreuve est un 5000m, afficher les minutes
                 else if(strcmp(training1.raceType, "5000m") == 0) {
-                    printf("Temps de l'athlète :     %02dmin %02dsec %03dms\n", training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
+                    printf("| Temps de l'athlète :     %02dmin %02dsec %03dms      |\n", training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond);
                 } 
                 
                 else {
-                    printf("Temps de l'athlète :     %02dsec %03dms\n", training1.athleteTime.second, training1.athleteTime.millisecond);
+                    printf("| Temps de l'athlète :     %02dsec %03dms            |\n", training1.athleteTime.second, training1.athleteTime.millisecond);
                 }
-                printf("\n");
+                printf("|                                                 |\n");
                 trainingFound = 1;
             }
         }
 
         // Si aucun entraînement n'a été trouvé pour l'athlète
         if (!trainingFound) {
-            printf("Aucun entraînement n'a été trouvé pour l'athlète %s à la date %02d/%02d/%04d.\n\n", athlete + 2, date.day, date.month, date.year);
+            printf("| Aucun entraînement trouvé pour l'athlète        |\n|%s à la date %02d/%02d/%04d.\n", athlete + 2, date.day, date.month, date.year);
+            printf("|                                                 |\n");
         }
 
         fclose(file);
@@ -240,8 +253,8 @@ void showTrainingDate(Training training1) {
 }
 
 // Procédure principale qui permet de choisir comment afficher les entraînements
-void trainingHistory(Training training1, FILE *file) {
-    int choice, athleteChoice, raceChoice, lines;
+void trainingHistory(Training training1) {
+    int choice = 0, athleteChoice, raceChoice, lines;
 
     // Ouvrir le fichier nomAthlètes
     FILE *athleteName = fopen(PATH"/Liste/nomAthletes.txt", "r");
@@ -265,54 +278,60 @@ void trainingHistory(Training training1, FILE *file) {
     scanf("%d", &choice);
     printf("\n");
 
-    switch (choice) {
-        case 1:
-            // Code pour afficher les entraînements par nom d'athlète
-            showAthleteList(athleteName);
-            printf("Choix : ");
+    while(choice < 1 || choice > 4){
+        while (getchar() != '\n');
+        printf("Choix invalide. Veuillez choisir un numéro entre 1 et 4 : ");
+        scanf("%d", &choice);
+        printf("\n");
+    }
+
+    if(choice == 4){
+        return;
+    }
+
+    else if(choice == 1){
+        // Code pour afficher les entraînements par nom d'athlète
+        showAthleteList(athleteName);
+        printf("Choix : ");
+        scanf("%d", &athleteChoice);
+        printf("\n");
+
+        rewind(athleteName);
+        lines = countLine(athleteName);
+
+        while (athleteChoice < 1 || athleteChoice > lines) {
+            while (getchar() != '\n');
+            printf("Choix invalide. Veuillez choisir un numéro d'athlète entre 1 et %d : ", lines);
             scanf("%d", &athleteChoice);
             printf("\n");
+        }
+        showTrainingName(training1, athleteChoice);
+    }
+    else if(choice == 2){
+        // Code pour afficher les entraînements par type d'épreuve
+        showRaceList(raceName);
+        printf("Choix : ");
+        scanf("%d", &raceChoice);
+        printf("\n");
 
-            rewind(athleteName);
-            lines = countLine(athleteName);
+        rewind(raceName);
+        lines = countLine(raceName);
 
-            while (athleteChoice < 1 || athleteChoice > lines) {
-                printf("Choix invalide. Veuillez choisir un numéro d'athlète entre 1 et %d.\n", lines);
-                printf("Choix : ");
-                scanf("%d", &athleteChoice);
-                printf("\n");
-            }
-            showTrainingName(training1, athleteChoice);
-            break;
-        case 2:
-            // Code pour afficher les entraînements par type d'épreuve
-            showRaceList(raceName);
-            printf("Choix : ");
+        while (raceChoice < 1 || raceChoice > lines) {
+            while (getchar() != '\n');
+            printf("Choix invalide. Veuillez choisir un numéro d'athlète entre 1 et %d : ", lines);
             scanf("%d", &raceChoice);
             printf("\n");
+        }
 
-            rewind(raceName);
-            lines = countLine(raceName);
+        showTrainingRace(training1, raceChoice);
+        printf("+—————————————————————————————————————————————————+\n\n");
+    }
 
-            while (raceChoice < 1 || raceChoice > lines) {
-                printf("Choix invalide. Veuillez choisir un numéro d'athlète entre 1 et %d.\n", lines);
-                printf("Choix : ");
-                scanf("%d", &raceChoice);
-                printf("\n");
-            }
-
-            showTrainingRace(training1, raceChoice);
-            break;
-        case 3:
-            // Code pour afficher les entraînements par date
-            showTrainingDate(training1);
-            break;
-        case 4:
-            // Retourner au menu principal
-            break;
-        default:
-            printf("Choix invalide.\n\n");
-            trainingHistory(training1, file);
+    else if(choice == 3){
+        // Code pour afficher les entraînements par date
+        showTrainingDate(training1);
+        printf("+—————————————————————————————————————————————————+\n\n");
     }
     
 }

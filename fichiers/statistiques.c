@@ -54,6 +54,7 @@ void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
     printf("Choix de la première date (entre 1 et %d) : ", dateCount-1);
     scanf("%d", &dateChoice1);
     while(dateChoice1 < 1 || dateChoice1 > dateCount-1){
+        while (getchar() != '\n');
         printf("\nChoix invalide. Veuillez choisir un numéro de date entre 1 et %d.\n", dateCount-1);
         printf("Choix de la première date (entre 1 et %d) : ", dateCount-1);
         scanf("%d", &dateChoice1);
@@ -62,6 +63,7 @@ void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){
     printf("Choix de la deuxième date (entre %d et %d) : ", dateChoice1+1, dateCount);
     scanf("%d", &dateChoice2);
     while(dateChoice2 < dateChoice1+1 || dateChoice2 > dateCount){
+        while (getchar() != '\n');
         printf("\nChoix invalide. Veuillez choisir un numéro de date entre %d et %d.\n", dateChoice1+1, dateCount);
         printf("Choix de la deuxième date (entre %d et %d) : ", dateChoice1+1, dateCount);
         scanf("%d", &dateChoice2);
@@ -318,6 +320,7 @@ void trainingResume(void) {
     lines = countLine(athleteName);
 
     while (athleteChoice < 1 || athleteChoice > lines) {
+        while (getchar() != '\n');
         printf("Choix invalide. Veuillez choisir un numéro d'athlète entre 1 et %d.\n", lines);
         printf("Choix : ");
         scanf("%d", &athleteChoice);
@@ -348,6 +351,7 @@ void trainingResume(void) {
     lines = countLine(raceName);
 
     while (raceChoice < 1 || raceChoice > lines) {
+        while (getchar() != '\n');
         printf("Choix invalide. Veuillez choisir un numéro d'épreuve entre 1 et %d.\n", lines);
         printf("Choix : ");
         scanf("%d", &raceChoice);
@@ -408,6 +412,7 @@ void whoInOG(void){
     lines = countLine(raceName);
 
     while (raceChoice < 1 || raceChoice > lines) {
+        while (getchar() != '\n');
         printf("Choix invalide. Veuillez choisir un numéro d'épreuve entre 1 et %d.\n", lines);
         printf("Choix : ");
         scanf("%d", &raceChoice);
@@ -491,42 +496,45 @@ void whoInOG(void){
 
     fclose(raceName);
     fclose(athleteName);
-    
+
 }
 
 // Procédure principale pour consulter des statistiques de performances de chaque athlète
-void athleteStatistic(Training training1, FILE *file) {
-    int choice, athleteChoice, raceChoice;
+void athleteStatistic(void) {
+    int choice = 0, athleteChoice, raceChoice;
     char race[MAX];
 
     printf("1. Consulter un résumer des statistiques de performances d'un athlète\n");
-    printf("2. Qui envoyer au Jeux Olympiques\n");
+    printf("2. Qui envoyer aux Jeux Olympiques\n");
     printf("3. Progression de l'athlète\n");
     color("31"); printf("4. Quitter\n"); color("0");
     printf("Choix : ");
     scanf("%d", &choice);
     printf("\n");
 
-    switch (choice) {
-        case 1:
-            // Code pour consulter les statistiques de performances d'un athlète
-            trainingResume();
-            break;
-        case 2:
-            // Code pour déterminer qui envoyer aux Jeux Olympiques
-            whoInOG();
-            break;
-        case 3:
-            // Code pour afficher la progression de l'athlète
-            chooseAthlete(&athleteChoice);
-            chooseRace(&raceChoice, race);
-            showDiffTime(&athleteChoice, &raceChoice, race);
-            break;
-        case 4:
-            // Retourner au menu principal
-            break;
-        default:
-            printf("Choix invalide.\n\n");
-            athleteStatistic(training1, file);
+    while(choice < 1 || choice > 4){
+        while (getchar() != '\n');
+        printf("Choix invalide. Veuillez saisir un chiffre entre 1 et 4 : ");
+        scanf("%d", &choice);
+        printf("\n");
     }
+
+    if(choice == 4){
+        return;
+    }
+
+    else if(choice == 1){
+        trainingResume();
+    }
+
+    else if(choice == 2){
+        whoInOG();
+    }
+
+    else if(choice == 3){
+        chooseAthlete(&athleteChoice);
+        chooseRace(&raceChoice, race);
+        showDiffTime(&athleteChoice, &raceChoice, race);
+    }
+
 }

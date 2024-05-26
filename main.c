@@ -4,93 +4,91 @@
 #include "headers/statistiques.h"
 
 
-#define TERMINAL_WIDTH 80 // La largeur du terminal (vous pouvez ajuster cette valeur)
 
-void afficherCentrer(const char *texte) {
-    int longueur = strlen(texte);
-    int espaces = (TERMINAL_WIDTH - longueur) / 2;
-
-    for (int i = 0; i < espaces; i++) {
-        printf(" ");
-    }
-    printf("%s", texte);
-}
-
-void afficherMenu() {
-    afficherCentrer("*******************************************************************\n");
-    afficherCentrer("*                          Menu Principal                         *\n");
-    afficherCentrer("*******************************************************************\n");
-    afficherCentrer(" * 1. Ajouter/Supprimer/Modifier un athlète                        *\n");
-    afficherCentrer("* 2. Ajouter/Supprimer/Modifier un entrainement                   *\n");
-    afficherCentrer(" * 3. Voir l'historique des entrainements de l'athlète             *\n");
-    afficherCentrer(" * 4. Consulter des statistiques de performances de chaque athlète *\n*");
-    color("31"); afficherCentrer(" 5. Quitter                                                      "); color("0"); printf("*\n");
-    afficherCentrer("*******************************************************************\n");
-    afficherCentrer("Choix : ");
+void showMenu(void) {
+    printf("+–——————————————————————————————————————————————————————————————————+\n");
+    printf("|                            Menu Principal                         |\n");
+    printf("+–——————————————————————————————————————————————————————————————————+\n");
+    printf("|  1. Ajouter/Supprimer/Modifier un athlète                         |\n");
+    printf("|  2. Ajouter/Supprimer/Modifier un entrainement                    |\n");
+    printf("|  3. Voir l'historique des entrainements de l'athlète              |\n");
+    printf("|  4. Consulter des statistiques de performances de chaque athlète  |\n");
+    printf("|"); color("31"); printf("  5. Quitter                                                       "); color("0"); printf("|\n");
+    printf("+–——————————————————————————————————————————————————————————————————+\n");
+    printf(" Choix : ");
 }
 
 
 
 void startProgramme(Training training1, FILE *file) {    
-    int choice, continueProg;
-    afficherMenu();
+    int choice = 0, continueProg;
+    showMenu();
     scanf("%d", &choice);
     printf("\n");
+
+    while(choice < 1 || choice > 5){
+        while (getchar() != '\n');
+        printf("Choix invalide. Veuillez saisir un chiffre entre 1 et 5 : ");
+        scanf("%d", &choice);
+        printf("\n");
+    }
 
     if(choice == 5){
         return;
     }
 
-    else {
-        if(choice == 1){
-            // Code pour ajouter/supprimer un athlète
-            modifAthlete();
-            continueProg = continueProgramme();
-            if(continueProg == 1){
-                startProgramme(training1, file);
-            }
-            else{
-                return;
-            }
-        }
-        else if(choice == 2){
-            // Code pour entrer et sauvegarder les informations/résultats d'un nouvel entrainement
-            modifEntrainement();
-            continueProg = continueProgramme();
-            if(continueProg == 1){
-                startProgramme(training1, file);
-            }
-            else{
-                return;
-            }
-        }
-        else if(choice == 3){
-            // Code pour consulter l'historique des entrainements de l'athlète
-            trainingHistory(training1, file);
-            continueProg = continueProgramme();
-            if(continueProg == 1){
-                startProgramme(training1, file);
-            }
-            else{
-                return;
-            }
-        }
-        else if(choice == 4){
-            // Code pour consulter des statistiques de performances de chaque athlète
-            athleteStatistic(training1, file);
-            continueProg = continueProgramme();
-            if(continueProg == 1){
-                startProgramme(training1, file);
-            }
-            else{
-                return;
-            }
+    else if(choice == 1){
+        // Code pour ajouter/supprimer un athlète
+        modifAthlete();
+        continueProg = continueProgramme();
+        if(continueProg == 1){
+            clrscr();
+            startProgramme(training1, file);
         }
         else{
-            printf("Choix invalide.\n");
+            return;
         }
     }
-    return;
+    
+    else if(choice == 2){
+        // Code pour entrer et sauvegarder les informations/résultats d'un nouvel entrainement
+        modifEntrainement();
+        continueProg = continueProgramme();
+        if(continueProg == 1){
+            clrscr();
+            startProgramme(training1, file);
+        }
+        else{
+            return;
+        }
+    }
+    
+    else if(choice == 3){
+        // Code pour consulter l'historique des entrainements de l'athlète
+        trainingHistory(training1);
+        continueProg = continueProgramme();
+        if(continueProg == 1){
+            clrscr();
+            startProgramme(training1, file);
+        }
+        else{
+            return;
+        }
+    }
+        
+    else if(choice == 4){
+        // Code pour consulter des statistiques de performances de chaque athlète
+        athleteStatistic();
+        continueProg = continueProgramme();
+        if(continueProg == 1){
+            clrscr();
+            startProgramme(training1, file);
+        }
+        else{
+            return;
+        }
+    }
+
 }
 
 int main(void){
