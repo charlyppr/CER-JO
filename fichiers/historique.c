@@ -1,11 +1,5 @@
 #include "../headers/historique.h"
 
-// Procédure qui permet de remplir des caractère selon la taille de la fenêtre
-void print_padded_line(const char* prefix, const char* content) {
-    int padding = FRAME_WIDTH - (int)strlen(prefix) - (int)strlen(content) - 2; // Calculer le nombre de caractères à ajouter pour remplir la ligne
-    printf("%s%s%*s", prefix, content, padding, ""); // Afficher la ligne
-}
-
 // Procédure qui permet d'afficher les entraînements d'un athlète
 void showTrainingName(Training training1, int athleteChoice) {
     int position, trainingFound = 0;

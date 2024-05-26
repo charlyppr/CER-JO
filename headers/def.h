@@ -19,6 +19,8 @@ extern int compareAverage(const void *a, const void *b);
 
 extern int makeAthleteChoice(void);
 
+extern void print_padded_line(const char* prefix, const char* content);
+
 extern void showAthleteName(FILE *file);
 
 extern void showAthleteList(FILE *nomAthlete);

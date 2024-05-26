@@ -13,7 +13,7 @@ void showMenu(void) {
     printf("|  2. Ajouter/Supprimer/Modifier un entrainement                    |\n");
     printf("|  3. Voir l'historique des entrainements de l'athlète              |\n");
     printf("|  4. Consulter des statistiques de performances de chaque athlète  |\n");
-    printf("|"); color("31"); printf("  5. Quitter                                                       "); color("0"); printf("|\n");
+    printf("|"); color("31"); printf("  5. Quitter                                                       ");color("0"); printf("|\n");
     printf("+–——————————————————————————————————————————————————————————————————+\n");
     printf(" Choix : ");
 }
