@@ -14,7 +14,11 @@ void startProgramme(Training training1, FILE *file) {
     scanf("%d", &choice);
     printf("\n");
 
-    while (choice != 5) {
+    if(choice == 5){
+        return;
+    }
+
+    else {
         if(choice == 1){
             // Code pour ajouter/supprimer un athlète
             modifAthlete();
@@ -93,7 +97,6 @@ int main(void){
 
         color("1"); color("32"); printf("\nMerci d'avoir utilisé le programme de gestion des entrainements des athlètes !\n"); color("0");
         color("1"); printf("A bientôt ! %s\n\n", "🥳"); color("0");
-
     }
     
     return 0;

@@ -488,6 +488,10 @@ void whoInOG(void){
         color("1"); printf("%s %s ", "🥉", athletes[averageIndex[2].index]); color("0"); printf("avec une moyenne de %02dsec %03dms\n", averages[averageIndex[2].index]/1000, (averages[averageIndex[2].index] % 1000));
         printf("\n");
     }
+
+    fclose(raceName);
+    fclose(athleteName);
+    
 }
 
 // Procédure principale pour consulter des statistiques de performances de chaque athlète
