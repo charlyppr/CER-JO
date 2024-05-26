@@ -165,7 +165,7 @@ void removeTraining(void) {
     // Lire chaque line du fichier
     while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
         // Affichage des valeurs
-        printf("%d. %02d/%02d/%4d | %02dh %02dmin %02dsec %03dms | %s\n", count, training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, training1.raceType);
+        printf("%02d. %02d/%02d/%4d | %02dh %02dmin %02dsec %03dms | %s\n", count, training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, training1.raceType);
         count++;
     }
 
@@ -263,7 +263,7 @@ void changeTraining(void){
     // Lire chaque line du fichier
     while (fscanf(file, "%d %d %d %s %d %d %d %d %d", &training1.trainingDate.day, &training1.trainingDate.month, &training1.trainingDate.year, training1.raceType, &training1.athleteTime.hour, &training1.athleteTime.minute, &training1.athleteTime.second, &training1.athleteTime.millisecond, &position) != EOF) {
         // Affichage des valeurs
-        printf("%d. %02d/%02d/%4d | %02dh %02dmin %02dsec %03dms | %s\n", count, training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, training1.raceType);
+        printf("%02d. %02d/%02d/%4d | %02dh %02dmin %02dsec %03dms | %s\n", count, training1.trainingDate.day, training1.trainingDate.month, training1.trainingDate.year, training1.athleteTime.hour, training1.athleteTime.minute, training1.athleteTime.second, training1.athleteTime.millisecond, training1.raceType);
         count++;
     }
 

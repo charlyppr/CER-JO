@@ -23,7 +23,7 @@ void startProgramme(Training training1, FILE *file) {
                 startProgramme(training1, file);
             }
             else{
-                exit(0);
+                return;
             }
         }
         else if(choice == 2){
@@ -34,7 +34,7 @@ void startProgramme(Training training1, FILE *file) {
                 startProgramme(training1, file);
             }
             else{
-                exit(0);
+                return;
             }
         }
         else if(choice == 3){
@@ -45,7 +45,7 @@ void startProgramme(Training training1, FILE *file) {
                 startProgramme(training1, file);
             }
             else{
-                exit(0);
+                return;
             }
         }
         else if(choice == 4){
@@ -56,14 +56,14 @@ void startProgramme(Training training1, FILE *file) {
                 startProgramme(training1, file);
             }
             else{
-                exit(0);
+                return;
             }
         }
         else{
             printf("Choix invalide.\n");
         }
     }
-    exit(0);
+    return;
 }
 
 int main(void){
@@ -90,6 +90,10 @@ int main(void){
         OGStart();
 
         startProgramme(training, fileN);
+
+        color("1"); color("32"); printf("\nMerci d'avoir utilisé le programme de gestion des entrainements des athlètes !\n"); color("0");
+        color("1"); printf("A bientôt ! %s\n\n", "🥳"); color("0");
+
     }
     
     return 0;
