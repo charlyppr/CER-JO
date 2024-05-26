@@ -5,11 +5,15 @@
 
 void startProgramme(Training training1, FILE *file) {    
     int choice, continueProg;
-    printf("1. Ajouter/Supprimer/Modifier un athlète\n");
-    printf("2. Ajouter/Supprimer/Modifier un entrainement\n");
-    printf("3. Voir l'historique des entrainements de l'athlète\n");
-    printf("4. Consulter des statistiques de performances de chaque athlète\n");
-    color("31"); printf("5. Quitter\n"); color("0");
+    printf("*******************************************************************\n");
+    printf("*                          Menu Principal                         *\n");
+    printf("*******************************************************************\n");
+    printf("* 1. Ajouter/Supprimer/Modifier un athlète                        *\n");
+    printf("* 2. Ajouter/Supprimer/Modifier un entrainement                   *\n");
+    printf("* 3. Voir l'historique des entrainements de l'athlète             *\n");
+    printf("* 4. Consulter des statistiques de performances de chaque athlète *\n");
+    color("31"); printf("* 5. Quitter                                                      *\n"); color("0");
+    printf("*******************************************************************\n");
     printf("Choix : ");
     scanf("%d", &choice);
     printf("\n");
