@@ -110,7 +110,7 @@ Pour utiliser le programme, suivez les instructions ci-dessous :
 
 #### 4. **Consulter les statistiques** :
   - Voir les meilleurs, pires temps et moyennes d'un athlète pour une discipline.
-  - Voir les trois meilleurs athlètes pour une discipline et savoir qui envoyer au JO.
+  - Voir les trois meilleurs athlètes pour une discipline et savoir qui envoyer aux JO.
   - Voir la progression d'un athlète entre deux dates pour une discipline.
 
 
