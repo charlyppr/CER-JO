@@ -1,23 +1,23 @@
 # <img width="70" alt="JO" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Olympic_rings_without_rims.svg/langfr-360px-Olympic_rings_without_rims.svg.png">&nbsp;&nbsp; CER-JO &nbsp;&nbsp;<img width="70" alt="JO" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Olympic_rings_without_rims.svg/langfr-360px-Olympic_rings_without_rims.svg.png">
 
-## Table of Contents
-1. [Project Description](#project-description)
-2. [Features](#features)
+## Table des Matières
+1. [Introduction](#introduction)
+2. [Fonctionnalités](#fonctionnalités)
 3. [Installation](#installation)
 4. [Usage](#usage)
-5. [File Structure](#file-structure)
-6. [Report](#report)
-7. [Authors](#authors)
+5. [Structure](#structure)
+6. [Rapport](#rapport)
+7. [Auteurs](#auteurs)
 
 
 
-## Project Description
+## Introduction
 
 C’est bientôt les JO ! Le but de ce projet est de développer un programme permettant à l’entraîneur de l’équipe d’athlétisme de France de suivre l’évolution des performances de ses sportifs. Les performances des athlètes lors des entraînements seront stockées dans des fichiers. Le programme permet de mettre à jour les résultats, de consulter certains résultats et de produire des statistiques sur les athlètes.
 
 
 
-## Features
+## Fonctionnalités
 
 - Gestion des épreuves suivantes :
   - 100 m
@@ -115,7 +115,7 @@ Pour utiliser le programme, suivez les instructions ci-dessous :
 
 
 
-## File Structure
+## Structure
 
 Voici la structure des fichiers du projet :
 
@@ -160,7 +160,7 @@ CER-JO/
 
 
 ---
-## Report
+## Rapport
 
 ### 1. Commencement
   Nous avons entrepris en groupe de trois, constitué de Charly, Aline, et Amir, le projet CER-JO, visant à développer un programme de gestion d'athlètes pour les JO. Il permet de suivre les performances et les informations des participants.
@@ -195,7 +195,7 @@ Nous avons rencontré plusieurs difficultés au cours de l'élaboration de notre
 Malgré les difficultés rencontrés, nous avons développé un programme fonctionnelle pour la gestion des athlètes. Ce projet nous a permis de renforcer nos compétences en développement et en travail d'équipe. 👍
 
 ---
-## Authors
+## Auteurs
 
 - **Charly Pupier** - [charly.pupier@etu.cyu.fr](mailto:charly.pupier@etu.cyu.fr)
 - **Aline Bouideghaghen** - [aline.bouideghaghen@etu.cyu.fr](mailto:aline.bouideghaghen@etu.cyu.fr)
