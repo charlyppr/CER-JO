@@ -230,23 +230,23 @@ void worstTime(FILE *athlete, char raceType[MAX]){
     } 
     // Sinon, afficher le pire temps
     else {
-        printf("Pire temps pour %s :\n", raceType);
-        printf("Date de l'entraînement : %02d/%02d/%04d\n", worstTraining.trainingDate.day, worstTraining.trainingDate.month, worstTraining.trainingDate.year);
+        color("2"); printf("   ————————————————————————————————————————    \n\n"); color("0");
+        printf("  Pire temps pour %s :\n", raceType);
+        printf("  Date de l'entraînement : %02d/%02d/%04d\n", worstTraining.trainingDate.day, worstTraining.trainingDate.month, worstTraining.trainingDate.year);
         if(worstTraining.athleteTime.hour != 0){
-            printf("Temps de l'athlète :     "); color("1"); printf("%02dh %02dmin %02dsec %03dms\n", worstTraining.athleteTime.hour, worstTraining.athleteTime.minute, worstTraining.athleteTime.second, worstTraining.athleteTime.millisecond); color("0");
+            printf("  Temps de l'athlète :     "); color("1"); printf("%02dh %02dmin %02dsec %03dms\n", worstTraining.athleteTime.hour, worstTraining.athleteTime.minute, worstTraining.athleteTime.second, worstTraining.athleteTime.millisecond); color("0");
         } else if(worstTraining.athleteTime.minute != 0) {
-            printf("Temps de l'athlète :     "); color("1"); printf("%02dmin %02dsec %03dms\n", worstTraining.athleteTime.minute, worstTraining.athleteTime.second, worstTraining.athleteTime.millisecond); color("0");
+            printf("  Temps de l'athlète :     "); color("1"); printf("%02dmin %02dsec %03dms\n", worstTraining.athleteTime.minute, worstTraining.athleteTime.second, worstTraining.athleteTime.millisecond); color("0");
         } else {
-            printf("Temps de l'athlète :     "); color("1"); printf("%02dsec %03dms\n", worstTraining.athleteTime.second, worstTraining.athleteTime.millisecond); color("0");
+            printf("  Temps de l'athlète :     "); color("1"); printf("%02dsec %03dms\n", worstTraining.athleteTime.second, worstTraining.athleteTime.millisecond); color("0");
         }
         if(worstTraining.position != 0){
             if(worstTraining.position == 1){
-                printf("Position au relais :     %der coureur\n", worstTraining.position);
+                printf("  Position au relais :     %der coureur\n", worstTraining.position);
             } else {
-                printf("Position au relais :     %dème coureur\n", worstTraining.position);
+                printf("  Position au relais :     %dème coureur\n", worstTraining.position);
             }
         }
-        printf("\n");
     }
 }
 
@@ -278,20 +278,21 @@ void bestTime(FILE *athlete, char raceType[MAX]){
     } 
     // Sinon, afficher le meilleur temps
     else {
-        printf("Meilleur temps pour %s :\n", raceType);
-        printf("Date de l'entraînement : %02d/%02d/%04d\n", bestTraining.trainingDate.day, bestTraining.trainingDate.month, bestTraining.trainingDate.year);
+        color("2"); printf("   ————————————————————————————————————————    \n\n"); color("0");
+        printf("  Meilleur temps pour %s :\n", raceType);
+        printf("  Date de l'entraînement : %02d/%02d/%04d\n", bestTraining.trainingDate.day, bestTraining.trainingDate.month, bestTraining.trainingDate.year);
         if(bestTraining.athleteTime.hour != 0){
-            printf("Temps de l'athlète :     "); color("1"); printf("%02dh %02dmin %02dsec %03dms\n", bestTraining.athleteTime.hour, bestTraining.athleteTime.minute, bestTraining.athleteTime.second, bestTraining.athleteTime.millisecond); color("0");
+            printf("  Temps de l'athlète :     "); color("1"); printf("%02dh %02dmin %02dsec %03dms\n", bestTraining.athleteTime.hour, bestTraining.athleteTime.minute, bestTraining.athleteTime.second, bestTraining.athleteTime.millisecond); color("0");
         } else if (bestTraining.athleteTime.minute != 0){
-            printf("Temps de l'athlète :     "); color("1"); printf("%02dmin %02dsec %03dms\n", bestTraining.athleteTime.minute, bestTraining.athleteTime.second, bestTraining.athleteTime.millisecond); color("0");
+            printf("  Temps de l'athlète :     "); color("1"); printf("%02dmin %02dsec %03dms\n", bestTraining.athleteTime.minute, bestTraining.athleteTime.second, bestTraining.athleteTime.millisecond); color("0");
         } else {
-            printf("Temps de l'athlète :     "); color("1"); printf("%02dsec %03dms\n", bestTraining.athleteTime.second, bestTraining.athleteTime.millisecond); color("0");
+            printf("  Temps de l'athlète :     "); color("1"); printf("%02dsec %03dms\n", bestTraining.athleteTime.second, bestTraining.athleteTime.millisecond); color("0");
         }
         if(bestTraining.position != 0){
             if(bestTraining.position == 1){
-                printf("Position au relais :     %der coureur\n", bestTraining.position);
+                printf("  Position au relais :     %der coureur\n", bestTraining.position);
             } else {
-                printf("Position au relais :     %dème coureur\n", bestTraining.position);
+                printf("  Position au relais :     %dème coureur\n", bestTraining.position);
             }
         }
         printf("\n");
@@ -376,15 +377,16 @@ void trainingResume(void) {
     if (average == 0) {
         return;
     } else {
-        printf("Moyenne temps pour %s :\n", race + 2);
+        color("2"); printf("\n   ————————————————————————————————————————    \n\n"); color("0");
+        printf("  Moyenne temps pour %s :\n", race + 2);
         if(average/3600000 != 0){
-            printf("Moyenne de l'athlète :   "); color("1"); printf("%02dh %02dmin %02dsec %03dms\n", average/3600000, (average % 3600000)/60000, (average % 60000)/1000, (average % 1000)); color("0");
+            printf("  Moyenne de l'athlète :   "); color("1"); printf("%02dh %02dmin %02dsec %03dms\n", average/3600000, (average % 3600000)/60000, (average % 60000)/1000, (average % 1000)); color("0");
         } else if(average/60000 != 0){ 
-            printf("Moyenne de l'athlète :   "); color("1"); printf("%02dmin %02dsec %03dms\n", average/60000, (average % 60000)/1000, (average % 1000)); color("0");
+            printf("  Moyenne de l'athlète :   "); color("1"); printf("%02dmin %02dsec %03dms\n", average/60000, (average % 60000)/1000, (average % 1000)); color("0");
         } else {
-            printf("Moyenne de l'athlète :   "); color("1"); printf("%02dsec %03dms\n", average/1000, (average % 1000)); color("0");
+            printf("  Moyenne de l'athlète :   "); color("1"); printf("%02dsec %03dms\n", average/1000, (average % 1000)); color("0");
         }
-        printf("\n");
+        color("2"); printf("\n   ————————————————————————————————————————    \n\n"); color("0");
     }
 
     fclose(athleteName);
