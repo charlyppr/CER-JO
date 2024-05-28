@@ -1,5 +1,26 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align -Wconversion -Wsign-conversion -Wnull-dereference
+CFLAGS_COMMON = -Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -Wcast-align -Wconversion -Wsign-conversion -Wnull-dereference
+CFLAGS_OLD = -Wno-format-overflow
+CFLAGS_NEW =
+
+# Détecter la version du compilateur
+GCC_VERSION_MAJOR := $(shell $(CC) -dumpversion | cut -f1 -d.)
+GCC_VERSION_MINOR := $(shell $(CC) -dumpversion | cut -f2 -d.)
+
+# Vérifier la version du compilateur
+# Si la version est 10.2.x, ajouter -Wno-format-overflow
+ifeq ($(GCC_VERSION_MAJOR), 10)
+    ifeq ($(GCC_VERSION_MINOR), 2)
+        CFLAGS = $(CFLAGS_COMMON) $(CFLAGS_OLD)
+    else
+        CFLAGS = $(CFLAGS_COMMON) $(CFLAGS_NEW)
+    endif
+else ifeq ($(shell expr $(GCC_VERSION_MAJOR) \>= 14), 1)
+    CFLAGS = $(CFLAGS_COMMON) $(CFLAGS_NEW)
+else
+    CFLAGS = $(CFLAGS_COMMON) $(CFLAGS_NEW)
+endif
+
 OBJDIR = output
 SRC_DIR = fichiers
 SRCS = $(wildcard $(SRC_DIR)/*.c) main.c
