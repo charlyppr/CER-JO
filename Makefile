@@ -5,16 +5,11 @@ CFLAGS_NEW =
 
 # Détecter la version du compilateur
 GCC_VERSION_MAJOR := $(shell $(CC) -dumpversion | cut -f1 -d.)
-GCC_VERSION_MINOR := $(shell $(CC) -dumpversion | cut -f2 -d.)
 
 # Vérifier la version du compilateur
 # Si la version est 10.2.x, ajouter -Wno-format-overflow
-ifeq ($(GCC_VERSION_MAJOR), 10)
-    ifeq ($(GCC_VERSION_MINOR), 2)
-        CFLAGS = $(CFLAGS_COMMON) $(CFLAGS_OLD)
-    else
-        CFLAGS = $(CFLAGS_COMMON) $(CFLAGS_NEW)
-    endif
+ifeq ($(shell expr $(GCC_VERSION_MAJOR) \>= 9), 1)
+    CFLAGS = $(CFLAGS_COMMON) $(CFLAGS_OLD)
 else ifeq ($(shell expr $(GCC_VERSION_MAJOR) \>= 14), 1)
     CFLAGS = $(CFLAGS_COMMON) $(CFLAGS_NEW)
 else

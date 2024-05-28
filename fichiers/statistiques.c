@@ -1,4 +1,5 @@
 #include "../headers/statistiques.h"
+Training training;
 
 // Procédure pour afficher la différence de temps entre deux entraînements
 void showDiffTime(int *athleteChoice, int *raceChoice, char race[MAX]){

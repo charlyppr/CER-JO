@@ -26,8 +26,6 @@ typedef struct {
     Time athleteTime;
 } Training;
 
-Training training;  // Variable globale pour l'entraînement
-
 // Structure pour la moyenne et l'index
 typedef struct {
     int average;

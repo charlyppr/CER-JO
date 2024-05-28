@@ -94,6 +94,7 @@ void startProgramme(Training training1, FILE *file) {
 int main(void){
     clrscr();
     FILE *fileN = NULL;
+    Training training;
     int start = 0;
 
     printf("\nVerification que PATH est bien correct ...\n");
