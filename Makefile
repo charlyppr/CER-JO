@@ -52,7 +52,7 @@ run:
 
 # Nettoyage des fichiers objets
 clean:
-	rm -rf $(OBJDIR)/*.o
+	rm -rf $(OBJDIR)/*.o $(TARGET)
 
 # Cibles phony pour éviter les conflits avec des fichiers de même nom
 .PHONY: all clean run
