@@ -66,12 +66,7 @@ Pour installer et exécuter ce projet, suivez les étapes ci-dessous :
     make
     ```
 
-6. **Nettoyer les fichiers objets** :
-    ```bash
-    make clean
-    ```
-
-7. **Exécuter le programme** :
+6. **Exécuter le programme** :
      ```bash
      ./cerjo
      ```
