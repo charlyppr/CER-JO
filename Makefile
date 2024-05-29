@@ -8,7 +8,7 @@ GCC_VERSION_MAJOR := $(shell $(CC) -dumpversion | cut -f1 -d.)
 
 # Vérifier la version du compilateur
 # Si la version est 10.2.x, ajouter -Wno-format-overflow
-ifeq ($(shell expr $(GCC_VERSION_MAJOR) \>= 9), 1)
+ifeq ($(shell expr $(GCC_VERSION_MAJOR) \<= 9), 1)
     CFLAGS = $(CFLAGS_COMMON) $(CFLAGS_OLD)
 else ifeq ($(shell expr $(GCC_VERSION_MAJOR) \>= 14), 1)
     CFLAGS = $(CFLAGS_COMMON) $(CFLAGS_NEW)
