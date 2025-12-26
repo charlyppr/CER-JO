@@ -192,6 +192,6 @@ Malgré les difficultés rencontrés, nous avons développé un programme foncti
 ---
 ## Auteurs
 
-- **Charly Pupier** - [charly.pupier@etu.cyu.fr](mailto:charly.pupier@etu.cyu.fr)
-- **Aline Bouideghaghen** - [aline.bouideghaghen@etu.cyu.fr](mailto:aline.bouideghaghen@etu.cyu.fr)
-- **Amir Azza** - [amir.azza@etu.cyu.fr](mailto:amir.azza@etu.cyu.fr)
+- **Charly** - [charly.pupier@etu.cyu.fr](mailto:charly.pupier@etu.cyu.fr)
+- **Aline** - [aline.bouideghaghen@etu.cyu.fr](mailto:aline.bouideghaghen@etu.cyu.fr)
+- **Amir** - [amir.azza@etu.cyu.fr](mailto:amir.azza@etu.cyu.fr)
